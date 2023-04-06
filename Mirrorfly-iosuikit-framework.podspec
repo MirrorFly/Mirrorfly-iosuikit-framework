@@ -32,19 +32,7 @@ Pod::Spec.new do |s|
     s.dependency 'IQKeyboardManagerSwift'
 
 
-    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
-
- a.subspecs: [
-    {
-      "name": "FlyCall",
-      "dependencies": {
-        "FlyCall"
-      },
-      "vendored_frameworks": [
-        "SDK/FlyCall.xcframework"
-      ]
-    },
-  ]
+    s.ios.vendored_frameworks = 'SDK/FlyCommon.xcframework', 'SDK/FlyCall.xcframework' ,'SDK/FlyCore.xcframework', 'SDK/FlyXmpp.xcframework', 'SDK/FlyDatabase.xcframework', 'SDK/FlyNetwork.xcframework', 'SDK/FlyTranslate.xcframework', 'SDK/FlyUIKit.xcframework'
 
    
 end
