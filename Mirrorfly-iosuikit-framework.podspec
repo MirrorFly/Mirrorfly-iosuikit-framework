@@ -34,6 +34,18 @@ Pod::Spec.new do |s|
 
     s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
 
+ a.subspecs: [
+    {
+      "name": "FlyCall",
+      "dependencies": {
+        "FlyCall"
+      },
+      "vendored_frameworks": [
+        "SDK/FlyCall.xcframework"
+      ]
+    },
+  ]
+
    
 end
 
