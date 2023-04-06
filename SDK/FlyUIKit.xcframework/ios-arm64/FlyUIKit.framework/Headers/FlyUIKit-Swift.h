@@ -1479,6 +1479,7 @@ SWIFT_CLASS("_TtC8FlyUIKit29MFUICallParticipantController")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)viewDidLoad;
 - (void)viewDidAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)createViewModelWithContacts:(NSArray<ProfileDetails *> * _Nullable)contacts type:(enum ChatCreationType)type;
 - (void)setupViews;
@@ -1627,8 +1628,9 @@ SWIFT_CLASS("_TtC8FlyUIKit28MFUICallScreenViewController")
 
 @interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
 - (void)CallScreenViewModelWithReloadData:(BOOL)isRelaod index:(NSInteger)index;
-- (void)CallScreenViewModelWithDidupdateTime:(NSString * _Nonnull)timestring;
+- (void)CallScreenViewModelWithDidupdateTime:(NSString * _Nonnull)timestring username:(NSString * _Nonnull)username image:(NSString * _Nonnull)image;
 - (void)shouldUpdateLoadingState:(BOOL)isLoading;
+- (void)CallScreenViewModelWithDidUpdateUser:(NSInteger)index;
 @end
 
 
@@ -1646,9 +1648,12 @@ SWIFT_CLASS("_TtC8FlyUIKit28MFUICallScreenViewController")
 @end
 
 
+@class RTCVideoTrack;
 @class GroupCallDetails;
 
 @interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onLocalVideoTrackAddedWithUserId:(NSString * _Nonnull)userId videoTrack:(RTCVideoTrack * _Nonnull)videoTrack;
+- (void)onRemoteVideoTrackAddedWithUserId:(NSString * _Nonnull)userId track:(RTCVideoTrack * _Nonnull)track;
 - (void)getGroupName:(NSString * _Nonnull)groupId;
 - (void)onUserSpeakingWithUserId:(NSString * _Nonnull)userId audioLevel:(NSInteger)audioLevel;
 - (void)onUserStoppedSpeakingWithUserId:(NSString * _Nonnull)userId;
@@ -2467,6 +2472,7 @@ SWIFT_CLASS("_TtC8FlyUIKit32MFUIRecentChatListViewController")
 @property (nonatomic, strong) UIView * _Nullable createShowOptions;
 @property (nonatomic) BOOL isConnected;
 @property (nonatomic, strong) MFUISearchBarView * _Nonnull searchbarView;
+@property (nonatomic, copy) NSString * _Nonnull searchJid;
 @property (nonatomic, strong) UIView * _Nonnull headerView;
 @property (nonatomic, strong) UIButton * _Nonnull closeButton;
 @property (nonatomic, strong) UIButton * _Nonnull muteButton;

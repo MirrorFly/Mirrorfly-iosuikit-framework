@@ -6,91 +6,91 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		p4dO29ExOT+KF26Z5mDBLQN8XEU=
+		vI+3/Lc31C0z7gYbDlZB2mqBKTc=
 		</data>
 		<key>Frameworks/FlyCall.framework/FlyCall</key>
 		<data>
-		4Tr/tdPKfEA7YQMu0+U/ESezO2E=
+		nmCOvGT4xcWgbchYgMFqN0gNI7w=
 		</data>
 		<key>Frameworks/FlyCall.framework/Info.plist</key>
 		<data>
-		pd+vZw6envawPFCxarIsZ8OkNpg=
+		RGIILkGYHnVGQCJZKPuE2fl05jU=
 		</data>
 		<key>Frameworks/FlyCall.framework/_CodeSignature/CodeResources</key>
 		<data>
-		47oX2d8tzh47msdjAmazdSmiJss=
+		acjk016HBv49qPEdkYbbVvet8Mk=
 		</data>
 		<key>Frameworks/FlyCommon.framework/FlyCommon</key>
 		<data>
-		b2jqXq/w2EBZKuutWVpA+S9fZGk=
+		JuS0CFZ0WL08cS64vMJsG7/Rsmw=
 		</data>
 		<key>Frameworks/FlyCommon.framework/Info.plist</key>
 		<data>
-		AkvNzKp4tenOgbmOvSfqr6C7byw=
+		Q0iBvA8zIFWczfq5sk0ruej56LQ=
 		</data>
 		<key>Frameworks/FlyCommon.framework/_CodeSignature/CodeResources</key>
 		<data>
-		uzKTG478K0t1v6pCHPTHpqsomvs=
+		fj6fU5dVbeXwW2nCeVUK40CxG+o=
 		</data>
 		<key>Frameworks/FlyCore.framework/FlyCore</key>
 		<data>
-		iPYelm4Hz0YhzvUVzjf4gYA1Nhw=
+		lA6FO1A9iZz+UU8Vm45WRV78OKU=
 		</data>
 		<key>Frameworks/FlyCore.framework/Info.plist</key>
 		<data>
-		exs40MuMMqyV9jh6hcpx4CMpkKM=
+		ZLOtYhnYcWKZIeh2mROP+Ze6g8M=
 		</data>
 		<key>Frameworks/FlyCore.framework/_CodeSignature/CodeResources</key>
 		<data>
-		bMJhKQPeRE+F3sAme5D41yle+pA=
+		m5Kmg13Qr+kukFN1mzTPa0heXOU=
 		</data>
 		<key>Frameworks/FlyDatabase.framework/FlyDatabase</key>
 		<data>
-		Ylp0um2z4Y9winTppUuK49VU14Q=
+		sHpJ1MKkfF5lPD3+76bC89Z0+IU=
 		</data>
 		<key>Frameworks/FlyDatabase.framework/Info.plist</key>
 		<data>
-		aTdQVVCPslJkkD76N/RnSCJvEO8=
+		XQZ2YSHbOJnpsDHTBjxojrEHVEQ=
 		</data>
 		<key>Frameworks/FlyDatabase.framework/_CodeSignature/CodeResources</key>
 		<data>
-		7tQ4Y5RSiPZjLZw+TQfv8TTekiU=
+		r/5BuJS4eZ/RapBE9gOzFWEVOww=
 		</data>
 		<key>Frameworks/FlyNetwork.framework/FlyNetwork</key>
 		<data>
-		B+rGb/mYrPLO3LHXuT9WULParbo=
+		Aw6ZvYCNNdzLhj+6tAzgglt7Gd8=
 		</data>
 		<key>Frameworks/FlyNetwork.framework/Info.plist</key>
 		<data>
-		Zn6j6JtvvBBzEt4ucOqamsth5kM=
+		KO3I1cLAXn47WS/6yCB+6chjNmc=
 		</data>
 		<key>Frameworks/FlyNetwork.framework/_CodeSignature/CodeResources</key>
 		<data>
-		ImQzNTqN2BGw0P3N5+NGb83erwc=
+		nxNAkYtrBDiTGnpOhG8THrsisNM=
 		</data>
 		<key>Frameworks/FlyTranslate.framework/FlyTranslate</key>
 		<data>
-		4WXLSUBovUdGy/f2SFwPgEyT0Bk=
+		o5zwrnfW5jke2QSHcFjfd3MwSuY=
 		</data>
 		<key>Frameworks/FlyTranslate.framework/Info.plist</key>
 		<data>
-		egxXGtWkfxZxDKA9RI/JWiw5fIQ=
+		LmjuMHd6OpkaudOoa+9cOj4s3GE=
 		</data>
 		<key>Frameworks/FlyTranslate.framework/_CodeSignature/CodeResources</key>
 		<data>
-		XbUGLaLbBjgFTqIfoXTcmNRc3XE=
+		SVrnQ+MCVUbZ/jOKDBFg0/R+ppo=
 		</data>
 		<key>Frameworks/FlyXmpp.framework/FlyXmpp</key>
 		<data>
-		3U1aOpYa6Wd7isVAnUcxwOuTsZQ=
+		LSVsrGuT5jxVWaBqsTQYSE9HRYQ=
 		</data>
 		<key>Frameworks/FlyXmpp.framework/Info.plist</key>
 		<data>
-		pKDa1JlLf/cuT3VqGGKrmCOlsbU=
+		AiJpBWjy4dcUglWmccRhPtHFHL4=
 		</data>
 		<key>Frameworks/FlyXmpp.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Tbamb0br3/5a1evYKWrK2eS9UM0=
+		Zs3EZC5ckFjy1tDLZrtTYLkqpUk=
 		</data>
 		<key>GoogleService-Info.plist</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>Headers/FlyUIKit-Swift.h</key>
 		<data>
-		3OP5DDr6y2GsPQP8o621tbpZOzk=
+		JaSHSE/A4wfT0V6xkydjCBpFZ4A=
 		</data>
 		<key>Headers/FlyUIKit.h</key>
 		<data>
@@ -122,23 +122,23 @@
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		VWwZGu4FBg1o36RezNZyr/Y1EGE=
+		xIDaz0lnSJ7r3WnXg2doitGdu3Q=
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		ELK8cln8ntf80/KwfXVW1e2Dy3I=
+		p4o9U1MxoPLOtCq+U2/omC/6MDA=
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		5FOUe6o0sBXjDYIojogpuKw7FKk=
+		r6P2sEAUe4l8n04xN0J0VpeDu8s=
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		ELK8cln8ntf80/KwfXVW1e2Dy3I=
+		p4o9U1MxoPLOtCq+U2/omC/6MDA=
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		21r9FWn0vZc21ufK9OcqwRG0imo=
+		EgcD0NeOjB5xYKq1ik34ELnY5VU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -155,154 +155,154 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8P3SZb4qlQzwpF8dVXAl/OtpfSiT0c3TJoSENkEhyOA=
+			nti7cKy3ZNoriDukodOll/Lx/7LrAwznPAH8CFcdFik=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCall.framework/FlyCall</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TxhAVIaZStArLDDUSk9zaLLj+3MyC9Ksff1FzYoneMs=
+			0RrLXoW89+DCpx7sAs+yvspvAxrFqgQMAK9tbH2tROk=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCall.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YVuyGmhPg/2ZOb55Gi4CGVO4FddXeNJxDLP2YNZanYY=
+			oNzI7Qo3rXv3IYxaRNmZAjyf+EQ7Tzr6U1J+9jHbwzk=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCall.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rPYpvsuZtHgfrgWMNWs93ekhT4xzI3FNQyzSFTf8aFE=
+			fdc47tjXsKUB+zKgBIk75OqmUySBgNO2UI9ES0nuXJA=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCommon.framework/FlyCommon</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			W8MJkYMD9UNu7gQ98LBFBix8wchK/w1waN5asBLXptY=
+			6VY8Fwoz3zOx+/JycelR7q+hcOMizz8J0RGjWNuzflw=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCommon.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7/NyGGT4rkjxyS+ZyfAnMjSe4lDphfREv5/DeDUSFWY=
+			Frr5NEsC6hoOjCfS9LoQcyBrKRbeobO7Vghtmg0XSBM=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCommon.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1lfn+7/iayutd71oTsjbS6/5jFjyxiMuDarcGHiavMo=
+			WLhk4XPZkdN8kU/OhONlCWZF/DqgQzrow3tJhQwSOJk=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCore.framework/FlyCore</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Urhn279B1sPmMWIuWbED52x9f5MfOyHqVJ/G+qI6W+Q=
+			DonY1XdTY2tSeh4bopruvskUvg8XOGzaYwDXrm8MyKc=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCore.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			s955Y10dbIA+hDD+lTCJtUgmLLtKLlVielqwJTieZYA=
+			HLBRARZPbXKJNAaqauEJ+X0o8Jvd9iO/dj4ZvlfT7/E=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCore.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TrQKgVuf4k5uafLXKSuY4UowHp+I0v0eKLnRLGvxEYQ=
+			iaSPmsRqo0zfjV9cLLEtI2JHFjV0IKwteYIvr8dVfes=
 			</data>
 		</dict>
 		<key>Frameworks/FlyDatabase.framework/FlyDatabase</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Hq9cJz1oLqoR9r5z7n10hGOaD5xH1hBLSvHoa6a35k8=
+			njBc+Dy2onv29NxYIiiNZsn7BDI8GJ+KuxMJaWg1Tgw=
 			</data>
 		</dict>
 		<key>Frameworks/FlyDatabase.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wUGEfC/CL8oNyvHFf8NLbZOFR2sBJ2387pzbQ6QKjRg=
+			sH0u3UeWP+4Bw8GXYm+CiMqsm7frWyE2ekz1ABTQOmU=
 			</data>
 		</dict>
 		<key>Frameworks/FlyDatabase.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NU2BPrlE8/FC/RowBpkC11y6fch4EFBop/L113IVFN0=
+			HzUMLn8ToL6wvhTbxTsgGna7rxs8Q7hleGSVL1YZP+Q=
 			</data>
 		</dict>
 		<key>Frameworks/FlyNetwork.framework/FlyNetwork</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WNArfbv9EWg6OR9w9AOZMkEp/ph24oTfdhBfBC9IHXY=
+			PsfxJ4hnWoSrygbHLDTILMv64lWhGpn3IPnDSw/2mVA=
 			</data>
 		</dict>
 		<key>Frameworks/FlyNetwork.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uRa6xDCLH1Cq4ROElk7K6/af4tE+lK74xCTJpOEH34I=
+			lFD9LVJy7S1S5l1IxliqRjmGU88eJAGUz6Vd9pMFoz0=
 			</data>
 		</dict>
 		<key>Frameworks/FlyNetwork.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			U30fPaKhA/nso1BU7oe4OyCPb3O+9qwm+NXwFPzbPp0=
+			Cl7KVkLTspyclCfsCj0TuHzssNrp3KP6zQ2VuBHz0Ho=
 			</data>
 		</dict>
 		<key>Frameworks/FlyTranslate.framework/FlyTranslate</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oYBxzA7vcky08tLmnxeHjVA2KbUYIGWT/fK7mEspks8=
+			mZuPM1QCjCixzSLDczqw+ugAFLnJr14iZtmULhfO6ZA=
 			</data>
 		</dict>
 		<key>Frameworks/FlyTranslate.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/vhaPazugcGa1oprFn1x9acbNA4leCtvTR6m4a6LQPA=
+			rqVq0GYs0cC6jZz7jglpLM57ZhK4fMemiSkB3HGvuSY=
 			</data>
 		</dict>
 		<key>Frameworks/FlyTranslate.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xIx0V2TIKquhnOfu6Zu85arOCmZgR46zF1uEUhelTg4=
+			iUFUIJvfbVPHqZXpEzuQ8vIsB4++47yfyPfSX0wYWsc=
 			</data>
 		</dict>
 		<key>Frameworks/FlyXmpp.framework/FlyXmpp</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nshT+7125yb/r1mGi2H8vOp9yF9Y+03otZKeZVPD7dg=
+			ThxbeSq+22BVVwZrRDDcnBUwzMz4R+NcAP4MHRHGlus=
 			</data>
 		</dict>
 		<key>Frameworks/FlyXmpp.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XUAXJ9PtAWC58kMluhASgDZNusXa2PEOSzHdt9X5C6M=
+			4goI15CR2gdhdfAH/hbvEdUN5PBFROGGNnzrlRzewm4=
 			</data>
 		</dict>
 		<key>Frameworks/FlyXmpp.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			P1WXNqcO1mnRWfaNAMAfknxfsAsXw1aA/oXF9qNKcXo=
+			xxjv3e884QkO936QUO9GvW124iZMM1B5759oD2mouRQ=
 			</data>
 		</dict>
 		<key>GoogleService-Info.plist</key>
@@ -316,7 +316,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			up9zrZ1DLF1INjLz3TpkeIECrIyLS+8DLBfR/2NYv38=
+			Rac9LkIkvFFi2QZNOkXtVhMIhYfonIGRJxddYoiowdc=
 			</data>
 		</dict>
 		<key>Headers/FlyUIKit.h</key>
@@ -351,35 +351,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FEJzwoP3J2Ub+SRFMHW52JHPM6jenAIYjiyDK+wIADw=
+			O7yGRho2eGvMxkWVudWluuTNPiXpVeUqVDMO8SW3zvI=
 			</data>
 		</dict>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Eaqr8pd0IxDhvJVSmbJSnL+9s+1q2HiDLU3f5GxeFSE=
+			xXspXjWlakT5FWKDIf8fQAKrMQBz5m2265CyK7G6a9Q=
 			</data>
 		</dict>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EJ+Vo6SvNVjrIybcUdXr29/IOPXkgF2ulWT+QW6cHkw=
+			CXx48h+8+oeJqqflGsgOPPC8QXB7GilB9ehccVhtTQY=
 			</data>
 		</dict>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Eaqr8pd0IxDhvJVSmbJSnL+9s+1q2HiDLU3f5GxeFSE=
+			xXspXjWlakT5FWKDIf8fQAKrMQBz5m2265CyK7G6a9Q=
 			</data>
 		</dict>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GlNWFPn5hRfGdlL+c5PnOdROwGR8XMkAxt5OHfK4pCk=
+			D8glnQpA03mP2laQz3mS74xBNfY0PviN1ghS/lioSMU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
