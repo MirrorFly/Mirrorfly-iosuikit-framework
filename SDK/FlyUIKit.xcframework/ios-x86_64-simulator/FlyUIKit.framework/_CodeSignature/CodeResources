@@ -10,87 +10,87 @@
 		</data>
 		<key>Frameworks/FlyCall.framework/FlyCall</key>
 		<data>
-		nmCOvGT4xcWgbchYgMFqN0gNI7w=
+		4Tr/tdPKfEA7YQMu0+U/ESezO2E=
 		</data>
 		<key>Frameworks/FlyCall.framework/Info.plist</key>
 		<data>
-		RGIILkGYHnVGQCJZKPuE2fl05jU=
+		pd+vZw6envawPFCxarIsZ8OkNpg=
 		</data>
 		<key>Frameworks/FlyCall.framework/_CodeSignature/CodeResources</key>
 		<data>
-		acjk016HBv49qPEdkYbbVvet8Mk=
+		47oX2d8tzh47msdjAmazdSmiJss=
 		</data>
 		<key>Frameworks/FlyCommon.framework/FlyCommon</key>
 		<data>
-		JuS0CFZ0WL08cS64vMJsG7/Rsmw=
+		b2jqXq/w2EBZKuutWVpA+S9fZGk=
 		</data>
 		<key>Frameworks/FlyCommon.framework/Info.plist</key>
 		<data>
-		Q0iBvA8zIFWczfq5sk0ruej56LQ=
+		AkvNzKp4tenOgbmOvSfqr6C7byw=
 		</data>
 		<key>Frameworks/FlyCommon.framework/_CodeSignature/CodeResources</key>
 		<data>
-		fj6fU5dVbeXwW2nCeVUK40CxG+o=
+		uzKTG478K0t1v6pCHPTHpqsomvs=
 		</data>
 		<key>Frameworks/FlyCore.framework/FlyCore</key>
 		<data>
-		lA6FO1A9iZz+UU8Vm45WRV78OKU=
+		iPYelm4Hz0YhzvUVzjf4gYA1Nhw=
 		</data>
 		<key>Frameworks/FlyCore.framework/Info.plist</key>
 		<data>
-		ZLOtYhnYcWKZIeh2mROP+Ze6g8M=
+		exs40MuMMqyV9jh6hcpx4CMpkKM=
 		</data>
 		<key>Frameworks/FlyCore.framework/_CodeSignature/CodeResources</key>
 		<data>
-		m5Kmg13Qr+kukFN1mzTPa0heXOU=
+		bMJhKQPeRE+F3sAme5D41yle+pA=
 		</data>
 		<key>Frameworks/FlyDatabase.framework/FlyDatabase</key>
 		<data>
-		sHpJ1MKkfF5lPD3+76bC89Z0+IU=
+		Ylp0um2z4Y9winTppUuK49VU14Q=
 		</data>
 		<key>Frameworks/FlyDatabase.framework/Info.plist</key>
 		<data>
-		XQZ2YSHbOJnpsDHTBjxojrEHVEQ=
+		aTdQVVCPslJkkD76N/RnSCJvEO8=
 		</data>
 		<key>Frameworks/FlyDatabase.framework/_CodeSignature/CodeResources</key>
 		<data>
-		r/5BuJS4eZ/RapBE9gOzFWEVOww=
+		7tQ4Y5RSiPZjLZw+TQfv8TTekiU=
 		</data>
 		<key>Frameworks/FlyNetwork.framework/FlyNetwork</key>
 		<data>
-		Aw6ZvYCNNdzLhj+6tAzgglt7Gd8=
+		B+rGb/mYrPLO3LHXuT9WULParbo=
 		</data>
 		<key>Frameworks/FlyNetwork.framework/Info.plist</key>
 		<data>
-		KO3I1cLAXn47WS/6yCB+6chjNmc=
+		Zn6j6JtvvBBzEt4ucOqamsth5kM=
 		</data>
 		<key>Frameworks/FlyNetwork.framework/_CodeSignature/CodeResources</key>
 		<data>
-		nxNAkYtrBDiTGnpOhG8THrsisNM=
+		ImQzNTqN2BGw0P3N5+NGb83erwc=
 		</data>
 		<key>Frameworks/FlyTranslate.framework/FlyTranslate</key>
 		<data>
-		o5zwrnfW5jke2QSHcFjfd3MwSuY=
+		4WXLSUBovUdGy/f2SFwPgEyT0Bk=
 		</data>
 		<key>Frameworks/FlyTranslate.framework/Info.plist</key>
 		<data>
-		LmjuMHd6OpkaudOoa+9cOj4s3GE=
+		egxXGtWkfxZxDKA9RI/JWiw5fIQ=
 		</data>
 		<key>Frameworks/FlyTranslate.framework/_CodeSignature/CodeResources</key>
 		<data>
-		SVrnQ+MCVUbZ/jOKDBFg0/R+ppo=
+		XbUGLaLbBjgFTqIfoXTcmNRc3XE=
 		</data>
 		<key>Frameworks/FlyXmpp.framework/FlyXmpp</key>
 		<data>
-		LSVsrGuT5jxVWaBqsTQYSE9HRYQ=
+		3U1aOpYa6Wd7isVAnUcxwOuTsZQ=
 		</data>
 		<key>Frameworks/FlyXmpp.framework/Info.plist</key>
 		<data>
-		AiJpBWjy4dcUglWmccRhPtHFHL4=
+		pKDa1JlLf/cuT3VqGGKrmCOlsbU=
 		</data>
 		<key>Frameworks/FlyXmpp.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Zs3EZC5ckFjy1tDLZrtTYLkqpUk=
+		Tbamb0br3/5a1evYKWrK2eS9UM0=
 		</data>
 		<key>GoogleService-Info.plist</key>
 		<data>
@@ -122,7 +122,7 @@
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		MCbsrOkqkhtXvFVY3HxYnPfQFDw=
+		AXh5tj116GGaToPEg3ilEvufxJc=
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -138,7 +138,7 @@
 		</data>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		kGHFqvdPc1M5VKAwgI+6DZVxvvs=
+		tW5muzJ1oomSy3pBgoxZ0q04KPs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -162,147 +162,147 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0RrLXoW89+DCpx7sAs+yvspvAxrFqgQMAK9tbH2tROk=
+			TxhAVIaZStArLDDUSk9zaLLj+3MyC9Ksff1FzYoneMs=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCall.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oNzI7Qo3rXv3IYxaRNmZAjyf+EQ7Tzr6U1J+9jHbwzk=
+			YVuyGmhPg/2ZOb55Gi4CGVO4FddXeNJxDLP2YNZanYY=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCall.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fdc47tjXsKUB+zKgBIk75OqmUySBgNO2UI9ES0nuXJA=
+			rPYpvsuZtHgfrgWMNWs93ekhT4xzI3FNQyzSFTf8aFE=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCommon.framework/FlyCommon</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6VY8Fwoz3zOx+/JycelR7q+hcOMizz8J0RGjWNuzflw=
+			W8MJkYMD9UNu7gQ98LBFBix8wchK/w1waN5asBLXptY=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCommon.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Frr5NEsC6hoOjCfS9LoQcyBrKRbeobO7Vghtmg0XSBM=
+			7/NyGGT4rkjxyS+ZyfAnMjSe4lDphfREv5/DeDUSFWY=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCommon.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WLhk4XPZkdN8kU/OhONlCWZF/DqgQzrow3tJhQwSOJk=
+			1lfn+7/iayutd71oTsjbS6/5jFjyxiMuDarcGHiavMo=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCore.framework/FlyCore</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			DonY1XdTY2tSeh4bopruvskUvg8XOGzaYwDXrm8MyKc=
+			Urhn279B1sPmMWIuWbED52x9f5MfOyHqVJ/G+qI6W+Q=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCore.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HLBRARZPbXKJNAaqauEJ+X0o8Jvd9iO/dj4ZvlfT7/E=
+			s955Y10dbIA+hDD+lTCJtUgmLLtKLlVielqwJTieZYA=
 			</data>
 		</dict>
 		<key>Frameworks/FlyCore.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iaSPmsRqo0zfjV9cLLEtI2JHFjV0IKwteYIvr8dVfes=
+			TrQKgVuf4k5uafLXKSuY4UowHp+I0v0eKLnRLGvxEYQ=
 			</data>
 		</dict>
 		<key>Frameworks/FlyDatabase.framework/FlyDatabase</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			njBc+Dy2onv29NxYIiiNZsn7BDI8GJ+KuxMJaWg1Tgw=
+			Hq9cJz1oLqoR9r5z7n10hGOaD5xH1hBLSvHoa6a35k8=
 			</data>
 		</dict>
 		<key>Frameworks/FlyDatabase.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sH0u3UeWP+4Bw8GXYm+CiMqsm7frWyE2ekz1ABTQOmU=
+			wUGEfC/CL8oNyvHFf8NLbZOFR2sBJ2387pzbQ6QKjRg=
 			</data>
 		</dict>
 		<key>Frameworks/FlyDatabase.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HzUMLn8ToL6wvhTbxTsgGna7rxs8Q7hleGSVL1YZP+Q=
+			NU2BPrlE8/FC/RowBpkC11y6fch4EFBop/L113IVFN0=
 			</data>
 		</dict>
 		<key>Frameworks/FlyNetwork.framework/FlyNetwork</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PsfxJ4hnWoSrygbHLDTILMv64lWhGpn3IPnDSw/2mVA=
+			WNArfbv9EWg6OR9w9AOZMkEp/ph24oTfdhBfBC9IHXY=
 			</data>
 		</dict>
 		<key>Frameworks/FlyNetwork.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lFD9LVJy7S1S5l1IxliqRjmGU88eJAGUz6Vd9pMFoz0=
+			uRa6xDCLH1Cq4ROElk7K6/af4tE+lK74xCTJpOEH34I=
 			</data>
 		</dict>
 		<key>Frameworks/FlyNetwork.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Cl7KVkLTspyclCfsCj0TuHzssNrp3KP6zQ2VuBHz0Ho=
+			U30fPaKhA/nso1BU7oe4OyCPb3O+9qwm+NXwFPzbPp0=
 			</data>
 		</dict>
 		<key>Frameworks/FlyTranslate.framework/FlyTranslate</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mZuPM1QCjCixzSLDczqw+ugAFLnJr14iZtmULhfO6ZA=
+			oYBxzA7vcky08tLmnxeHjVA2KbUYIGWT/fK7mEspks8=
 			</data>
 		</dict>
 		<key>Frameworks/FlyTranslate.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rqVq0GYs0cC6jZz7jglpLM57ZhK4fMemiSkB3HGvuSY=
+			/vhaPazugcGa1oprFn1x9acbNA4leCtvTR6m4a6LQPA=
 			</data>
 		</dict>
 		<key>Frameworks/FlyTranslate.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iUFUIJvfbVPHqZXpEzuQ8vIsB4++47yfyPfSX0wYWsc=
+			xIx0V2TIKquhnOfu6Zu85arOCmZgR46zF1uEUhelTg4=
 			</data>
 		</dict>
 		<key>Frameworks/FlyXmpp.framework/FlyXmpp</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ThxbeSq+22BVVwZrRDDcnBUwzMz4R+NcAP4MHRHGlus=
+			nshT+7125yb/r1mGi2H8vOp9yF9Y+03otZKeZVPD7dg=
 			</data>
 		</dict>
 		<key>Frameworks/FlyXmpp.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4goI15CR2gdhdfAH/hbvEdUN5PBFROGGNnzrlRzewm4=
+			XUAXJ9PtAWC58kMluhASgDZNusXa2PEOSzHdt9X5C6M=
 			</data>
 		</dict>
 		<key>Frameworks/FlyXmpp.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xxjv3e884QkO936QUO9GvW124iZMM1B5759oD2mouRQ=
+			P1WXNqcO1mnRWfaNAMAfknxfsAsXw1aA/oXF9qNKcXo=
 			</data>
 		</dict>
 		<key>GoogleService-Info.plist</key>
@@ -351,7 +351,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uBolZh1Z/D0xnZOjtuc9GPa0yIzKp1il+hJgqrAKHmw=
+			0x/PK77i/knJMgRVLRAILy79F7JL0fTnjKEt6ACYfeU=
 			</data>
 		</dict>
 		<key>Modules/FlyUIKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -379,7 +379,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5W96ldjyr0LGWwnRPznpN5H66WG66SHU9lfI1c/tTgw=
+			y1CZoS//YbE8uYAMFKzRP8T+KyvuAjihljGV9/UmpAk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
