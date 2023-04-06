@@ -828,9 +828,8 @@ extension FlyUIKit.MFUICallScreenViewController : FlyCall.AudioManagerDelegate {
 extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUICallScreenViewModelDelegate {
   @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenViewModel(reloadData isRelaod: Swift.Bool, index: Swift.Int)
   @_Concurrency.MainActor(unsafe) public func CallScreenViewModel(didupdateAudio image: UIKit.UIImage, audioDeviceType: FlyCall.OutputType)
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenViewModel(didupdateTime timestring: Swift.String, username: Swift.String, image: Swift.String)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenViewModel(didupdateTime timestring: Swift.String)
   @objc @_Concurrency.MainActor(unsafe) dynamic public func shouldUpdateLoadingState(_ isLoading: Swift.Bool)
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenViewModel(didUpdateUser index: Swift.Int)
 }
 extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUICallScreenModuleCallOverlayDelegate {
   @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenModule(_ didTapOverLayView: UIKit.UIView?)
@@ -901,7 +900,6 @@ extension FlyUIKit.MFUIUserProfileViewController : FlyCore.ProfileEventsDelegate
   }
   @objc @_Concurrency.MainActor(unsafe) public var isConnected: Swift.Bool
   @objc @_Concurrency.MainActor(unsafe) public var searchbarView: FlyUIKit.MFUISearchBarView
-  @objc @_Concurrency.MainActor(unsafe) public var searchJid: Swift.String
   @objc @_Concurrency.MainActor(unsafe) public var headerView: UIKit.UIView {
     @objc get
     @objc set
@@ -2440,10 +2438,9 @@ extension FlyUIKit.MFUIUpdateProfileModule {
   }
 }
 public protocol MFUICallScreenViewModelDelegate : FlyUIKit.MFUICommonViewModelDelegate {
-  func CallScreenViewModel(didupdateTime timestring: Swift.String, username: Swift.String, image: Swift.String)
+  func CallScreenViewModel(didupdateTime timestring: Swift.String)
   func CallScreenViewModel(didupdateAudio image: UIKit.UIImage, audioDeviceType: FlyCall.OutputType)
   func CallScreenViewModel(reloadData isRelaod: Swift.Bool, index: Swift.Int)
-  func CallScreenViewModel(didUpdateUser index: Swift.Int)
 }
 @objc @_inheritsConvenienceInitializers open class MFUICallScreenViewModel : ObjectiveC.NSObject {
   weak public var delegate: FlyUIKit.MFUICallScreenViewModelDelegate?
@@ -6663,7 +6660,6 @@ extension FlyUIKit.MFUISettingsController : FlyUIKit.MFUISettingsModuleHeaderDel
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
   @objc deinit
   @objc @_Concurrency.MainActor(unsafe) open func createViewModel(contacts: [FlyCommon.ProfileDetails]? = nil, type: FlyUIKit.ChatCreationType = .newSinglehChat)
