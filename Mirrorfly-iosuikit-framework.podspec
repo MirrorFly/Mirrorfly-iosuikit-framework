@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
     s.dependency 'libPhoneNumber-iOS'
     s.dependency 'NicoProgress'
     s.dependency 'Floaty', '~> 4.2.0'
+    s.dependency 'GoogleMaps'
     s.dependency 'IQKeyboardManagerSwift'
 
 
