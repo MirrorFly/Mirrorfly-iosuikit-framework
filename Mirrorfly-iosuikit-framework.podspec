@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     s.dependency 'IQKeyboardManagerSwift'
 
 
-    s.ios.vendored_frameworks = 'SDK/MirrorFlySDK.xcframework', 'SDK/FlyUIKit.xcframework'
+    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework','SDK/MirrorFlySDK.xcframework'
 
    
 end
