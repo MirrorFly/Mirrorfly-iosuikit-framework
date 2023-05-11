@@ -32,8 +32,8 @@ Pod::Spec.new do |s|
     s.dependency 'GoogleMaps'
     s.dependency 'IQKeyboardManagerSwift'
 
+    s.ios.vendored_frameworks = 'SDK/FlyCommon.xcframework', 'SDK/FlyCall.xcframework' ,'SDK/FlyCore.xcframework', 'SDK/FlyXmpp.xcframework', 'SDK/FlyDatabase.xcframework', 'SDK/FlyNetwork.xcframework', 'SDK/FlyTranslate.xcframework', 'SDK/FlyUIKit.xcframework'
 
-    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework','SDK/MirrorFlySDK.xcframework'
 
    
 end
