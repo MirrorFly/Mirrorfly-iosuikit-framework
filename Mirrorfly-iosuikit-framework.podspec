@@ -30,9 +30,10 @@ Pod::Spec.new do |s|
     s.dependency 'NicoProgress'
     s.dependency 'Floaty', '~> 4.2.0'
     s.dependency 'IQKeyboardManagerSwift'
+    s.dependency 'MirrorFlySDK', '~> 5.8.0'
 
 
-    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework','SDK/MirrorFlySDK.xcframework'
+    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
 
 
    
