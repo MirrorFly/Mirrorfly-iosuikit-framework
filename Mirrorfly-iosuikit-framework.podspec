@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
 
     s.swift_versions = ['4.0', '4.2', '5.0', '5.2', '5.3', '5.6']
     s.requires_arc = true
+    s.pod_target_xcconfig = { 'VALID_ARCHS' => 'armv7 arm64 x86_64', 'IPHONEOS_DEPLOYMENT_TARGET' => '12.1',}
 
 
     s.dependency 'libPhoneNumber-iOS'
