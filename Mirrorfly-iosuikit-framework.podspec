@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     # change the source location
     s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => 'feature/cocoapods-generation' } 
 
-    s.swift_version = '4.0'
+    s.swift_versions = ['4.0', '4.2', '5.0', '5.2', '5.3', '5.6']
     s.requires_arc = true
 
 
