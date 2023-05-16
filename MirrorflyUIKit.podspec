@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
     s.platform          = :ios, 12.1
     # change the source location
-    s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => 's.version.to_s' } 
+    s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => s.version.to_s } 
 
     s.swift_versions = ['4.0', '4.2', '5.0', '5.2', '5.3', '5.6']
     s.requires_arc = true
