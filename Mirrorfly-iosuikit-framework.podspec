@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|  
     s.name              = 'Mirrorfly-iosuikit-framework' # Name for your pod
-    s.version           = "0.0.6"
+    s.version           = '1.0.0'
     s.summary           = 'This repo to explore the cocopod and how to upload pod in public accessc'
     s.homepage          = 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework'
 
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
     s.platform          = :ios, 12.1
     # change the source location
-    s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => s.version.to_s } 
+    s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => 'feature/cocoapods-generation' } 
 
     s.swift_version = '4.0'
     s.requires_arc = true
