@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|  
     s.name              = 'Mirrorfly-iosuikit-framework' # Name for your pod
-    s.version           = '1.0.0'
+    s.version           = '0.1.0'
     s.summary           = 'This repo to explore the cocopod and how to upload pod in public accessc'
     s.homepage          = 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework'
 
@@ -10,13 +10,10 @@ Pod::Spec.new do |s|
 
     s.platform          = :ios, 12.1
     # change the source location
-    s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => 'feature/cocoapods-generation' } 
+    s.source            = { :git => 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework.git', :tag => 's.version.to_s' } 
 
     s.swift_versions = ['4.0', '4.2', '5.0', '5.2', '5.3', '5.6']
     s.requires_arc = true
-    s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-    s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-
 
 
     s.dependency 'libPhoneNumber-iOS'
