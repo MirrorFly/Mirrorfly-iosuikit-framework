@@ -2548,8 +2548,7 @@ extension FlyUIKit.MFUIGroupInfoModule {
   @_Concurrency.MainActor(unsafe) public var heightConstraint: UIKit.NSLayoutConstraint!
   @_Concurrency.MainActor(unsafe) public var text: Swift.String
   @_Concurrency.MainActor(unsafe) public var backgroundColorView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var chatLocationMapView: GoogleMaps.GMSMapView
-  @_Concurrency.MainActor(unsafe) public var mediaLocationMapView: GoogleMaps.GMSMapView?
+  @_Concurrency.MainActor(unsafe) public var chatLocationMapView: GoogleMaps.GMSMapView?
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
@@ -2706,7 +2705,7 @@ public protocol MFUICommonDelegate : AnyObject {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) public var mediaLocationMapView: GoogleMaps.GMSMapView
+  @_Concurrency.MainActor(unsafe) public var mediaLocationMapView: GoogleMaps.GMSMapView?
   @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView {
     get
     set
@@ -5199,10 +5198,7 @@ public protocol MFUILocationModuleMapViewDelegate : FlyUIKit.MFUICommonDelegate 
 extension FlyUIKit.MFUILocationModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Mapview : UIKit.UIView, CoreLocation.CLLocationManagerDelegate, GoogleMaps.GMSMapViewDelegate {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFLocationTheme?
-    @objc @_Concurrency.MainActor(unsafe) public var mapview: GoogleMaps.GMSMapView {
-      @objc get
-      @objc set
-    }
+    @objc @_Concurrency.MainActor(unsafe) public var mapview: GoogleMaps.GMSMapView?
     @objc @_Concurrency.MainActor(unsafe) public var locationView: UIKit.UIView {
       @objc get
       @objc set
