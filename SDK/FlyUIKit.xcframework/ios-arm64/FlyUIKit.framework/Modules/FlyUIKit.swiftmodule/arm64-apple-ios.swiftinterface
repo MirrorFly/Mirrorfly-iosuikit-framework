@@ -13,9 +13,7 @@ import CoreLocation
 import Floaty
 @_exported import FlyUIKit
 import Foundation
-import GoogleMaps
 import IQKeyboardManagerSwift
-import MapKit
 import MirrorFlySDK
 import MobileCoreServices
 import Network
@@ -691,6 +689,8 @@ extension FlyUIKit.MFUIUserProfileModule {
   @objc deinit
 }
 extension FlyUIKit.FlyUIKitSDK : MirrorFlySDK.ConnectionEventDelegate {
+  public func onConnectionFailed(error: MirrorFlySDK.FlyError)
+  public func onReconnecting()
   @objc dynamic public func onConnected()
   @objc dynamic public func onDisconnected()
   @objc dynamic public func onConnectionNotAuthorized()
@@ -2552,25 +2552,6 @@ extension FlyUIKit.MFUIGroupInfoModule {
     @objc deinit
   }
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFUILocationContentView : FlyUIKit.MFUIBaseMediaContentView {
-  @_Concurrency.MainActor(unsafe) public var widthConstraint: UIKit.NSLayoutConstraint!
-  @_Concurrency.MainActor(unsafe) public var heightConstraint: UIKit.NSLayoutConstraint!
-  @_Concurrency.MainActor(unsafe) public var text: Swift.String
-  @_Concurrency.MainActor(unsafe) public var backgroundColorView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var chatLocationMapView: GoogleMaps.GMSMapView?
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
-  @_Concurrency.MainActor(unsafe) open func setupSizeContraint()
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
-  @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell()
-  @_Concurrency.MainActor(unsafe) open func updateSenderImageCell()
-  @_Concurrency.MainActor(unsafe) public func setImage(_ image: UIKit.UIImage?, size: CoreFoundation.CGSize? = nil)
-  @_Concurrency.MainActor(unsafe) open func resizeImageView(by size: CoreFoundation.CGSize)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @objc deinit
-}
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFContactPreviewTableCell : FlyUIKit.MFUITableViewCell {
   @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFContactPreviewTheme
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
@@ -2714,7 +2695,6 @@ public protocol MFUICommonDelegate : AnyObject {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) public var mediaLocationMapView: GoogleMaps.GMSMapView?
   @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView {
     get
     set
@@ -2788,33 +2768,6 @@ extension FlyUIKit.MFUIUserProfileModule.List : FlyUIKit.MFUIUserProfileModuleHe
 }
 extension Swift.String {
   public func getAcronyms(separator: Swift.String = "") -> Swift.String
-}
-public protocol MFUILocationModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
-  func locationModule(_ headerComponent: FlyUIKit.MFUILocationModule.Header, didUpdateTitleView titleView: UIKit.UIView?)
-  func locationModule(_ headerComponent: FlyUIKit.MFUILocationModule.Header, didUpdateLeftItem leftItem: UIKit.UIBarButtonItem?)
-  func locationModule(_ headerComponent: FlyUIKit.MFUILocationModule.Header, didTapLeftItem leftItem: UIKit.UIBarButtonItem)
-}
-extension FlyUIKit.MFUILocationModule {
-  @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUILocationModuleHeaderDelegate?
-    @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var leftBarButton: UIKit.UIBarButtonItem? {
-      @objc get
-      @objc set
-    }
-    @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFLocationTheme?
-    @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
-    @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
-    @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUILocationModuleHeaderDelegate, theme: FlyUIKit.MFLocationTheme)
-    @objc @_Concurrency.MainActor(unsafe) open func setupViews()
-    @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
-    @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFLocationTheme? = nil)
-    @objc @_Concurrency.MainActor(unsafe) open func onTapLeftBarButton()
-  }
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFUIDeleteMessageView : FlyUIKit.MFUIBaseMediaContentView {
   @_Concurrency.MainActor(unsafe) public var documentView: UIKit.UIView
@@ -5206,74 +5159,6 @@ extension FlyUIKit.MFUIMediaMessageCell : FlyUIKit.MFUIAudioContentViewDelegate 
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-public protocol MFUILocationModuleMapViewDelegate : FlyUIKit.MFUICommonDelegate {
-  func locationModule(_ listComponent: FlyUIKit.MFUILocationModule.Mapview, latitude: Swift.Double, longitude: Swift.Double)
-  func enablePermissionSetting()
-  func goToPrevious()
-}
-extension FlyUIKit.MFUILocationModule {
-  @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Mapview : UIKit.UIView, CoreLocation.CLLocationManagerDelegate, GoogleMaps.GMSMapViewDelegate {
-    @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFLocationTheme?
-    @objc @_Concurrency.MainActor(unsafe) public var mapview: GoogleMaps.GMSMapView?
-    @objc @_Concurrency.MainActor(unsafe) public var locationView: UIKit.UIView {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var emptyView: UIKit.UIView {
-      @objc get
-      @objc set
-    }
-    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUILocationModuleMapViewDelegate?
-    @objc @_Concurrency.MainActor(unsafe) public var sendLocationLabel: UIKit.UILabel {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var streetLabel: UIKit.UILabel {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var addressLabel: UIKit.UILabel {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var locationVstack: UIKit.UIStackView {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var sendButton: UIKit.UIButton {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var locationHStackView: UIKit.UIStackView {
-      @objc get
-      @objc set
-    }
-    @objc @_Concurrency.MainActor(unsafe) public var locationManager: CoreLocation.CLLocationManager
-    @objc @_Concurrency.MainActor(unsafe) public var location: CoreLocation.CLLocation!
-    @_Concurrency.MainActor(unsafe) public var latitude: Swift.Double?
-    @_Concurrency.MainActor(unsafe) public var longitude: Swift.Double?
-    @objc @_Concurrency.MainActor(unsafe) public var isForView: Swift.Bool
-    @objc @_Concurrency.MainActor(unsafe) public var isMapZoomed: Swift.Bool
-    @_Concurrency.MainActor(unsafe) public var mapZoomLevel: Swift.Float?
-    @objc @_Concurrency.MainActor(unsafe) public var marker: GoogleMaps.GMSMarker?
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUILocationModuleMapViewDelegate, theme: FlyUIKit.MFLocationTheme, latitude: Swift.Double, longitude: Swift.Double, isForView: Swift.Bool)
-    @objc @_Concurrency.MainActor(unsafe) open func setupViews()
-    @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
-    @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFLocationTheme? = nil)
-    @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didUpdateLocations locations: [CoreLocation.CLLocation])
-    @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didFailWithError error: Swift.Error)
-    @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didChangeAuthorization status: CoreLocation.CLAuthorizationStatus)
-    @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, idleAt position: GoogleMaps.GMSCameraPosition)
-    @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, willMove gesture: Swift.Bool)
-    @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, didTap marker: GoogleMaps.GMSMarker) -> Swift.Bool
-    @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, didTapAt coordinate: CoreLocation.CLLocationCoordinate2D)
-    @_Concurrency.MainActor(unsafe) @objc public func didTapMyLocationButton(for mapView: GoogleMaps.GMSMapView) -> Swift.Bool
-    @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, didChange position: GoogleMaps.GMSCameraPosition)
-    @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
-    @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
-    @objc deinit
-  }
-}
 public class MFUILanguageModule {
   public var headerComponent: FlyUIKit.MFUILanguageModule.Header? {
     get
@@ -5617,33 +5502,10 @@ public class MFUICreateChatModule {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @objc deinit
 }
-@objc @_Concurrency.MainActor(unsafe) open class MFUILocationViewController : FlyUIKit.MFBaseViewController {
-  @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFLocationTheme
-  @objc @_Concurrency.MainActor(unsafe) public var headerComponent: FlyUIKit.MFUILocationModule.Header?
-  @objc @_Concurrency.MainActor(unsafe) public var mapViewcomponent: FlyUIKit.MFUILocationModule.Mapview?
-  @objc @_Concurrency.MainActor(unsafe) public var currentLatitude: Swift.Double
-  @objc @_Concurrency.MainActor(unsafe) public var currentLongitude: Swift.Double
-  @objc @_Concurrency.MainActor(unsafe) public var isForView: Swift.Bool
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init()
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFUILocationViewController : FlyUIKit.MFBaseViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override open func setupViews()
-  @_Concurrency.MainActor(unsafe) @objc override open func setupLayouts()
   @objc deinit
-}
-extension FlyUIKit.MFUILocationViewController : FlyUIKit.MFUILocationModuleHeaderDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func didReceiveError(_ error: Swift.String?, isBlocker: Swift.Bool)
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func locationModule(_ headerComponent: FlyUIKit.MFUILocationModule.Header, didUpdateTitleView titleView: UIKit.UIView?)
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func locationModule(_ headerComponent: FlyUIKit.MFUILocationModule.Header, didUpdateLeftItem leftItem: UIKit.UIBarButtonItem?)
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func locationModule(_ headerComponent: FlyUIKit.MFUILocationModule.Header, didTapLeftItem leftItem: UIKit.UIBarButtonItem)
-}
-extension FlyUIKit.MFUILocationViewController : FlyUIKit.MFUILocationModuleMapViewDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func locationModule(_ listComponent: FlyUIKit.MFUILocationModule.Mapview, latitude: Swift.Double, longitude: Swift.Double)
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func enablePermissionSetting()
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func goToPrevious()
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class MFUINavigationTitleView : FlyUIKit.MFUIView {
   @_Concurrency.MainActor(unsafe) public var text: Swift.String?
@@ -6891,15 +6753,11 @@ public class MFUIModuleSet {
     get
     set
   }
-  public static var locationModule: FlyUIKit.MFUILocationModule {
-    get
-    set
-  }
   public static var contactPreviewModule: FlyUIKit.MFUIContactPreviewModule {
     get
     set
   }
-  public init(chatListModule: FlyUIKit.MFUIRecentChatListModule = MFUIRecentChatListModule(), baseChatViewModule: FlyUIKit.MFUIBaseChatViewModule = MFUIBaseChatViewModule(), chatViewParentModule: FlyUIKit.MFUIChatViewParentModule = MFUIChatViewParentModule(), createChatModule: FlyUIKit.MFUICreateChatModule = MFUICreateChatModule(), createGroupChatModule: FlyUIKit.MFUICreateGroupChatModule = MFUICreateGroupChatModule(), callScreenModule: FlyUIKit.MFUICallScreenModule = MFUICallScreenModule(), imageEditModule: FlyUIKit.MFUIImageEditModule = MFUIImageEditModule(), messageInfoModule: FlyUIKit.MFUIMessageInfoModule = MFUIMessageInfoModule(), userProfileModule: FlyUIKit.MFUIUserProfileModule = MFUIUserProfileModule(), settingsModule: FlyUIKit.MFUISettingsModule = MFUISettingsModule(), updateProfileModule: FlyUIKit.MFUIUpdateProfileModule = MFUIUpdateProfileModule(), groupInfoModule: FlyUIKit.MFUIGroupInfoModule = MFUIGroupInfoModule(), participantModule: FlyUIKit.MFUIParticipantModule = MFUIParticipantModule(), callLogModule: FlyUIKit.MFUICallLogModule = MFUICallLogModule(), translateModule: FlyUIKit.MFUITranslateModule = MFUITranslateModule(), languageModule: FlyUIKit.MFUILanguageModule = MFUILanguageModule(), locationModule: FlyUIKit.MFUILocationModule = MFUILocationModule(), contactPreviewModule: FlyUIKit.MFUIContactPreviewModule = MFUIContactPreviewModule())
+  public init(chatListModule: FlyUIKit.MFUIRecentChatListModule = MFUIRecentChatListModule(), baseChatViewModule: FlyUIKit.MFUIBaseChatViewModule = MFUIBaseChatViewModule(), chatViewParentModule: FlyUIKit.MFUIChatViewParentModule = MFUIChatViewParentModule(), createChatModule: FlyUIKit.MFUICreateChatModule = MFUICreateChatModule(), createGroupChatModule: FlyUIKit.MFUICreateGroupChatModule = MFUICreateGroupChatModule(), callScreenModule: FlyUIKit.MFUICallScreenModule = MFUICallScreenModule(), imageEditModule: FlyUIKit.MFUIImageEditModule = MFUIImageEditModule(), messageInfoModule: FlyUIKit.MFUIMessageInfoModule = MFUIMessageInfoModule(), userProfileModule: FlyUIKit.MFUIUserProfileModule = MFUIUserProfileModule(), settingsModule: FlyUIKit.MFUISettingsModule = MFUISettingsModule(), updateProfileModule: FlyUIKit.MFUIUpdateProfileModule = MFUIUpdateProfileModule(), groupInfoModule: FlyUIKit.MFUIGroupInfoModule = MFUIGroupInfoModule(), participantModule: FlyUIKit.MFUIParticipantModule = MFUIParticipantModule(), callLogModule: FlyUIKit.MFUICallLogModule = MFUICallLogModule(), translateModule: FlyUIKit.MFUITranslateModule = MFUITranslateModule(), languageModule: FlyUIKit.MFUILanguageModule = MFUILanguageModule(), contactPreviewModule: FlyUIKit.MFUIContactPreviewModule = MFUIContactPreviewModule())
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class Overlay : UIKit.UIView {
@@ -7321,7 +7179,6 @@ extension FlyUIKit.MFUIParticipantModule.List : FlyUIKit.MFUIParticipantModuleHe
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) public var mediaLocationMapView: GoogleMaps.GMSMapView
   @_Concurrency.MainActor(unsafe) public var ImageHstackView: UIKit.UIStackView {
     get
     set
@@ -7817,18 +7674,6 @@ extension FlyUIKit.MFUILanguageModule {
 }
 public protocol MFUIULoaderIndicatorProtocol {
   func showLoading(_ isLoading: Swift.Bool, isContact: Swift.Bool)
-}
-public class MFUILocationModule {
-  public var headerComponent: FlyUIKit.MFUILocationModule.Header? {
-    get
-    set
-  }
-  public var mapViewComponent: FlyUIKit.MFUILocationModule.Mapview? {
-    get
-    set
-  }
-  public init(headerComponent: FlyUIKit.MFUILocationModule.Header? = nil, mapViewComponent: FlyUIKit.MFUILocationModule.Mapview? = nil)
-  @objc deinit
 }
 public protocol MFUISettingsModuleListDelegate : FlyUIKit.MFUICommonDelegate {
   func settingModule(_ listComponent: FlyUIKit.MFUISettingsModule.List, didSelectRowAt indexPath: Foundation.IndexPath)
