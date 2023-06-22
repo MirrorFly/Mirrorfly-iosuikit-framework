@@ -35,7 +35,6 @@ Pod::Spec.new do |s|
 
 
     s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
-    s.ios.vendored_frameworks = 'SDK/MirrorFlySDK.xcframework'
 
 
    
