@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     #s.dependency 'GoogleMaps'
     #s.dependency 'MirrorFlySDK', '5.8.0'
     
-    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
+    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework', 'SDK/MirrorFlySDK.xcframework'
 
 
    
