@@ -384,12 +384,12 @@ SWIFT_CLASS("_TtC8FlyUIKit21CropperViewController")
 @end
 
 
-
 @class UIGestureRecognizer;
 
 @interface CropperViewController (SWIFT_EXTENSION(FlyUIKit)) <UIGestureRecognizerDelegate>
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer * _Nonnull)gestureRecognizer SWIFT_WARN_UNUSED_RESULT;
 @end
+
 
 
 @interface CropperViewController (SWIFT_EXTENSION(FlyUIKit)) <UIScrollViewDelegate>
@@ -399,6 +399,33 @@ SWIFT_CLASS("_TtC8FlyUIKit21CropperViewController")
 - (void)scrollViewWillBeginDragging:(UIScrollView * _Nonnull)_;
 - (void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)_ willDecelerate:(BOOL)decelerate;
 - (void)scrollViewDidEndDecelerating:(UIScrollView * _Nonnull)_;
+@end
+
+
+/// The <code>UITableViewCell</code> conforming to <code>MFUITableViewCell</code>
+IB_DESIGNABLE
+SWIFT_CLASS("_TtC8FlyUIKit17MFUITableViewCell")
+@interface MFUITableViewCell : UITableViewCell
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (void)layoutSubviews;
+@end
+
+@class UILabel;
+
+SWIFT_CLASS("_TtC8FlyUIKit21DocumentTableViewCell")
+@interface DocumentTableViewCell : MFUITableViewCell
+@property (nonatomic, strong) UIImageView * _Nonnull icon;
+@property (nonatomic, strong) UILabel * _Nonnull nameLabel;
+@property (nonatomic, strong) UILabel * _Nonnull fileSizeLabel;
+@property (nonatomic, strong) UILabel * _Nonnull dateLabel;
+@property (nonatomic, strong) UIView * _Nonnull separatorView;
+- (void)awakeFromNib;
+- (void)setupViews;
+- (void)setupLayouts;
+- (void)setupStyles;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 typedef SWIFT_ENUM(NSInteger, EmptyViewType, open) {
@@ -411,7 +438,10 @@ typedef SWIFT_ENUM(NSInteger, EmptyViewType, open) {
   EmptyViewTypeNoBannedMembers = 6,
   EmptyViewTypeNoSearchResults = 7,
   EmptyViewTypeNoContactsFound = 8,
-  EmptyViewTypeError = 9,
+  EmptyViewTypeNoMediaFound = 9,
+  EmptyViewTypeNoDocumentFound = 10,
+  EmptyViewTypeNoLinksFound = 11,
+  EmptyViewTypeError = 12,
 };
 
 
@@ -420,12 +450,6 @@ SWIFT_CLASS("_TtC8FlyUIKit11FlyUIKitSDK")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-
-@interface FlyUIKitSDK (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
-- (void)onConnected;
-- (void)onDisconnected;
-- (void)onConnectionNotAuthorized;
-@end
 
 
 /// The class that generates circular UIImage objects.
@@ -506,7 +530,6 @@ SWIFT_CLASS("_TtC8FlyUIKit9ImageView")
 @end
 
 @class UITableView;
-@class UITableViewCell;
 @class ProfileDetails;
 @class UINib;
 
@@ -514,7 +537,6 @@ SWIFT_CLASS_NAMED("List")
 @interface MFUIBaseChatSettingsModuleList : UIView
 @property (nonatomic, strong) UITableView * _Nonnull tableView;
 @property (nonatomic) enum ChatCreationType chatType;
-@property (nonatomic, strong) UIView * _Nullable emptyView;
 @property (nonatomic, strong) UITableViewCell * _Nullable contactCell;
 @property (nonatomic, readonly, copy) NSArray<ProfileDetails *> * _Nullable contactList;
 /// The list of the selected users
@@ -543,6 +565,69 @@ SWIFT_CLASS_NAMED("List")
 
 
 @interface MFUICreateChatModuleList (SWIFT_EXTENSION(FlyUIKit))
+- (void)didSelectRetry;
+@end
+
+@class MFUserProfileCell;
+
+SWIFT_CLASS_NAMED("List")
+@interface MFUIUpdateProfileModuleList : UIView
+@property (nonatomic, strong) UITableView * _Nonnull tableView;
+@property (nonatomic, strong) MFUserProfileCell * _Nullable userprofileCell;
+@property (nonatomic, strong) BImageView * _Nullable profileImageComponent;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Set values of the views in the list component when it needs.
+- (void)setupViews;
+/// Sets layouts of the views in the list component.
+- (void)setupLayouts;
+- (void)layoutSubviews;
+- (void)registerWithProfileCell:(MFUserProfileCell * _Nonnull)profileCell nib:(UINib * _Nullable)nib;
+- (void)configureCell:(MFUserProfileCell * _Nullable)userprofileCell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)reloadTableView;
+@end
+
+
+@interface MFUIUpdateProfileModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITextFieldDelegate>
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class MFUIForwardCell;
+@class RecentChat;
+
+SWIFT_CLASS_NAMED("List")
+@interface MFUIForwardModuleList : UIView
+@property (nonatomic, strong) UITableView * _Nonnull tableView;
+@property (nonatomic, strong) MFUIForwardCell * _Nullable forwardCell;
+@property (nonatomic) BOOL showLoading;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (void)resetGroup;
+- (void)resetRecent;
+- (void)resetContacts;
+- (void)searchWithSearchText:(NSString * _Nonnull)searchText;
+- (void)clearSearch;
+- (void)configureGroupWithRecentChat:(NSArray<RecentChat *> * _Nonnull)recentChat;
+- (void)configureRecentWithRecentChat:(NSArray<RecentChat *> * _Nonnull)recentChat;
+- (void)configureContactWithContacts:(NSArray<ProfileDetails *> * _Nonnull)contacts;
+/// Set values of the views in the list component when it needs.
+- (void)setupViews;
+/// Sets layouts of the views in the list component.
+- (void)setupLayouts;
+- (void)layoutSubviews;
+- (void)registerWithChatCell:(MFUIForwardCell * _Nonnull)chatCell nib:(UINib * _Nullable)nib;
+- (void)configureCell:(MFUIForwardCell * _Nullable)forwardCell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)reloadTableView;
+- (void)updateEmptyViewWithType:(enum EmptyViewType)type;
+@end
+
+
+@interface MFUIForwardModuleList (SWIFT_EXTENSION(FlyUIKit))
+- (void)didSelectRetry;
+@end
+
+
+@interface MFUIBaseChatSettingsModuleList (SWIFT_EXTENSION(FlyUIKit))
 - (void)didSelectRetry;
 @end
 
@@ -577,36 +662,7 @@ SWIFT_CLASS_NAMED("List")
 - (void)didSelectRetry;
 @end
 
-@class MFUserProfileCell;
-
-SWIFT_CLASS_NAMED("List")
-@interface MFUIUpdateProfileModuleList : UIView
-@property (nonatomic, strong) UITableView * _Nonnull tableView;
-@property (nonatomic, strong) MFUserProfileCell * _Nullable userprofileCell;
-@property (nonatomic, strong) BImageView * _Nullable profileImageComponent;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-/// Set values of the views in the list component when it needs.
-- (void)setupViews;
-/// Sets layouts of the views in the list component.
-- (void)setupLayouts;
-- (void)layoutSubviews;
-- (void)registerWithProfileCell:(MFUserProfileCell * _Nonnull)profileCell nib:(UINib * _Nullable)nib;
-- (void)configureCell:(MFUserProfileCell * _Nullable)userprofileCell indexPath:(NSIndexPath * _Nonnull)indexPath;
-- (void)reloadTableView;
-@end
-
-
-@interface MFUIUpdateProfileModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITextFieldDelegate>
-- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
-@end
-
-
-@interface MFUIBaseChatSettingsModuleList (SWIFT_EXTENSION(FlyUIKit))
-- (void)didSelectRetry;
-@end
-
-@class RecentChat;
+enum MessageMenuItem : NSInteger;
 @class ChatMessage;
 @class MFUIReplyBaseMessageView;
 
@@ -622,6 +678,7 @@ SWIFT_CLASS_NAMED("List")
 /// A view that scrolls table view to the bottom.
 @property (nonatomic, strong) UIView * _Nullable scrollBottomView;
 @property (nonatomic) BOOL multiSelect;
+@property (nonatomic) enum MessageMenuItem messageMenuItem;
 /// The current chat object from <code>baseChatViewModule(_:chatForTableView:)</code> data source method.
 @property (nonatomic, readonly, strong) RecentChat * _Nullable baseChat;
 /// The array of all messages includes the sent, the failed and the pending. The value is returned by <code>baseChatViewModule(_:fullMessagesInTableView:)</code> data source method.
@@ -665,7 +722,6 @@ SWIFT_CLASS_NAMED("List")
 - (void)tableView:(UITableView * _Nonnull)tableView willDisplayCell:(UITableViewCell * _Nonnull)cell forRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 @end
 
-@class UILabel;
 @class MFUIBaseChatCell;
 @class MFEmptyTableCell;
 @class Messagestatus;
@@ -744,11 +800,13 @@ SWIFT_CLASS_NAMED("List")
 
 @class UserProfileData;
 @class Header;
+@class MFUserProfileMenuCell;
 
 SWIFT_CLASS_NAMED("List")
 @interface MFUIUserProfileModuleList : UIView
 @property (nonatomic, strong) UITableView * _Nonnull tableView;
 @property (nonatomic, copy) NSArray<UserProfileData *> * _Nonnull userProfileArr;
+@property (nonatomic, copy) NSArray<UserProfileData *> * _Nonnull menuItemsArr;
 @property (nonatomic, strong) Header * _Nullable headerComponent;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -758,7 +816,9 @@ SWIFT_CLASS_NAMED("List")
 - (void)setupLayouts;
 - (void)layoutSubviews;
 - (void)registerWithProfileCell:(MFUserProfileCell * _Nonnull)profileCell nib:(UINib * _Nullable)nib;
+- (void)registerMenuWithProfileCell:(MFUserProfileMenuCell * _Nonnull)profileCell nib:(UINib * _Nullable)nib;
 - (void)configureCell:(MFUserProfileCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)configureMenuCell:(MFUserProfileMenuCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
 - (void)reloadTableView;
 @end
 
@@ -770,75 +830,6 @@ SWIFT_CLASS_NAMED("List")
 - (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
 - (void)UserProfileModule:(Header * _Nonnull)headerComponent didClickProfileImage:(UIView * _Nullable)button;
 - (void)UserProfileModule:(Header * _Nonnull)headerComponent didClickMuteSwitch:(UISwitch * _Nonnull)button;
-@end
-
-
-@interface MFUIUserProfileModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
-- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
-- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
-@end
-
-@class MFUITranslateCell;
-
-SWIFT_CLASS_NAMED("List")
-@interface MFUITranslateModuleList : UIView
-@property (nonatomic, strong) UITableView * _Nonnull tableView;
-@property (nonatomic, strong) MFUITranslateCell * _Nullable translateCell;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-/// Set values of the views in the list component when it needs.
-- (void)setupViews;
-/// Sets layouts of the views in the list component.
-- (void)setupLayouts;
-- (void)layoutSubviews;
-- (void)registerWithChatCell:(MFUITranslateCell * _Nonnull)chatCell nib:(UINib * _Nullable)nib;
-- (void)configureCell:(MFUITranslateCell * _Nullable)translateCell indexPath:(NSIndexPath * _Nonnull)indexPath;
-- (void)reloadTableView;
-@end
-
-
-@interface MFUITranslateModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
-- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
-- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
-@end
-
-@class GroupParticipantDetail;
-@class Header;
-@class MFUIGroupInfoCell;
-@class MFUIGroupOptionInfoCell;
-
-SWIFT_CLASS_NAMED("List")
-@interface MFUIGroupInfoModuleList : UIView
-@property (nonatomic, strong) UITableView * _Nonnull tableView;
-@property (nonatomic, readonly, copy) NSArray<GroupParticipantDetail *> * _Nullable groupMembers;
-@property (nonatomic, strong) Header * _Nullable headerComponent;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-/// Set values of the views in the list component when it needs.
-- (void)setupViews;
-/// Sets layouts of the views in the list component.
-- (void)setupLayouts;
-- (void)layoutSubviews;
-- (void)registerWithGroupInfoCell:(MFUIGroupInfoCell * _Nonnull)groupInfoCell nib:(UINib * _Nullable)nib;
-- (void)registerWithGroupOptionInfoCell:(MFUIGroupOptionInfoCell * _Nonnull)groupOptionInfoCell nib:(UINib * _Nullable)nib;
-- (void)configureInfoCell:(MFUIGroupInfoCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
-- (void)configureOptionInfoCell:(MFUIGroupOptionInfoCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
-- (void)reloadTableView;
-@end
-
-
-@interface MFUIGroupInfoModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
-- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
-- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @class MFSettingsTableCell;
@@ -868,6 +859,15 @@ SWIFT_CLASS_NAMED("List")
 - (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
 @end
 
+
+@interface MFUIUserProfileModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
+- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
+@end
+
 @class MFUILanguageCell;
 
 SWIFT_CLASS_NAMED("List")
@@ -888,6 +888,33 @@ SWIFT_CLASS_NAMED("List")
 
 
 @interface MFUILanguageModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
+- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class MFUITranslateCell;
+
+SWIFT_CLASS_NAMED("List")
+@interface MFUITranslateModuleList : UIView
+@property (nonatomic, strong) UITableView * _Nonnull tableView;
+@property (nonatomic, strong) MFUITranslateCell * _Nullable translateCell;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Set values of the views in the list component when it needs.
+- (void)setupViews;
+/// Sets layouts of the views in the list component.
+- (void)setupLayouts;
+- (void)layoutSubviews;
+- (void)registerWithChatCell:(MFUITranslateCell * _Nonnull)chatCell nib:(UINib * _Nullable)nib;
+- (void)configureCell:(MFUITranslateCell * _Nullable)translateCell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)reloadTableView;
+@end
+
+
+@interface MFUITranslateModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
@@ -926,6 +953,42 @@ SWIFT_CLASS_NAMED("List")
 - (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@class GroupParticipantDetail;
+@class Header;
+@class MFUIGroupInfoCell;
+@class MFUIGroupOptionInfoCell;
+@class MFUIGroupOptionViewMediaInfoCell;
+
+SWIFT_CLASS_NAMED("List")
+@interface MFUIGroupInfoModuleList : UIView
+@property (nonatomic, strong) UITableView * _Nonnull tableView;
+@property (nonatomic, readonly, copy) NSArray<GroupParticipantDetail *> * _Nullable groupMembers;
+@property (nonatomic, strong) Header * _Nullable headerComponent;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Set values of the views in the list component when it needs.
+- (void)setupViews;
+/// Sets layouts of the views in the list component.
+- (void)setupLayouts;
+- (void)layoutSubviews;
+- (void)registerWithGroupInfoCell:(MFUIGroupInfoCell * _Nonnull)groupInfoCell nib:(UINib * _Nullable)nib;
+- (void)registerWithGroupOptionInfoCell:(MFUIGroupOptionInfoCell * _Nonnull)groupOptionInfoCell nib:(UINib * _Nullable)nib;
+- (void)registerWithViewMedia:(MFUIGroupOptionViewMediaInfoCell * _Nonnull)viewMedia nib:(UINib * _Nullable)nib;
+- (void)configureInfoCell:(MFUIGroupInfoCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)configureOptionInfoCell:(MFUIGroupOptionInfoCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)configureViewMediaCell:(MFUIGroupOptionViewMediaInfoCell * _Nullable)profilecell indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)reloadTableView;
+@end
+
+
+@interface MFUIGroupInfoModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
+- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
+@end
+
 @class Header;
 @class MFUICallLogScreenCell;
 
@@ -935,6 +998,8 @@ SWIFT_CLASS_NAMED("List")
 @property (nonatomic, strong) UIView * _Nonnull noCallLogView;
 @property (nonatomic, strong) UILabel * _Nonnull noCallLogsLabel;
 @property (nonatomic, strong) UIImageView * _Nonnull noCallLogsImageView;
+@property (nonatomic) BOOL searchEnabled;
+@property (nonatomic, copy) NSString * _Nonnull searchText;
 @property (nonatomic, strong) Header * _Nullable headerComponent;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -974,17 +1039,6 @@ SWIFT_CLASS_NAMED("List")
 @end
 
 
-@interface MFUIParticipantModuleList (SWIFT_EXTENSION(FlyUIKit))
-- (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
-- (void)participantModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
-- (void)participantModule:(Header * _Nonnull)headerComponent didUpdateLeftItem:(UIBarButtonItem * _Nullable)leftItem;
-- (void)participantModule:(Header * _Nonnull)headerComponent didUpdateRightItem:(UIBarButtonItem * _Nullable)rightItem;
-- (void)participantModule:(Header * _Nonnull)headerComponent didTapLeftItem:(UIBarButtonItem * _Nonnull)leftItem;
-- (void)participantModule:(Header * _Nonnull)headerComponent didTapRightItem:(UIBarButtonItem * _Nonnull)rightItem;
-- (void)GroupInfoModule:(Header * _Nonnull)headerComponent didUpdateLeftBackButton:(UIView * _Nullable)leftBack;
-@end
-
-
 @interface MFUICallLogModuleList (SWIFT_EXTENSION(FlyUIKit))
 - (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
 - (void)callLogModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
@@ -996,7 +1050,18 @@ SWIFT_CLASS_NAMED("List")
 @end
 
 
-@interface MFUIUpdateProfileModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+@interface MFUIParticipantModuleList (SWIFT_EXTENSION(FlyUIKit))
+- (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
+- (void)participantModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
+- (void)participantModule:(Header * _Nonnull)headerComponent didUpdateLeftItem:(UIBarButtonItem * _Nullable)leftItem;
+- (void)participantModule:(Header * _Nonnull)headerComponent didUpdateRightItem:(UIBarButtonItem * _Nullable)rightItem;
+- (void)participantModule:(Header * _Nonnull)headerComponent didTapLeftItem:(UIBarButtonItem * _Nonnull)leftItem;
+- (void)participantModule:(Header * _Nonnull)headerComponent didTapRightItem:(UIBarButtonItem * _Nonnull)rightItem;
+- (void)GroupInfoModule:(Header * _Nonnull)headerComponent didUpdateLeftBackButton:(UIView * _Nullable)leftBack;
+@end
+
+
+@interface MFUIParticipantModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
@@ -1007,7 +1072,7 @@ SWIFT_CLASS_NAMED("List")
 @end
 
 
-@interface MFUIParticipantModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+@interface MFUIUpdateProfileModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
@@ -1028,6 +1093,31 @@ SWIFT_CLASS_NAMED("List")
 - (void)pictureInPictureControllerWillStartPictureInPicture:(AVPictureInPictureController * _Nonnull)pictureInPictureController;
 - (void)pictureInPictureControllerDidStopPictureInPicture:(AVPictureInPictureController * _Nonnull)pictureInPictureController;
 - (void)pictureInPictureController:(AVPictureInPictureController * _Nonnull)pictureInPictureController restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:(void (^ _Nonnull)(BOOL))completionHandler;
+@end
+
+
+SWIFT_CLASS_NAMED("List")
+@interface MFUIViewMediaModuleList : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Set values of the views in the list component when it needs.
+- (void)setupViews;
+/// Sets layouts of the views in the list component.
+- (void)setupLayouts;
+- (void)layoutSubviews;
+- (void)reloadCollectionView;
+- (void)reloadTableView;
+@end
+
+
+@interface MFUIViewMediaModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+- (UIView * _Nullable)tableView:(UITableView * _Nonnull)tableView viewForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UIView * _Nullable)tableView:(UITableView * _Nonnull)tableView viewForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 @end
 
 @class MFUIRecentChatListViewModel;
@@ -1070,6 +1160,19 @@ SWIFT_CLASS("_TtCC8FlyUIKit24MFUIRecentChatListModule4List")
 @end
 
 
+@interface MFUIForwardModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
+- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UIView * _Nullable)tableView:(UITableView * _Nonnull)tableView viewForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView SWIFT_WARN_UNUSED_RESULT;
+- (void)tableView:(UITableView * _Nonnull)tableView willDisplayCell:(UITableViewCell * _Nonnull)cell forRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 @interface MFUIMessageInfoModuleList (SWIFT_EXTENSION(FlyUIKit)) <UITableViewDataSource, UITableViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
@@ -1080,6 +1183,21 @@ SWIFT_CLASS("_TtCC8FlyUIKit24MFUIRecentChatListModule4List")
 - (UIView * _Nullable)tableView:(UITableView * _Nonnull)tableView viewForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UIView * _Nullable)tableView:(UITableView * _Nonnull)tableView viewForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class UICollectionReusableView;
+
+@interface MFUIViewMediaModuleList (SWIFT_EXTENSION(FlyUIKit)) <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView * _Nonnull)collectionView SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (UICollectionReusableView * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView viewForSupplementaryElementOfKind:(NSString * _Nonnull)kind atIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 @end
 
 typedef SWIFT_ENUM(uint8_t, LogType, open) {
@@ -1122,13 +1240,13 @@ SWIFT_CLASS("_TtC8FlyUIKit20MFBaseViewController")
 @end
 
 
-/// The <code>UITableViewCell</code> conforming to <code>MFUITableViewCell</code>
-IB_DESIGNABLE
-SWIFT_CLASS("_TtC8FlyUIKit17MFUITableViewCell")
-@interface MFUITableViewCell : UITableViewCell
-- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
-- (void)layoutSubviews;
+@interface MFBaseViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)showOrUpdateOrCancelNotificationWithJid:(NSString * _Nonnull)jid chatMessage:(ChatMessage * _Nonnull)chatMessage groupId:(NSString * _Nonnull)groupId;
+@end
+
+
+@interface MFBaseViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onMissedCallWithIsOneToOneCall:(BOOL)isOneToOneCall userJid:(NSString * _Nonnull)userJid groupId:(NSString * _Nullable)groupId callType:(NSString * _Nonnull)callType userList:(NSArray<NSString *> * _Nonnull)userList;
 @end
 
 
@@ -1320,6 +1438,7 @@ SWIFT_CLASS("_TtC8FlyUIKit32MFUIBaseChatViewParentController")
 @property (nonatomic, strong) Header * _Nullable baseHeaderComponent;
 @property (nonatomic, strong) MFUIBaseChatViewModuleList * _Nullable baseListComponent;
 @property (nonatomic, strong) Input * _Nullable baseInputComponent;
+@property (nonatomic) enum MessageMenuItem multiSelectMenuItem;
 @property (nonatomic, strong) MFUIBaseChatViewModel * _Nullable baseViewModel;
 @property (nonatomic, strong) MFUICreateChatViewModel * _Nullable mfUICreateChatViewModel;
 @property (nonatomic, strong) MFUICallScreenViewModel * _Nullable mfUICallScreenViewModel;
@@ -1390,6 +1509,11 @@ SWIFT_CLASS("_TtC8FlyUIKit32MFUIBaseChatViewParentController")
 
 
 
+@interface MFUIBaseChatViewParentController (SWIFT_EXTENSION(FlyUIKit)) <UIViewControllerTransitioningDelegate>
+- (UIPresentationController * _Nullable)presentationControllerForPresentedViewController:(UIViewController * _Nonnull)presented presentingViewController:(UIViewController * _Nullable)presenting sourceViewController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 
 @class UIDocumentPickerViewController;
 @class NSURL;
@@ -1399,10 +1523,6 @@ SWIFT_CLASS("_TtC8FlyUIKit32MFUIBaseChatViewParentController")
 @end
 
 
-
-@interface MFUIBaseChatViewParentController (SWIFT_EXTENSION(FlyUIKit)) <UIViewControllerTransitioningDelegate>
-- (UIPresentationController * _Nullable)presentationControllerForPresentedViewController:(UIViewController * _Nonnull)presented presentingViewController:(UIViewController * _Nullable)presenting sourceViewController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
-@end
 
 @class QLPreviewController;
 @protocol QLPreviewItem;
@@ -1500,6 +1620,7 @@ SWIFT_CLASS("_TtC8FlyUIKit21MFUICallLogScreenCell")
 
 @class CallLogManager;
 @class MFUICallLogViewModel;
+@class MFUISearchBarView;
 
 SWIFT_CLASS("_TtC8FlyUIKit25MFUICallLogViewController")
 @interface MFUICallLogViewController : MFBaseViewController
@@ -1511,6 +1632,7 @@ SWIFT_CLASS("_TtC8FlyUIKit25MFUICallLogViewController")
 @property (nonatomic, copy) NSString * _Nonnull groupID;
 @property (nonatomic, strong) ChatMessage * _Nullable message;
 @property (nonatomic, strong) MFUICallLogViewModel * _Nullable callLogVM;
+@property (nonatomic, strong) MFUISearchBarView * _Nonnull searchbarView;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE_MSG("'init' has been renamed to 'MFUICallParticipantViewController(type:)'");
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE_MSG("'init' has been renamed to 'MFUICallParticipantViewController(type:)'");
 @property (nonatomic, readonly) UIStatusBarStyle preferredStatusBarStyle;
@@ -1535,6 +1657,13 @@ SWIFT_CLASS("_TtC8FlyUIKit25MFUICallLogViewController")
 - (void)shouldUpdateLoadingState:(BOOL)isLoading;
 @end
 
+@class UISearchBar;
+
+@interface MFUICallLogViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
+- (void)didClickCancelSearch;
+@end
+
 
 @interface MFUICallLogViewController (SWIFT_EXTENSION(FlyUIKit))
 - (void)didBlockOrUnblockContactWithUserJid:(NSString * _Nonnull)userJid isBlocked:(BOOL)isBlocked;
@@ -1543,7 +1672,8 @@ SWIFT_CLASS("_TtC8FlyUIKit25MFUICallLogViewController")
 @end
 
 
-@interface MFUICallLogViewController (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
+@interface MFUICallLogViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onReconnecting;
 - (void)onConnected;
 - (void)onDisconnected;
 - (void)onConnectionNotAuthorized;
@@ -1598,7 +1728,6 @@ SWIFT_CLASS("_TtC8FlyUIKit23MFUICallParticipantCell")
 @end
 
 @class MFUICallParticipantViewModel;
-@class MFUISearchBarView;
 
 SWIFT_CLASS("_TtC8FlyUIKit29MFUICallParticipantController")
 @interface MFUICallParticipantController : MFBaseViewController
@@ -1644,13 +1773,6 @@ SWIFT_CLASS("_TtC8FlyUIKit29MFUICallParticipantController")
 - (void)shouldUpdateLoadingState:(BOOL)isLoading;
 @end
 
-@class UISearchBar;
-
-@interface MFUICallParticipantController (SWIFT_EXTENSION(FlyUIKit))
-- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
-- (void)didClickCancelSearch;
-@end
-
 
 @interface MFUICallParticipantController (SWIFT_EXTENSION(FlyUIKit))
 - (void)didBlockOrUnblockContactWithUserJid:(NSString * _Nonnull)userJid isBlocked:(BOOL)isBlocked;
@@ -1659,7 +1781,14 @@ SWIFT_CLASS("_TtC8FlyUIKit29MFUICallParticipantController")
 @end
 
 
-@interface MFUICallParticipantController (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
+@interface MFUICallParticipantController (SWIFT_EXTENSION(FlyUIKit))
+- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
+- (void)didClickCancelSearch;
+@end
+
+
+@interface MFUICallParticipantController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onReconnecting;
 - (void)onConnected;
 - (void)onDisconnected;
 - (void)onConnectionNotAuthorized;
@@ -1723,24 +1852,24 @@ SWIFT_CLASS("_TtC8FlyUIKit28MFUICallScreenViewController")
 
 
 @interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
-- (void)didSelectActionSheetItemWithIndex:(NSInteger)index identifier:(NSInteger)identifier;
-@end
-
-
-@interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
 - (NSArray<CallMember *> * _Nullable)groupCallScreenModuleListModule:(MFUICallScreenModule * _Nonnull)listComponent groupCallMemberInTableView:(UICollectionView * _Nonnull)collectionView SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
 @interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
-- (void)CallScreenModule:(UIView * _Nullable)didTapOverLayView;
+- (void)didSelectActionSheetItemWithIndex:(NSInteger)index identifier:(NSInteger)identifier;
 @end
-
 
 @class UITapGestureRecognizer;
 
 @interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
 - (void)CallScreenModule:(RemoteVideoView * _Nonnull)RemoteVideoViewComponent RemotetapGeture:(UITapGestureRecognizer * _Nonnull)sender;
+@end
+
+
+
+@interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)CallScreenModule:(UIView * _Nullable)didTapOverLayView;
 @end
 
 @class UIPanGestureRecognizer;
@@ -1852,12 +1981,6 @@ SWIFT_CLASS("_TtC8FlyUIKit17MFUIChatViewModel")
 
 
 
-@interface MFUIChatViewModel (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
-- (void)onConnected;
-- (void)onDisconnected;
-- (void)onConnectionNotAuthorized;
-@end
-
 
 @interface MFUIChatViewModel (SWIFT_EXTENSION(FlyUIKit)) <ProfileEventsDelegate>
 - (void)userCameOnlineFor:(NSString * _Nonnull)jid;
@@ -1879,13 +2002,13 @@ SWIFT_CLASS("_TtC8FlyUIKit17MFUIChatViewModel")
 
 
 @interface MFUIChatViewModel (SWIFT_EXTENSION(FlyUIKit)) <MessageEventsDelegate>
+- (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId errorCode:(NSInteger)errorCode;
 - (void)clearAllConversationForSyncedDevice;
 - (void)onMessagesClearedToJid:(NSString * _Nonnull)toJid deleteType:(NSString * _Nullable)deleteType;
 - (void)onMessageTranslatedWithMessage:(ChatMessage * _Nonnull)message jid:(NSString * _Nonnull)jid;
 - (void)onMessageReceivedWithMessage:(ChatMessage * _Nonnull)message chatJid:(NSString * _Nonnull)chatJid;
 - (void)onMessageStatusUpdatedWithMessageId:(NSString * _Nonnull)messageId chatJid:(NSString * _Nonnull)chatJid status:(enum MessageStatus)status;
 - (void)onMediaStatusUpdatedWithMessage:(ChatMessage * _Nonnull)message;
-- (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId;
 - (void)onMediaProgressChangedWithMessage:(ChatMessage * _Nonnull)message progressPercentage:(float)progressPercentage;
 - (void)onMessagesClearedOrDeletedWithMessageIds:(NSArray<NSString *> * _Nonnull)messageIds;
 - (void)onMessagesDeletedforEveryoneWithMessageIds:(NSArray<NSString *> * _Nonnull)messageIds;
@@ -1896,7 +2019,6 @@ SWIFT_CLASS("_TtC8FlyUIKit17MFUIChatViewModel")
 @class Header;
 @class MFUIChatViewParentModuleList;
 @class Input;
-enum MessageMenuItem : NSInteger;
 @class UISlider;
 @class NSData;
 
@@ -1946,6 +2068,7 @@ SWIFT_CLASS("_TtC8FlyUIKit28MFUIChatViewParentController")
 - (void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 - (void)loadPreviousMessage;
 - (void)loadNextMessage;
+- (void)loadNextMessageWhenComeBack;
 @end
 
 
@@ -2146,16 +2269,17 @@ SWIFT_CLASS("_TtC8FlyUIKit28MFUICreateChatViewController")
 @end
 
 
-@interface MFUICreateChatViewController (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
-- (void)onConnected;
-- (void)onDisconnected;
-- (void)onConnectionNotAuthorized;
+@interface MFUICreateChatViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
+- (void)didClickCancelSearch;
 @end
 
 
 @interface MFUICreateChatViewController (SWIFT_EXTENSION(FlyUIKit))
-- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
-- (void)didClickCancelSearch;
+- (void)onReconnecting;
+- (void)onConnected;
+- (void)onDisconnected;
+- (void)onConnectionNotAuthorized;
 @end
 
 
@@ -2292,6 +2416,354 @@ SWIFT_CLASS("_TtC8FlyUIKit13MFUIEmptyView")
 - (void)setupStyles;
 @end
 
+@class MFUIFloatyItem;
+enum MFUIFloatyOpenAnimationType : NSInteger;
+enum MFUIFloatyVerticalDirection : NSInteger;
+@protocol MFUIFloatyDelegate;
+enum MFUIFloatyItemLabelPositionType : NSInteger;
+@class UITouch;
+
+/// Floaty Object. It has <code>FloatyItem</code> objects.
+/// Floaty support storyboard designable.
+IB_DESIGNABLE
+SWIFT_CLASS("_TtC8FlyUIKit10MFUIFloaty")
+@interface MFUIFloaty : UIView
+/// <code>FloatyItem</code> objects.
+@property (nonatomic, copy) NSArray<MFUIFloatyItem *> * _Nonnull items;
+/// This object’s button size.
+@property (nonatomic) CGFloat size;
+/// Padding from bottom right of UIScreen or superview.
+@property (nonatomic) CGFloat paddingX;
+@property (nonatomic) CGFloat paddingY;
+/// Automatically closes child items when tapped
+@property (nonatomic) IBInspectable BOOL autoCloseOnTap;
+/// Runs first item handler directly on tap (without opening menu)
+@property (nonatomic) IBInspectable BOOL handleFirstItemDirectly;
+/// Places button relative to the Safe Area
+@property (nonatomic) IBInspectable BOOL relativeToSafeArea;
+/// Degrees to rotate image
+@property (nonatomic) IBInspectable CGFloat rotationDegrees;
+/// Animation speed of buttons
+@property (nonatomic) IBInspectable double animationSpeed;
+/// Button color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull buttonColor;
+/// Button shadow color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull buttonShadowColor;
+/// Button image.
+@property (nonatomic, strong) IBInspectable UIImage * _Nullable buttonImage;
+/// Plus icon color inside button.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull plusColor;
+/// Background overlaying color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull overlayColor;
+/// The space between the item and item.
+@property (nonatomic) IBInspectable CGFloat itemSpace;
+/// Child item’s default size.
+@property (nonatomic) IBInspectable CGFloat itemSize;
+/// Child item’s default button color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull itemButtonColor;
+/// Child item’s default title label color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull itemTitleColor;
+/// Child item’s image color
+@property (nonatomic, strong) IBInspectable UIColor * _Nullable itemImageColor;
+/// Enable/disable shadow.
+@property (nonatomic) IBInspectable BOOL hasShadow;
+/// Child item’s default shadow color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nonnull itemShadowColor;
+///
+@property (nonatomic) BOOL closed;
+/// Make the menu button draggable
+@property (nonatomic) BOOL isDraggable;
+/// Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
+@property (nonatomic) IBInspectable BOOL respondsToKeyboard;
+@property (nonatomic) enum MFUIFloatyOpenAnimationType openAnimationType;
+@property (nonatomic) enum MFUIFloatyVerticalDirection verticalDirection;
+@property (nonatomic) BOOL friendlyTap;
+@property (nonatomic) BOOL sticky;
+/// Delegate that can be used to learn more about the behavior of the FAB widget.
+@property (nonatomic, weak) IBOutlet id <MFUIFloatyDelegate> _Nullable fabDelegate;
+/// Button selected color.
+@property (nonatomic, strong) IBInspectable UIColor * _Nullable selectedColor;
+/// Initialize with default property.
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+/// Initialize with custom frame.
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+/// Initialize from storyboard.
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Set size and frame.
+- (void)drawRect:(CGRect)rect;
+/// Items open.
+- (void)open;
+/// Items close.
+- (void)close;
+/// Items open or close.
+- (void)toggle;
+/// Add custom item
+- (void)addItemWithItem:(MFUIFloatyItem * _Nonnull)item;
+/// Add item with title, titlePositon.
+/// titlePosition’s default value is left.
+- (MFUIFloatyItem * _Nonnull)addItemWithTitle:(NSString * _Nonnull)title titlePosition:(enum MFUIFloatyItemLabelPositionType)titlePosition;
+/// Add item with title.
+- (MFUIFloatyItem * _Nonnull)addItemWithTitle:(NSString * _Nonnull)title;
+/// Add item with title, titlePosition and icon.
+/// titlePosition’s default value is left.
+- (MFUIFloatyItem * _Nonnull)addItem:(NSString * _Nonnull)title icon:(UIImage * _Nullable)icon titlePosition:(enum MFUIFloatyItemLabelPositionType)titlePosition;
+/// Add item with title and icon.
+- (MFUIFloatyItem * _Nonnull)addItem:(NSString * _Nonnull)title icon:(UIImage * _Nullable)icon;
+/// Add item with title and handler.
+- (MFUIFloatyItem * _Nonnull)addItemWithTitle:(NSString * _Nonnull)title handler:(void (^ _Nonnull)(MFUIFloatyItem * _Nonnull))handler;
+/// Add item with titlePosition and handler.
+/// titlePosition’s default value is left.
+- (MFUIFloatyItem * _Nonnull)addItemWithTitle:(NSString * _Nonnull)title titlePosition:(enum MFUIFloatyItemLabelPositionType)titlePosition handler:(void (^ _Nonnull)(MFUIFloatyItem * _Nonnull))handler;
+/// Add item with title, icon or handler.
+- (MFUIFloatyItem * _Nonnull)addItem:(NSString * _Nonnull)title icon:(UIImage * _Nullable)icon handler:(void (^ _Nonnull)(MFUIFloatyItem * _Nonnull))handler;
+/// Add item with title, icon, titlePosition or handler.
+/// titlePosition’s default value is left
+- (MFUIFloatyItem * _Nonnull)addItem:(NSString * _Nonnull)title icon:(UIImage * _Nullable)icon titlePosition:(enum MFUIFloatyItemLabelPositionType)titlePosition handler:(void (^ _Nonnull)(MFUIFloatyItem * _Nonnull))handler;
+/// Add item with icon.
+- (MFUIFloatyItem * _Nonnull)addItemWithIcon:(UIImage * _Nullable)icon;
+/// Add item with icon and handler.
+- (MFUIFloatyItem * _Nonnull)addItemWithIcon:(UIImage * _Nullable)icon handler:(void (^ _Nonnull)(MFUIFloatyItem * _Nonnull))handler;
+/// Remove item.
+- (void)removeItemWithItem:(MFUIFloatyItem * _Nonnull)item;
+/// Remove item with index.
+- (void)removeItemWithIndex:(NSInteger)index;
+- (UIView * _Nullable)hitTest:(CGPoint)point withEvent:(UIEvent * _Nullable)event SWIFT_WARN_UNUSED_RESULT;
+- (void)touchesBegan:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesEnded:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
+- (void)willMoveToSuperview:(UIView * _Nullable)newSuperview;
+- (void)didMoveToSuperview;
+@end
+
+
+
+@interface MFUIFloaty (SWIFT_EXTENSION(FlyUIKit))
+- (void)layoutSubviews;
+@property (nonatomic, copy) NSString * _Nullable accessibilityLabel;
+@property (nonatomic, copy) NSString * _Nullable accessibilityHint;
+@property (nonatomic, copy) NSString * _Nullable accessibilityValue;
+@property (nonatomic, copy) NSArray * _Nullable accessibilityElements;
+@end
+
+
+
+/// Optional delegate that can be used to be notified whenever the user
+/// taps on a FAB that does not contain any sub items.
+SWIFT_PROTOCOL("_TtP8FlyUIKit18MFUIFloatyDelegate_")
+@protocol MFUIFloatyDelegate
+@optional
+/// Indicates that the user has tapped on a FAB widget that does not
+/// contain any defined sub items.
+/// \param floaty The FAB widget that was selected by the user.
+///
+- (void)emptyFloatySelected:(MFUIFloaty * _Nonnull)floaty;
+- (BOOL)floatyShouldOpen:(MFUIFloaty * _Nonnull)floaty SWIFT_WARN_UNUSED_RESULT;
+- (void)floatyWillOpen:(MFUIFloaty * _Nonnull)floaty;
+- (void)floatyDidOpen:(MFUIFloaty * _Nonnull)floaty;
+- (BOOL)floatyShouldClose:(MFUIFloaty * _Nonnull)floaty SWIFT_WARN_UNUSED_RESULT;
+- (void)floatyWillClose:(MFUIFloaty * _Nonnull)floaty;
+- (void)floatyDidClose:(MFUIFloaty * _Nonnull)floaty;
+/// This method has been deprecated. Use floatyWillOpen and floatyDidOpen instead.
+- (void)floatyOpened:(MFUIFloaty * _Nonnull)floaty;
+/// This method has been deprecated. Use floatyWillClose and floatyDidClose instead.
+- (void)floatyClosed:(MFUIFloaty * _Nonnull)floaty;
+@end
+
+
+/// Floating Action Button Object’s item.
+SWIFT_CLASS("_TtC8FlyUIKit14MFUIFloatyItem")
+@interface MFUIFloatyItem : UIView
+/// This object’s button size.
+@property (nonatomic) CGFloat size;
+/// Button color.
+@property (nonatomic, strong) UIColor * _Nonnull buttonColor;
+/// Title label color.
+@property (nonatomic, strong) UIColor * _Nonnull titleColor;
+/// Enable/disable shadow.
+@property (nonatomic) BOOL hasShadow;
+/// Circle Shadow color.
+@property (nonatomic, strong) UIColor * _Nonnull circleShadowColor;
+/// Title Shadow color.
+@property (nonatomic, strong) UIColor * _Nonnull titleShadowColor;
+/// If you touch up inside button, it execute handler.
+@property (nonatomic, copy) void (^ _Nullable handler)(MFUIFloatyItem * _Nonnull);
+@property (nonatomic) CGPoint imageOffset;
+@property (nonatomic) CGSize imageSize;
+/// Item’s title label position.
+/// deafult is left
+@property (nonatomic) enum MFUIFloatyItemLabelPositionType titleLabelPosition;
+@property (nonatomic, readonly, strong) UILabel * _Nonnull titleLabel;
+/// Item’s title.
+@property (nonatomic, copy) NSString * _Nullable title;
+@property (nonatomic, readonly, strong) UIImageView * _Nonnull iconImageView;
+/// Item’s icon.
+@property (nonatomic, strong) UIImage * _Nullable icon;
+/// Item’s icon tint color change
+@property (nonatomic, strong) UIColor * _Null_unspecified iconTintColor;
+/// Initialize with default property.
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Set size, frame and draw layers.
+- (void)drawRect:(CGRect)rect;
+- (void)touchesBegan:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesMoved:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesEnded:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
+typedef SWIFT_ENUM(NSInteger, MFUIFloatyItemLabelPositionType, open) {
+  MFUIFloatyItemLabelPositionTypeLeft = 0,
+  MFUIFloatyItemLabelPositionTypeRight = 1,
+};
+
+
+/// KCFloatingActionButton dependent on UIWindow.
+SWIFT_CLASS("_TtC8FlyUIKit17MFUIFloatyManager")
+@interface MFUIFloatyManager : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+typedef SWIFT_ENUM(NSInteger, MFUIFloatyOpenAnimationType, open) {
+  MFUIFloatyOpenAnimationTypePop = 0,
+  MFUIFloatyOpenAnimationTypeFade = 1,
+  MFUIFloatyOpenAnimationTypeSlideLeft = 2,
+  MFUIFloatyOpenAnimationTypeSlideUp = 3,
+  MFUIFloatyOpenAnimationTypeSlideDown = 4,
+  MFUIFloatyOpenAnimationTypeNone = 5,
+};
+
+typedef SWIFT_ENUM(NSInteger, MFUIFloatyVerticalDirection, open) {
+  MFUIFloatyVerticalDirectionUp = 0,
+  MFUIFloatyVerticalDirectionDown = 1,
+};
+
+
+/// KCFloatingActionButton dependent on UIWindow.
+SWIFT_CLASS("_TtC8FlyUIKit24MFUIFloatyViewController")
+@interface MFUIFloatyViewController : UIViewController
+- (void)viewDidLoad;
+@property (nonatomic, readonly) UIStatusBarStyle preferredStatusBarStyle;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC8FlyUIKit15MFUIForwardCell")
+@interface MFUIForwardCell : MFUITableViewCell
+@property (nonatomic, strong) UIView * _Nonnull iconView;
+@property (nonatomic, strong) UIImageView * _Nonnull icon;
+@property (nonatomic, strong) UIImageView * _Nonnull imageIcon;
+@property (nonatomic, strong) UIView * _Nonnull imageIconView;
+@property (nonatomic, strong) UILabel * _Nonnull contactNameLabel;
+@property (nonatomic, strong) UILabel * _Nonnull statusLabel;
+@property (nonatomic, strong) UIImageView * _Nonnull checkBoxImage;
+@property (nonatomic, strong) ProfileDetails * _Nullable profileDetails;
+@property (nonatomic, strong) UIView * _Nonnull separtorOuterView;
+@property (nonatomic, strong) UIView * _Nonnull separatorView;
+- (void)awakeFromNib;
+- (void)setupViews;
+- (void)setupLayouts;
+- (void)setupStyles;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class Header;
+@class MFUISegmentControl;
+@class MFUIForwardViewModel;
+
+SWIFT_CLASS("_TtC8FlyUIKit25MFUIForwardViewController")
+@interface MFUIForwardViewController : MFBaseViewController
+@property (nonatomic, strong) Header * _Nullable headerComponent;
+@property (nonatomic, strong) MFUIForwardModuleList * _Nullable listViewcomponent;
+@property (nonatomic, strong) MFUISegmentControl * _Nonnull segmentControl;
+@property (nonatomic, copy) NSString * _Nonnull currenItem;
+@property (nonatomic, strong) MFUISearchBarView * _Nonnull searchbarView;
+@property (nonatomic, strong) MFUIForwardViewModel * _Nullable viewModel;
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull selectedMessageId;
+@property (nonatomic, strong) ProfileDetails * _Nullable profileDetails;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (void)viewDidLoad;
+- (void)viewDidAppear:(BOOL)animated;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
+- (void)setupViews;
+- (void)setupLayouts;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+@end
+
+
+
+
+@interface MFUIForwardViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
+- (void)didClickCancelSearch;
+@end
+
+
+@interface MFUIForwardViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)forwardModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
+- (void)forwardModule:(Header * _Nonnull)headerComponent didUpdateLeftItem:(UIBarButtonItem * _Nullable)leftItem;
+- (void)forwardModule:(Header * _Nonnull)headerComponent didTapLeftItem:(UIBarButtonItem * _Nonnull)leftItem;
+- (void)forwardModule:(Header * _Nonnull)headerComponent didTapRightItem:(UIBarButtonItem * _Nonnull)rightItem;
+- (void)forwardModule:(Header * _Nonnull)headerComponent didUpdateRightItem:(UIBarButtonItem * _Nullable)rightItem;
+@end
+
+
+@interface MFUIForwardViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onReconnecting;
+- (void)onConnected;
+- (void)onDisconnected;
+- (void)onConnectionNotAuthorized;
+@end
+
+
+@interface MFUIForwardViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)forwardModule:(MFUIForwardModuleList * _Nonnull)listComponent selectedList:(NSArray<NSString *> * _Nonnull)selectedList;
+- (void)forwardModule:(MFUIForwardModuleList * _Nonnull)listComponent willDisplay:(NSIndexPath * _Nonnull)indexPath;
+- (void)forwardModule:(MFUIForwardModuleList * _Nonnull)listComponent didSelectRowAt:(NSIndexPath * _Nonnull)indexPath;
+- (void)forwardModule:(MFUIForwardModuleList * _Nonnull)listComponent :(UITapGestureRecognizer * _Nonnull)tap indexPath:(NSIndexPath * _Nonnull)indexPath;
+- (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
+@end
+
+
+@interface MFUIForwardViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)forwardViewModel:(MFUIForwardViewModel * _Nonnull)viewModel didChangeUsers:(NSArray<ProfileDetails *> * _Nonnull)contact needsToReload:(BOOL)needsToReload;
+- (void)forwardViewModel:(MFUIForwardViewModel * _Nonnull)viewModel didUpdateSelectedContacts:(NSArray<ProfileDetails *> * _Nonnull)selectedContacts;
+- (void)shouldUpdateLoadingState:(BOOL)isLoading;
+- (void)forwardViewModel:(MFUIForwardViewModel * _Nonnull)viewModel didChangeRecent:(NSArray<RecentChat *> * _Nonnull)contact needsToReload:(BOOL)needsToReload;
+- (void)forwardViewModel:(MFUIForwardViewModel * _Nonnull)viewModel didChangeGroups:(NSArray<RecentChat *> * _Nonnull)contact needsToReload:(BOOL)needsToReload;
+@end
+
+
+@interface MFUIForwardViewController (SWIFT_EXTENSION(FlyUIKit)) <ProfileEventsDelegate>
+- (void)userCameOnlineFor:(NSString * _Nonnull)jid;
+- (void)userWentOfflineFor:(NSString * _Nonnull)jid;
+- (void)userProfileFetchedFor:(NSString * _Nonnull)jid profileDetails:(ProfileDetails * _Nullable)profileDetails;
+- (void)myProfileUpdated;
+- (void)usersProfilesFetched;
+- (void)blockedThisUserWithJid:(NSString * _Nonnull)jid;
+- (void)unblockedThisUserWithJid:(NSString * _Nonnull)jid;
+- (void)usersIBlockedListFetchedWithJidList:(NSArray<NSString *> * _Nonnull)jidList;
+- (void)usersBlockedMeListFetchedWithJidList:(NSArray<NSString *> * _Nonnull)jidList;
+- (void)userUpdatedTheirProfileFor:(NSString * _Nonnull)jid profileDetails:(ProfileDetails * _Nonnull)profileDetails;
+- (void)userBlockedMeWithJid:(NSString * _Nonnull)jid;
+- (void)userUnBlockedMeWithJid:(NSString * _Nonnull)jid;
+- (void)hideUserLastSeen;
+- (void)getUserLastSeen;
+- (void)userDeletedTheirProfileFor:(NSString * _Nonnull)jid profileDetails:(ProfileDetails * _Nonnull)profileDetails;
+@end
+
+
+SWIFT_CLASS("_TtC8FlyUIKit20MFUIForwardViewModel")
+@interface MFUIForwardViewModel : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+
 
 SWIFT_CLASS("_TtC8FlyUIKit17MFUIGroupInfoCell")
 @interface MFUIGroupInfoCell : MFUITableViewCell
@@ -2327,13 +2799,14 @@ SWIFT_CLASS("_TtC8FlyUIKit27MFUIGroupInfoViewController")
 @end
 
 
+
 @interface MFUIGroupInfoViewController (SWIFT_EXTENSION(FlyUIKit))
 - (void)didSelectActionSheetItemWithIndex:(NSInteger)index identifier:(NSInteger)identifier;
 @end
 
 
-
-@interface MFUIGroupInfoViewController (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
+@interface MFUIGroupInfoViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onReconnecting;
 - (void)onConnected;
 - (void)onDisconnected;
 - (void)onConnectionNotAuthorized;
@@ -2393,6 +2866,20 @@ SWIFT_CLASS("_TtC8FlyUIKit22MFUIGroupInfoViewModel")
 
 SWIFT_CLASS("_TtC8FlyUIKit23MFUIGroupOptionInfoCell")
 @interface MFUIGroupOptionInfoCell : MFUITableViewCell
+@property (nonatomic, strong) UIStackView * _Nonnull VstackView;
+@property (nonatomic, strong) UIStackView * _Nonnull HstackView;
+- (void)setupViews;
+- (void)setupActions;
+- (void)setupLayouts;
+- (void)setupStyles;
+- (void)configGroupOptionInfoUpdateCellWithIsExistMember:(BOOL)isExistMember;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC8FlyUIKit32MFUIGroupOptionViewMediaInfoCell")
+@interface MFUIGroupOptionViewMediaInfoCell : MFUITableViewCell
 @property (nonatomic, strong) UIStackView * _Nonnull VstackView;
 @property (nonatomic, strong) UIStackView * _Nonnull HstackView;
 - (void)setupViews;
@@ -2479,10 +2966,49 @@ SWIFT_CLASS("_TtC8FlyUIKit20MFUILayoutableButton")
 @end
 
 
+SWIFT_CLASS("_TtC8FlyUIKit23MFUILocationContentView")
+@interface MFUILocationContentView : MFUIBaseMediaContentView
+- (void)setupViews;
+- (void)setupStyles;
+- (void)setupLayouts;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class Header;
+@class Mapview;
+
 SWIFT_CLASS("_TtC8FlyUIKit26MFUILocationViewController")
 @interface MFUILocationViewController : MFBaseViewController
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, strong) Header * _Nullable headerComponent;
+@property (nonatomic, strong) Mapview * _Nullable mapViewcomponent;
+@property (nonatomic) double currentLatitude;
+@property (nonatomic) double currentLongitude;
+@property (nonatomic) BOOL isForView;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (void)viewDidLoad;
+- (void)viewDidAppear:(BOOL)animated;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
+- (void)setupViews;
+- (void)setupLayouts;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+@end
+
+
+@interface MFUILocationViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)locationModule:(Mapview * _Nonnull)listComponent latitude:(double)latitude longitude:(double)longitude;
+- (void)enablePermissionSetting;
+- (void)goToPrevious;
+@end
+
+
+@interface MFUILocationViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
+- (void)locationModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
+- (void)locationModule:(Header * _Nonnull)headerComponent didUpdateLeftItem:(UIBarButtonItem * _Nullable)leftItem;
+- (void)locationModule:(Header * _Nonnull)headerComponent didTapLeftItem:(UIBarButtonItem * _Nonnull)leftItem;
 @end
 
 
@@ -2567,6 +3093,25 @@ SWIFT_CLASS("_TtC8FlyUIKit25MFUIMessageInfoController")
 - (void)baseChatViewModel:(MFUIBaseChatViewModel * _Nonnull)viewModel shouldDismissForChat:(ChatMessage * _Nullable)chatMessage;
 - (void)baseChatViewModel:(MFUIBaseChatViewModel * _Nonnull)viewModel messageId:(NSString * _Nonnull)messageId chatJid:(NSString * _Nonnull)chatJid status:(enum MessageStatus)status;
 - (void)shouldUpdateLoadingState:(BOOL)isLoading;
+@end
+
+
+@interface MFUIMessageInfoController (SWIFT_EXTENSION(FlyUIKit)) <ProfileEventsDelegate>
+- (void)userCameOnlineFor:(NSString * _Nonnull)jid;
+- (void)userWentOfflineFor:(NSString * _Nonnull)jid;
+- (void)userProfileFetchedFor:(NSString * _Nonnull)jid profileDetails:(ProfileDetails * _Nullable)profileDetails;
+- (void)myProfileUpdated;
+- (void)usersProfilesFetched;
+- (void)blockedThisUserWithJid:(NSString * _Nonnull)jid;
+- (void)unblockedThisUserWithJid:(NSString * _Nonnull)jid;
+- (void)usersIBlockedListFetchedWithJidList:(NSArray<NSString *> * _Nonnull)jidList;
+- (void)usersBlockedMeListFetchedWithJidList:(NSArray<NSString *> * _Nonnull)jidList;
+- (void)userUpdatedTheirProfileFor:(NSString * _Nonnull)jid profileDetails:(ProfileDetails * _Nonnull)profileDetails;
+- (void)userBlockedMeWithJid:(NSString * _Nonnull)jid;
+- (void)userUnBlockedMeWithJid:(NSString * _Nonnull)jid;
+- (void)hideUserLastSeen;
+- (void)getUserLastSeen;
+- (void)userDeletedTheirProfileFor:(NSString * _Nonnull)jid profileDetails:(ProfileDetails * _Nonnull)profileDetails;
 @end
 
 typedef SWIFT_ENUM(NSInteger, MFUIMessageInputMode, open) {
@@ -2819,16 +3364,17 @@ SWIFT_CLASS("_TtC8FlyUIKit32MFUIRecentChatListViewController")
 @end
 
 
-@interface MFUIRecentChatListViewController (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
-- (void)onConnected;
-- (void)onDisconnected;
-- (void)onConnectionNotAuthorized;
+@interface MFUIRecentChatListViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)didClickCancelSearch;
+- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
 @end
 
 
 @interface MFUIRecentChatListViewController (SWIFT_EXTENSION(FlyUIKit))
-- (void)didClickCancelSearch;
-- (void)passChangeTextStringWithSearchbar:(UISearchBar * _Nonnull)searchbar text:(NSString * _Nonnull)text;
+- (void)onReconnecting;
+- (void)onConnected;
+- (void)onDisconnected;
+- (void)onConnectionNotAuthorized;
 @end
 
 
@@ -2874,21 +3420,15 @@ SWIFT_CLASS("_TtC8FlyUIKit27MFUIRecentChatListViewModel")
 @end
 
 
-@interface MFUIRecentChatListViewModel (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
-- (void)onConnected;
-- (void)onDisconnected;
-- (void)onConnectionNotAuthorized;
-@end
-
 
 @interface MFUIRecentChatListViewModel (SWIFT_EXTENSION(FlyUIKit)) <MessageEventsDelegate>
+- (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId errorCode:(NSInteger)errorCode;
 - (void)clearAllConversationForSyncedDevice;
 - (void)onMessagesClearedToJid:(NSString * _Nonnull)toJid deleteType:(NSString * _Nullable)deleteType;
 - (void)onMessageReceivedWithMessage:(ChatMessage * _Nonnull)message chatJid:(NSString * _Nonnull)chatJid;
 - (void)onMessageTranslatedWithMessage:(ChatMessage * _Nonnull)message jid:(NSString * _Nonnull)jid;
 - (void)onMessageStatusUpdatedWithMessageId:(NSString * _Nonnull)messageId chatJid:(NSString * _Nonnull)chatJid status:(enum MessageStatus)status;
 - (void)onMediaStatusUpdatedWithMessage:(ChatMessage * _Nonnull)message;
-- (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId;
 - (void)onMediaProgressChangedWithMessage:(ChatMessage * _Nonnull)message progressPercentage:(float)progressPercentage;
 - (void)onMessagesClearedOrDeletedWithMessageIds:(NSArray<NSString *> * _Nonnull)messageIds;
 - (void)onMessagesDeletedforEveryoneWithMessageIds:(NSArray<NSString *> * _Nonnull)messageIds;
@@ -2980,6 +3520,17 @@ SWIFT_CLASS("_TtC8FlyUIKit17MFUISearchBarView")
 @end
 
 
+SWIFT_CLASS("_TtC8FlyUIKit18MFUISegmentControl")
+@interface MFUISegmentControl : MFUIView
+- (void)awakeFromNib;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (void)setupViews;
+- (void)setupLayouts;
+- (void)setupStyles;
+@end
+
+
 SWIFT_CLASS("_TtC8FlyUIKit23MFUISelectableStackView")
 @interface MFUISelectableStackView : MFUIView
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -3006,6 +3557,7 @@ SWIFT_CLASS("_TtC8FlyUIKit22MFUISettingsController")
 - (void)setupLayouts;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
+
 
 
 @interface MFUISettingsController (SWIFT_EXTENSION(FlyUIKit))
@@ -3142,18 +3694,19 @@ SWIFT_CLASS("_TtC8FlyUIKit31MFUIUpdateProfileViewController")
 @end
 
 
-@interface MFUIUpdateProfileViewController (SWIFT_EXTENSION(FlyUIKit)) <ConnectionEventDelegate>
-- (void)onConnected;
-- (void)onDisconnected;
-- (void)onConnectionNotAuthorized;
-@end
-
-
 @interface MFUIUpdateProfileViewController (SWIFT_EXTENSION(FlyUIKit))
 - (void)updateProfileModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
 - (void)updateProfileModule:(Header * _Nonnull)headerComponent didUpdateLeftItem:(UIBarButtonItem * _Nullable)leftItem;
 - (void)updateProfileModule:(Header * _Nonnull)headerComponent didTapLeftItem:(UIBarButtonItem * _Nonnull)leftItem;
 - (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
+@end
+
+
+@interface MFUIUpdateProfileViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)onReconnecting;
+- (void)onConnected;
+- (void)onDisconnected;
+- (void)onConnectionNotAuthorized;
 @end
 
 
@@ -3279,6 +3832,65 @@ SWIFT_CLASS("_TtC8FlyUIKit24MFUIUserProfileViewModel")
 @end
 
 
+@class Header;
+@class UISegmentedControl;
+
+SWIFT_CLASS("_TtC8FlyUIKit23MFUIViewMediaController")
+@interface MFUIViewMediaController : MFBaseViewController
+@property (nonatomic, strong) Header * _Nullable headerComponent;
+@property (nonatomic, strong) MFUIViewMediaModuleList * _Nullable listViewcomponent;
+@property (nonatomic, strong) UISegmentedControl * _Nullable segmentControl;
+@property (nonatomic, copy) NSString * _Nonnull jid;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewDidAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
+- (void)setupViews;
+- (void)setupLayouts;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+@end
+
+
+
+
+
+@interface MFUIViewMediaController (SWIFT_EXTENSION(FlyUIKit)) <QLPreviewControllerDataSource>
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController * _Nonnull)controller SWIFT_WARN_UNUSED_RESULT;
+- (id <QLPreviewItem> _Nonnull)previewController:(QLPreviewController * _Nonnull)controller previewItemAtIndex:(NSInteger)index SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface MFUIViewMediaController (SWIFT_EXTENSION(FlyUIKit))
+- (void)viewMediaModule:(Header * _Nonnull)headerComponent didUpdateTitleView:(UIView * _Nullable)titleView;
+- (void)viewMediaModule:(Header * _Nonnull)headerComponent didUpdateLeftItem:(UIBarButtonItem * _Nullable)leftItem;
+- (void)viewMediaModule:(Header * _Nonnull)headerComponent didTapLeftItem:(UIBarButtonItem * _Nonnull)leftItem;
+@end
+
+
+@interface MFUIViewMediaController (SWIFT_EXTENSION(FlyUIKit))
+- (void)viewDocumentModule:(MFUIViewMediaModuleList * _Nonnull)listComponent chatMessage:(ChatMessage * _Nonnull)chatMessage;
+- (void)viewMediaModule:(MFUIViewMediaModuleList * _Nonnull)listComponent chatMessage:(ChatMessage * _Nonnull)chatMessage;
+- (void)didReceiveError:(NSString * _Nullable)error isBlocker:(BOOL)isBlocker;
+@end
+
+
+@interface MFUIViewMediaController (SWIFT_EXTENSION(FlyUIKit)) <MessageEventsDelegate>
+- (void)onMessageReceivedWithMessage:(ChatMessage * _Nonnull)message chatJid:(NSString * _Nonnull)chatJid;
+- (void)onMessageStatusUpdatedWithMessageId:(NSString * _Nonnull)messageId chatJid:(NSString * _Nonnull)chatJid status:(enum MessageStatus)status;
+- (void)onMediaStatusUpdatedWithMessage:(ChatMessage * _Nonnull)message;
+- (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId errorCode:(NSInteger)errorCode;
+- (void)onMediaProgressChangedWithMessage:(ChatMessage * _Nonnull)message progressPercentage:(float)progressPercentage;
+- (void)onMessagesClearedOrDeletedWithMessageIds:(NSArray<NSString *> * _Nonnull)messageIds;
+- (void)onMessagesDeletedforEveryoneWithMessageIds:(NSArray<NSString *> * _Nonnull)messageIds;
+- (void)showOrUpdateOrCancelNotification;
+- (void)onMessagesClearedToJid:(NSString * _Nonnull)toJid deleteType:(NSString * _Nullable)deleteType;
+- (void)setOrUpdateFavouriteWithMessageId:(NSString * _Nonnull)messageId favourite:(BOOL)favourite removeAllFavourite:(BOOL)removeAllFavourite;
+- (void)onMessageTranslatedWithMessage:(ChatMessage * _Nonnull)message jid:(NSString * _Nonnull)jid;
+- (void)clearAllConversationForSyncedDevice;
+@end
+
 
 SWIFT_CLASS("_TtC8FlyUIKit17MFUserProfileCell")
 @interface MFUserProfileCell : MFUITableViewCell
@@ -3289,6 +3901,31 @@ SWIFT_CLASS("_TtC8FlyUIKit17MFUserProfileCell")
 - (void)setupLayouts;
 - (void)setupStyles;
 - (void)configUpdateCellWithProfile:(UserProfileData * _Nonnull)profile;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC8FlyUIKit21MFUserProfileMenuCell")
+@interface MFUserProfileMenuCell : MFUITableViewCell
+@property (nonatomic, strong) UIStackView * _Nonnull HstackView;
+@property (nonatomic, strong) UIStackView * _Nonnull VstackView;
+- (void)setupViews;
+- (void)setupActions;
+- (void)setupLayouts;
+- (void)setupStyles;
+- (void)configUpdateCellWithProfile:(UserProfileData * _Nonnull)profile;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC8FlyUIKit20MFViewMediaTableCell")
+@interface MFViewMediaTableCell : MFUITableViewCell
+- (void)setupViews;
+- (void)setupActions;
+- (void)setupLayouts;
+- (void)setupStyles;
 - (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -3335,6 +3972,8 @@ SWIFT_CLASS("_TtC8FlyUIKit13Messagestatus")
 @end
 
 
+
+
 @interface NSObject (SWIFT_EXTENSION(FlyUIKit))
 /// This gets the class name of object.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull mfui_className;)
@@ -3360,6 +3999,7 @@ SWIFT_CLASS("_TtC8FlyUIKit7Overlay")
 typedef SWIFT_ENUM(NSInteger, ProfileAttributeType, open) {
   ProfileAttributeTypeEmail = 0,
   ProfileAttributeTypeMobileNumber = 1,
+  ProfileAttributeTypeViewAllMedia = 2,
 };
 
 typedef SWIFT_ENUM(NSInteger, ProgressType, open) {
@@ -3487,6 +4127,8 @@ SWIFT_CLASS("_TtC8FlyUIKit18TranslationManager")
 
 
 
+
+
 @interface UIView (SWIFT_EXTENSION(FlyUIKit))
 /// This loads the nib file from the Sendbird UIKit bundle.
 ///
@@ -3521,6 +4163,7 @@ SWIFT_CLASS("_TtC8FlyUIKit18TranslationManager")
 ///
 - (void)presentImagePicker:(BSImagePickerController * _Nonnull)imagePicker animated:(BOOL)animated select:(void (^ _Nullable)(PHAsset * _Nonnull))select deselect:(void (^ _Nullable)(PHAsset * _Nonnull))deselect cancel:(void (^ _Nullable)(NSArray<PHAsset *> * _Nonnull))cancel finish:(void (^ _Nullable)(NSArray<PHAsset *> * _Nonnull))finish completion:(void (^ _Nullable)(void))completion;
 @end
+
 
 
 
