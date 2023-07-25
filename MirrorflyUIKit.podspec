@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
     s.dependency 'Floaty', '~> 4.2.0'
     s.dependency 'IQKeyboardManagerSwift'
     s.dependency 'GoogleMaps'
+    s.dependency 'SwiftLinkPreview'
     s.dependency 'MirrorFlySDK', '5.10.3'
 
 
