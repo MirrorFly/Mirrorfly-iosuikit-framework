@@ -757,6 +757,7 @@ extension FlyUIKit.MFUIUserProfileModule {
   @objc override dynamic public init()
   @objc deinit
 }
+public var pushChatId: Swift.String?
 @objc @_inheritsConvenienceInitializers open class FlyUIKitSDK : ObjectiveC.NSObject {
   public static let shared: FlyUIKit.FlyUIKitSDK
   public func initialization(userID: Swift.String, licenseKey: Swift.String, base_Url: Swift.String, isTrialLicense: Swift.Bool, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
@@ -766,7 +767,6 @@ extension FlyUIKit.MFUIUserProfileModule {
   public func initcallsdk()
   public func willEnterForeGround(response: UserNotifications.UNNotificationResponse)
   public func navigateToChatScreen(response: UserNotifications.UNNotificationResponse)
-  public func setCustomLocalNotification(notificationIcon: UIKit.UIImage?, notificationToneName: Swift.String?)
   public func didLogout(logoutHandler: @escaping () -> Swift.Void)
   public func resetWhenLogout()
   @objc override dynamic public init()
@@ -778,6 +778,9 @@ extension FlyUIKit.FlyUIKitSDK : MirrorFlySDK.ConnectionEventDelegate {
   public func onConnected()
   public func onDisconnected()
   public func onConnectionNotAuthorized()
+}
+extension UIKit.UINavigationController {
+  @_Concurrency.MainActor(unsafe) public func removeViewController(_ controller: UIKit.UIViewController.Type)
 }
 @objc public enum MFUIMessageInputMode : Swift.Int {
   case none
@@ -920,6 +923,7 @@ public protocol MFSectionHeaderViewDelegate : AnyObject {
   @_Concurrency.MainActor(unsafe) @objc override open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override open func setupLayouts()
   @_Concurrency.MainActor(unsafe) @objc override open func setupStyles()
+  @objc @_Concurrency.MainActor(unsafe) public func showCallOverlay()
   @objc deinit
 }
 extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUICallScreenModuleHeaderDelegate {
@@ -1302,12 +1306,6 @@ extension FlyUIKit.MFUIRecentChatListViewModel : MirrorFlySDK.ProfileEventsDeleg
 extension FlyUIKit.MFBaseViewController : MirrorFlySDK.LogoutDelegate {
   @objc @_Concurrency.MainActor(unsafe) dynamic public func didReceiveLogout()
 }
-extension FlyUIKit.MFBaseViewController : MirrorFlySDK.LocalNotificationDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func showOrUpdateOrCancelNotification(jid: Swift.String, chatMessage: MirrorFlySDK.ChatMessage, groupId: Swift.String)
-}
-extension FlyUIKit.MFBaseViewController : MirrorFlySDK.MissedCallNotificationDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func onMissedCall(isOneToOneCall: Swift.Bool, userJid: Swift.String, groupId: Swift.String?, callType: Swift.String, userList: [Swift.String])
-}
 extension FlyUIKit.MFBaseViewController {
   @objc @_Concurrency.MainActor(unsafe) dynamic public func postLogoutNotification()
 }
@@ -1333,6 +1331,13 @@ extension FlyUIKit.MFBaseViewController {
 }
 extension UIKit.UIImage {
   public func mfui_with(tintColor: UIKit.UIColor?) -> UIKit.UIImage
+}
+extension UIKit.UIImageView {
+  @_Concurrency.MainActor(unsafe) public func containsImage(image: UIKit.UIImage) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) public func makeRounded()
+  @_Concurrency.MainActor(unsafe) public func setCircleView()
+  @_Concurrency.MainActor(unsafe) public func setImageInsect(insect: CoreFoundation.CGFloat)
+  @_Concurrency.MainActor(unsafe) public func applyShadow(_ shawdowRadius: CoreFoundation.CGFloat = 8.0, shawdowOpacity: Swift.Float = 0.5)
 }
 @objc @_inheritsConvenienceInitializers @IBDesignable @objcMembers @_Concurrency.MainActor(unsafe) open class MFUITableViewCell : UIKit.UITableViewCell {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
@@ -3574,6 +3579,11 @@ extension FlyUIKit.ImagePickerController : UIKit.UIAdaptivePresentationControlle
   @_Concurrency.MainActor(unsafe) @objc dynamic public func presentationControllerShouldDismiss(_ presentationController: UIKit.UIPresentationController) -> Swift.Bool
   @available(iOS 13, *)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func presentationControllerDidDismiss(_ presentationController: UIKit.UIPresentationController)
+}
+@_hasMissingDesignatedInitializers public class ChatUtils {
+  public static func isMessagesAvailableFor(jid: Swift.String) -> Swift.Bool
+  public static func getMentionTextContent(message: Swift.String, uiLabel: UIKit.UILabel? = nil, isMessageSentByMe: Swift.Bool, mentionedUsers: [Swift.String], searchedText: Swift.String? = "") -> Foundation.NSMutableAttributedString
+  @objc deinit
 }
 extension Foundation.NSMutableAttributedString {
   @discardableResult
@@ -7791,6 +7801,26 @@ public class MFUIRecentChatListModule {
     set
   }
   public init(headerComponent: FlyUIKit.MFUIRecentChatListModule.Header? = nil, listComponent: FlyUIKit.MFUIRecentChatListModule.List? = nil)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class MFUICustomNotificationView : FlyUIKit.MFUIView {
+  @_Concurrency.MainActor(unsafe) final public let theme: FlyUIKit.MFCustomNotificationTheme
+  @_Concurrency.MainActor(unsafe) public var logoImg: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var messageLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var titleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var labelsStackView: UIKit.UIStackView {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var mainStackView: UIKit.UIStackView {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func setupViews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func setupStyles()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func setupLayouts()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @objc deinit
 }
 public protocol MFUIParticipantModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
