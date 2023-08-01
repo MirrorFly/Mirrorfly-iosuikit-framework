@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
 // swift-module-flags: -target x86_64-apple-ios12.1-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FlyUIKit
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFAudio
@@ -59,9 +59,9 @@ import os
   @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFMessageCellTheme
   @_Concurrency.MainActor(unsafe) public var message: MirrorFlySDK.ChatMessage!
   @_Concurrency.MainActor(unsafe) public var position: FlyUIKit.MessagePosition
-  @_Concurrency.MainActor(unsafe) public var progressDelegate: (any FlyUIKit.MFUIProgressDelegate)?
-  @_Concurrency.MainActor(unsafe) public var audioViewDelegate: (any FlyUIKit.MFUIAudioContentViewDelegate)?
-  @_Concurrency.MainActor(unsafe) open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) public var progressDelegate: FlyUIKit.MFUIProgressDelegate?
+  @_Concurrency.MainActor(unsafe) public var audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate?
+  @_Concurrency.MainActor(unsafe) open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @objc deinit
@@ -95,8 +95,8 @@ extension FlyUIKit.MFUIBaseChatViewModule {
     }
     @objc @_Concurrency.MainActor(unsafe) public var newMessageInfoView: UIKit.UIView?
     @objc @_Concurrency.MainActor(unsafe) public var scrollBottomView: UIKit.UIView?
-    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: (any FlyUIKit.MFUIBaseChatViewModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var baseDataSource: (any FlyUIKit.MFUIBaseChatViewModuleLisDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: FlyUIKit.MFUIBaseChatViewModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var baseDataSource: FlyUIKit.MFUIBaseChatViewModuleLisDataSource?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFChatTheme?
     @objc @_Concurrency.MainActor(unsafe) public var multiSelect: Swift.Bool
     @objc @_Concurrency.MainActor(unsafe) public var messageMenuItem: FlyUIKit.MessageMenuItem
@@ -294,7 +294,7 @@ public protocol MFUICallScreenModuleRetryFooterDelegate : FlyUIKit.MFUICommonDel
 }
 extension FlyUIKit.MFUICallScreenModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class RetryFooter : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallScreenModuleRetryFooterDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallScreenModuleRetryFooterDelegate?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
     @objc @_Concurrency.MainActor(unsafe) public var cancelLabel: UIKit.UILabel {
       @objc get
@@ -332,7 +332,7 @@ extension FlyUIKit.MFUICallScreenModule {
       @objc get
       @objc set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallScreenModuleRetryFooterDelegate, theme: FlyUIKit.MFCallScreenTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallScreenModuleRetryFooterDelegate, theme: FlyUIKit.MFCallScreenTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCallScreenTheme? = nil)
@@ -445,8 +445,8 @@ extension FlyUIKit.MFUIBaseChatViewModule {
     @objc @_Concurrency.MainActor(unsafe) public var messageInputView: UIKit.UIView?
     @objc @_Concurrency.MainActor(unsafe) public var inputText: Swift.String?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFChatTheme?
-    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: (any FlyUIKit.MFUIBaseChatViewModuleInputDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var baseDataSource: (any FlyUIKit.MFUIBaseChatViewModuleInputDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: FlyUIKit.MFUIBaseChatViewModuleInputDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var baseDataSource: FlyUIKit.MFUIBaseChatViewModuleInputDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var defaultMessageInputView: FlyUIKit.MFUIMessageInputView {
       @objc get
       @objc set
@@ -503,7 +503,7 @@ public protocol MFUICreateGroupChatModuleHeaderDelegate : FlyUIKit.MFUICommonDel
 }
 extension FlyUIKit.MFUICreateGroupChatModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICreateGroupChatModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICreateGroupChatModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -522,7 +522,7 @@ extension FlyUIKit.MFUICreateGroupChatModule {
     @available(*, unavailable, renamed: "MFUICreateGroupChatModule.Header()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICreateGroupChatModuleHeaderDelegate, theme: FlyUIKit.MFCreateGroupTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICreateGroupChatModuleHeaderDelegate, theme: FlyUIKit.MFCreateGroupTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCreateGroupTheme? = nil)
@@ -588,11 +588,11 @@ extension FlyUIKit.MFUILanguageModule {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @objc @_Concurrency.MainActor(unsafe) public var languageCell: FlyUIKit.MFUILanguageCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFLanguageTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUILanguageModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUILanguageModuleListDelegate?
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUILanguageModuleListDelegate, theme: FlyUIKit.MFLanguageTheme, translateArr: [FlyUIKit.LanguageModel])
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUILanguageModuleListDelegate, theme: FlyUIKit.MFLanguageTheme, translateArr: [FlyUIKit.LanguageModel])
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -623,7 +623,7 @@ public protocol MFUICallScreenModuleHangupFooterDelegate : FlyUIKit.MFUICommonDe
 }
 extension FlyUIKit.MFUICallScreenModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class HangupFooter : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallScreenModuleHangupFooterDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallScreenModuleHangupFooterDelegate?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
     @objc @_Concurrency.MainActor(unsafe) public var hangupButton: UIKit.UIButton {
       @objc get
@@ -669,7 +669,7 @@ extension FlyUIKit.MFUICallScreenModule {
       @objc get
       @objc set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallScreenModuleHangupFooterDelegate, theme: FlyUIKit.MFCallScreenTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallScreenModuleHangupFooterDelegate, theme: FlyUIKit.MFCallScreenTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCallScreenTheme? = nil)
@@ -690,7 +690,7 @@ public protocol MFUIUserProfileModuleHeaderDelegate : FlyUIKit.MFUICommonDelegat
 }
 extension FlyUIKit.MFUIUserProfileModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIUserProfileModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIUserProfileModuleHeaderDelegate?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFUserProfileTheme
     @objc @_Concurrency.MainActor(unsafe) public var leftBackButton: UIKit.UIButton? {
       @objc get
@@ -741,7 +741,7 @@ extension FlyUIKit.MFUIUserProfileModule {
       @objc get
       @objc set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIUserProfileModuleHeaderDelegate, theme: FlyUIKit.MFUserProfileTheme, profile: MirrorFlySDK.ProfileDetails?, lastseen: Swift.String)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIUserProfileModuleHeaderDelegate, theme: FlyUIKit.MFUserProfileTheme, profile: MirrorFlySDK.ProfileDetails?, lastseen: Swift.String)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @objc @_Concurrency.MainActor(unsafe) open func setupStyles()
@@ -760,7 +760,7 @@ extension FlyUIKit.MFUIUserProfileModule {
 public var pushChatId: Swift.String?
 @objc @_inheritsConvenienceInitializers open class FlyUIKitSDK : ObjectiveC.NSObject {
   public static let shared: FlyUIKit.FlyUIKitSDK
-  public func initialization(userID: Swift.String, licenseKey: Swift.String, base_Url: Swift.String, isTrialLicense: Swift.Bool, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, selfObj: (any FlyUIKit.CallNotificationDelegate)? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
+  public func initialization(userID: Swift.String, licenseKey: Swift.String, base_Url: Swift.String, isTrialLicense: Swift.Bool, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, selfObj: FlyUIKit.CallNotificationDelegate? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
   public func intializePushNotification(_ request: UserNotifications.UNMutableNotificationContent, isVoipType: Swift.Bool, completionHandler: @escaping (UserNotifications.UNNotificationContent) -> Swift.Void)
   public func registration(uniqueIdentifier: Swift.String, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
   public func register(mobileNumber: Swift.String)
@@ -880,7 +880,7 @@ public protocol MFSectionHeaderViewDelegate : AnyObject {
     set
   }
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
-  @_Concurrency.MainActor(unsafe) public init(theme: FlyUIKit.MFMessageInfoTheme, headerTitle: Swift.String, section: Swift.Int, delegate: any FlyUIKit.MFSectionHeaderViewDelegate, hiddenSections: Swift.Set<Swift.Int>)
+  @_Concurrency.MainActor(unsafe) public init(theme: FlyUIKit.MFMessageInfoTheme, headerTitle: Swift.String, section: Swift.Int, delegate: FlyUIKit.MFSectionHeaderViewDelegate, hiddenSections: Swift.Set<Swift.Int>)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func setupLayouts()
@@ -1240,7 +1240,7 @@ public protocol MFUIRecentChatListViewModelDelegate : FlyUIKit.MFUICommonViewMod
     get
   }
   public var selectedRecentChat: [MirrorFlySDK.RecentChat]
-  public init(delegate: (any FlyUIKit.MFUIRecentChatListViewModelDelegate)?)
+  public init(delegate: FlyUIKit.MFUIRecentChatListViewModelDelegate?)
   @objc deinit
 }
 extension FlyUIKit.MFUIRecentChatListViewModel : MirrorFlySDK.ConnectionEventDelegate {
@@ -1393,7 +1393,7 @@ extension FlyUIKit.MFUITableViewCell : FlyUIKit.MFUIViewLifeCycle {
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
   @_Concurrency.MainActor(unsafe) open func setupSizeContraint()
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell()
   @_Concurrency.MainActor(unsafe) open func updateSenderImageCell()
   @_Concurrency.MainActor(unsafe) public func setImage(_ image: UIKit.UIImage?, size: CoreFoundation.CGSize? = nil)
@@ -1409,7 +1409,7 @@ public protocol MFUIMessageInfoModuleHeaderDelegate : FlyUIKit.MFUICommonDelegat
 }
 extension FlyUIKit.MFUIMessageInfoModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIMessageInfoModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIMessageInfoModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -1422,7 +1422,7 @@ extension FlyUIKit.MFUIMessageInfoModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIMessageInfoModuleHeaderDelegate, theme: FlyUIKit.MFMessageInfoTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIMessageInfoModuleHeaderDelegate, theme: FlyUIKit.MFMessageInfoTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFMessageInfoTheme? = nil)
@@ -1954,8 +1954,8 @@ public protocol MFUICallScreenModuleCallOverlayDelegate : FlyUIKit.MFUICommonDel
 extension FlyUIKit.MFUICallScreenModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class CallOverlayView : UIKit.UIView {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallScreenModuleCallOverlayDelegate)?
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallScreenModuleCallOverlayDelegate, theme: FlyUIKit.MFCallScreenTheme)
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallScreenModuleCallOverlayDelegate?
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallScreenModuleCallOverlayDelegate, theme: FlyUIKit.MFCallScreenTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCallScreenTheme? = nil)
@@ -1987,12 +1987,12 @@ extension FlyUIKit.MFUIUpdateProfileModule {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @objc @_Concurrency.MainActor(unsafe) public var userprofileCell: FlyUIKit.MFUserProfileCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFUpdateProfileTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIUpdateProfileModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIUpdateProfileModuleListDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var profileImageComponent: FlyUIKit.MFUIUpdateProfileModule.BImageView?
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIUpdateProfileModuleListDelegate, theme: FlyUIKit.MFUpdateProfileTheme, profileArr: [FlyUIKit.UserProfileData])
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIUpdateProfileModuleListDelegate, theme: FlyUIKit.MFUpdateProfileTheme, profileArr: [FlyUIKit.UserProfileData])
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -2043,7 +2043,7 @@ public protocol MFUIViewMediaModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate 
 }
 extension FlyUIKit.MFUIViewMediaModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIViewMediaModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIViewMediaModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -2056,7 +2056,7 @@ extension FlyUIKit.MFUIViewMediaModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIViewMediaModuleHeaderDelegate, theme: FlyUIKit.MFViewMediaTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIViewMediaModuleHeaderDelegate, theme: FlyUIKit.MFViewMediaTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFViewMediaTheme? = nil)
@@ -2118,7 +2118,7 @@ extension FlyUIKit.MFUIViewMediaController : MirrorFlySDK.AvailableFeaturesDeleg
 }
 extension FlyUIKit.MFUIViewMediaController : QuickLook.QLPreviewControllerDataSource {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func numberOfPreviewItems(in controller: QuickLook.QLPreviewController) -> Swift.Int
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func previewController(_ controller: QuickLook.QLPreviewController, previewItemAt index: Swift.Int) -> any QuickLook.QLPreviewItem
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func previewController(_ controller: QuickLook.QLPreviewController, previewItemAt index: Swift.Int) -> QuickLook.QLPreviewItem
 }
 public typealias MFUIActionSheetHandler = () -> Swift.Void
 public protocol MFUIActionSheetDelegate : ObjectiveC.NSObjectProtocol {
@@ -2130,7 +2130,7 @@ public protocol MFUIActionSheetDelegate : ObjectiveC.NSObjectProtocol {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class MFUIActionSheet {
-  public static func show(items: [FlyUIKit.MFUIActionSheetItem], cancelItem: FlyUIKit.MFUIActionSheetItem, identifier: Swift.Int = -1, oneTimetheme: FlyUIKit.MFComponentTheme? = nil, delegate: (any FlyUIKit.MFUIActionSheetDelegate)? = nil, selectedIndex: Swift.Int = -1)
+  public static func show(items: [FlyUIKit.MFUIActionSheetItem], cancelItem: FlyUIKit.MFUIActionSheetItem, identifier: Swift.Int = -1, oneTimetheme: FlyUIKit.MFComponentTheme? = nil, delegate: FlyUIKit.MFUIActionSheetDelegate? = nil, selectedIndex: Swift.Int = -1)
   public static func dismiss()
   @objc deinit
 }
@@ -2195,11 +2195,11 @@ public protocol MFUICreateChatModuleHeaderDataSource : FlyUIKit.MFUIBaseSelectCo
 }
 extension FlyUIKit.MFUICreateChatModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : FlyUIKit.MFUIBaseSelectContactModule.Header {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICreateChatModuleHeaderDelegate)? {
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICreateChatModuleHeaderDelegate? {
       get
       set
     }
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUICreateChatModuleHeaderDataSource)? {
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUICreateChatModuleHeaderDataSource? {
       get
       set
     }
@@ -2209,7 +2209,7 @@ extension FlyUIKit.MFUICreateChatModule {
     @available(*, unavailable, renamed: "MFUICreateChatModule.Header()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICreateChatModuleHeaderDelegate, theme: FlyUIKit.MFContactListTheme, type: FlyUIKit.ChatCreationType)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICreateChatModuleHeaderDelegate, theme: FlyUIKit.MFContactListTheme, type: FlyUIKit.ChatCreationType)
     @_Concurrency.MainActor(unsafe) @objc override open func updateRightBarButton()
     @_Concurrency.MainActor(unsafe) @objc public func didUpdateTitleView()
     @_Concurrency.MainActor(unsafe) @objc public func didUpdateLeftItem()
@@ -2244,8 +2244,8 @@ extension FlyUIKit.MFUIMessageInfoModule {
     @objc @_Concurrency.MainActor(unsafe) public var customChatCell: FlyUIKit.MFUIBaseChatCell?
     @objc @_Concurrency.MainActor(unsafe) public var emptyInfocell: FlyUIKit.MFEmptyTableCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFMessageInfoTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIMessageInfoModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIMessageInfoModuleListDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIMessageInfoModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIMessageInfoModuleListDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var singleChatMessageStatusArr: [FlyUIKit.Messagestatus]? {
       @objc get
     }
@@ -2254,7 +2254,7 @@ extension FlyUIKit.MFUIMessageInfoModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIMessageInfoModuleListDelegate, dataSource: any FlyUIKit.MFUIMessageInfoModuleListDataSource, theme: FlyUIKit.MFMessageInfoTheme, isgroupChat: Swift.Bool, message: MirrorFlySDK.ChatMessage, groupStausArr: [FlyUIKit.Messagestatus], ProfileDetails: MirrorFlySDK.ProfileDetails)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIMessageInfoModuleListDelegate, dataSource: FlyUIKit.MFUIMessageInfoModuleListDataSource, theme: FlyUIKit.MFMessageInfoTheme, isgroupChat: Swift.Bool, message: MirrorFlySDK.ChatMessage, groupStausArr: [FlyUIKit.Messagestatus], ProfileDetails: MirrorFlySDK.ProfileDetails)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -2286,8 +2286,8 @@ extension FlyUIKit.MFUICallScreenModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class RemoteVideoView : UIKit.UIView {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
     @objc @_Concurrency.MainActor(unsafe) public var RtcRemoteVideoView: WebRTC.RTCMTLVideoView?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallScreenModuleRemoteVideoViewDelegate)?
-    @_Concurrency.MainActor(unsafe) open func configure(theme: FlyUIKit.MFCallScreenTheme, delegate: any FlyUIKit.MFUICallScreenModuleRemoteVideoViewDelegate)
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallScreenModuleRemoteVideoViewDelegate?
+    @_Concurrency.MainActor(unsafe) open func configure(theme: FlyUIKit.MFCallScreenTheme, delegate: FlyUIKit.MFUICallScreenModuleRemoteVideoViewDelegate)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupStyles()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
@@ -2439,7 +2439,7 @@ public protocol MFUIContactPreviewModuleHeaderDelegate : FlyUIKit.MFUICommonDele
 }
 extension FlyUIKit.MFUIContactPreviewModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIContactPreviewModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIContactPreviewModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -2456,7 +2456,7 @@ extension FlyUIKit.MFUIContactPreviewModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIContactPreviewModuleHeaderDelegate, theme: FlyUIKit.MFContactPreviewTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIContactPreviewModuleHeaderDelegate, theme: FlyUIKit.MFContactPreviewTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFContactPreviewTheme? = nil)
@@ -2505,7 +2505,7 @@ extension FlyUIKit.MFUIMessageInfoController : FlyUIKit.MFUIChatViewModelDelegat
 }
 extension FlyUIKit.MFUIMessageInfoController : AVFAudio.AVAudioPlayerDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func audioPlayerDidFinishPlaying(_ player: AVFAudio.AVAudioPlayer, successfully flag: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func audioPlayerDecodeErrorDidOccur(_ player: AVFAudio.AVAudioPlayer, error: (any Swift.Error)?)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func audioPlayerDecodeErrorDidOccur(_ player: AVFAudio.AVAudioPlayer, error: Swift.Error?)
 }
 extension FlyUIKit.MFUIMessageInfoController : MirrorFlySDK.ProfileEventsDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func userCameOnline(for jid: Swift.String)
@@ -2629,7 +2629,7 @@ extension FlyUIKit.MFUIBaseChatViewParentController : UIKit.UIDocumentPickerDele
 }
 extension FlyUIKit.MFUIBaseChatViewParentController : QuickLook.QLPreviewControllerDataSource {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func numberOfPreviewItems(in controller: QuickLook.QLPreviewController) -> Swift.Int
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func previewController(_ controller: QuickLook.QLPreviewController, previewItemAt index: Swift.Int) -> any QuickLook.QLPreviewItem
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func previewController(_ controller: QuickLook.QLPreviewController, previewItemAt index: Swift.Int) -> QuickLook.QLPreviewItem
 }
 extension FlyUIKit.MFUIBaseChatViewParentController : AVFAudio.AVAudioRecorderDelegate, AVFAudio.AVAudioPlayerDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func audioRecorderDidFinishRecording(_ recorder: AVFAudio.AVAudioRecorder, successfully flag: Swift.Bool)
@@ -2712,7 +2712,7 @@ public protocol MFUIGroupInfoModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate 
 }
 extension FlyUIKit.MFUIGroupInfoModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIGroupInfoModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIGroupInfoModuleHeaderDelegate?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFGroupInfoTheme
     @objc @_Concurrency.MainActor(unsafe) public var leftBackButton: UIKit.UIButton? {
       @objc get
@@ -2788,7 +2788,7 @@ extension FlyUIKit.MFUIGroupInfoModule {
       @objc set
     }
     @objc @_Concurrency.MainActor(unsafe) public var participantViewHeightConstraint: UIKit.NSLayoutConstraint!
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIGroupInfoModuleHeaderDelegate, theme: FlyUIKit.MFGroupInfoTheme, profile: MirrorFlySDK.ProfileDetails?, memberCount: Swift.String)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIGroupInfoModuleHeaderDelegate, theme: FlyUIKit.MFGroupInfoTheme, profile: MirrorFlySDK.ProfileDetails?, memberCount: Swift.String)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @objc @_Concurrency.MainActor(unsafe) open func setupStyles()
@@ -2811,7 +2811,7 @@ extension FlyUIKit.MFUIGroupInfoModule {
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
   @_Concurrency.MainActor(unsafe) open func setupSizeContraint()
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell()
   @_Concurrency.MainActor(unsafe) open func updateSenderImageCell()
   @_Concurrency.MainActor(unsafe) public func setImage(_ image: UIKit.UIImage?, size: CoreFoundation.CGSize? = nil)
@@ -2834,11 +2834,11 @@ public protocol MFUIChatViewParentModuleHeaderDelegate : FlyUIKit.MFUIBaseChatVi
 }
 extension FlyUIKit.MFUIChatViewParentModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : FlyUIKit.MFUIBaseChatViewModule.Header {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIChatViewParentModuleHeaderDelegate)? {
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIChatViewParentModuleHeaderDelegate? {
       get
       set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIChatViewParentModuleHeaderDelegate, theme: FlyUIKit.MFChatTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIChatViewParentModuleHeaderDelegate, theme: FlyUIKit.MFChatTheme)
     @_Concurrency.MainActor(unsafe) @objc override open func setupViews()
     @_Concurrency.MainActor(unsafe) @objc override open func onTapLeftBarButton()
     @objc deinit
@@ -2861,7 +2861,7 @@ public protocol MFUIUpdateProfileModuleHeaderDelegate : FlyUIKit.MFUICommonDeleg
 }
 extension FlyUIKit.MFUIUpdateProfileModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIUpdateProfileModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIUpdateProfileModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -2874,7 +2874,7 @@ extension FlyUIKit.MFUIUpdateProfileModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIUpdateProfileModuleHeaderDelegate, theme: FlyUIKit.MFUpdateProfileTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIUpdateProfileModuleHeaderDelegate, theme: FlyUIKit.MFUpdateProfileTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFUpdateProfileTheme? = nil)
@@ -2888,7 +2888,7 @@ public protocol MFUICallScreenViewModelDelegate : FlyUIKit.MFUICommonViewModelDe
   func CallScreenViewModel(didUpdateUser index: Swift.Int)
 }
 @objc @_inheritsConvenienceInitializers open class MFUICallScreenViewModel : ObjectiveC.NSObject {
-  weak public var delegate: (any FlyUIKit.MFUICallScreenViewModelDelegate)?
+  weak public var delegate: FlyUIKit.MFUICallScreenViewModelDelegate?
   public static var sharedInstance: FlyUIKit.MFUICallScreenViewModel
   public func makeCall(usersList: [Swift.String], callType: FlyUIKit.CallType, groupId: Swift.String = "", onCompletion: @escaping (_ isSuccess: Swift.Bool, _ message: Swift.String) -> Swift.Void)
   @objc override dynamic public init()
@@ -3026,14 +3026,14 @@ extension FlyUIKit.MFUIUserProfileModule {
   @_inheritsConvenienceInitializers @objc(MFUIUserProfileModuleList) @objcMembers @_Concurrency.MainActor(unsafe) open class List : UIKit.UIView {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFUserProfileTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIUserProfileModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIUserProfileModuleListDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var userProfileArr: [FlyUIKit.UserProfileData]
     @objc @_Concurrency.MainActor(unsafe) public var menuItemsArr: [FlyUIKit.UserProfileData]
     @objc @_Concurrency.MainActor(unsafe) public var headerComponent: FlyUIKit.MFUIUserProfileModule.Header?
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIUserProfileModuleListDelegate, theme: FlyUIKit.MFUserProfileTheme, profile: MirrorFlySDK.ProfileDetails?, lastSeen: Swift.String)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIUserProfileModuleListDelegate, theme: FlyUIKit.MFUserProfileTheme, profile: MirrorFlySDK.ProfileDetails?, lastSeen: Swift.String)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -3069,7 +3069,7 @@ public protocol MFUILocationModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
 }
 extension FlyUIKit.MFUILocationModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUILocationModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUILocationModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -3082,7 +3082,7 @@ extension FlyUIKit.MFUILocationModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUILocationModuleHeaderDelegate, theme: FlyUIKit.MFLocationTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUILocationModuleHeaderDelegate, theme: FlyUIKit.MFLocationTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFLocationTheme? = nil)
@@ -3097,7 +3097,7 @@ extension FlyUIKit.MFUILocationModule {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
@@ -3125,8 +3125,8 @@ extension FlyUIKit.MFUIRecentChatListModule {
     @objc @_Concurrency.MainActor(unsafe) public var chatCell: FlyUIKit.MFUIBaseChatCell?
     @objc @_Concurrency.MainActor(unsafe) public var customChatCell: FlyUIKit.MFUIBaseChatCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFChatListTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIRecentChatListModuleListtDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIRecentChatListModuleListtDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIRecentChatListModuleListtDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIRecentChatListModuleListtDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var chatList: [MirrorFlySDK.RecentChat]? {
       @objc get
     }
@@ -3138,7 +3138,7 @@ extension FlyUIKit.MFUIRecentChatListModule {
     @available(*, unavailable, renamed: "MFUIRecentChatListModule.List()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIRecentChatListModuleListtDelegate, dataSource: any FlyUIKit.MFUIRecentChatListModuleListtDataSource, theme: FlyUIKit.MFChatListTheme, viewmodel: FlyUIKit.MFUIRecentChatListViewModel? = nil)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIRecentChatListModuleListtDelegate, dataSource: FlyUIKit.MFUIRecentChatListModuleListtDataSource, theme: FlyUIKit.MFChatListTheme, viewmodel: FlyUIKit.MFUIRecentChatListViewModel? = nil)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFChatListTheme? = nil)
@@ -3206,7 +3206,7 @@ public protocol MFUITranslateModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate 
 }
 extension FlyUIKit.MFUITranslateModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUITranslateModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUITranslateModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -3219,7 +3219,7 @@ extension FlyUIKit.MFUITranslateModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUITranslateModuleHeaderDelegate, theme: FlyUIKit.MFTranslateTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUITranslateModuleHeaderDelegate, theme: FlyUIKit.MFTranslateTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFTranslateTheme? = nil)
@@ -3227,7 +3227,7 @@ extension FlyUIKit.MFUITranslateModule {
   }
 }
 @objc(BSImagePickerController) @objcMembers @_Concurrency.MainActor(unsafe) open class ImagePickerController : UIKit.UINavigationController {
-  @_Concurrency.MainActor(unsafe) weak public var imagePickerDelegate: (any FlyUIKit.ImagePickerControllerDelegate)?
+  @_Concurrency.MainActor(unsafe) weak public var imagePickerDelegate: FlyUIKit.ImagePickerControllerDelegate?
   @objc @_Concurrency.MainActor(unsafe) public var settings: FlyUIKit.Settings
   @objc @_Concurrency.MainActor(unsafe) public var doneButton: UIKit.UIBarButtonItem
   @objc @_Concurrency.MainActor(unsafe) public var cancelButton: UIKit.UIBarButtonItem
@@ -3638,7 +3638,7 @@ extension FlyUIKit.MFUIForwardModule {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @objc @_Concurrency.MainActor(unsafe) public var forwardCell: FlyUIKit.MFUIForwardCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFForwardTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIForwardModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIForwardModuleListDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var showLoading: Swift.Bool
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
@@ -3651,7 +3651,7 @@ extension FlyUIKit.MFUIForwardModule {
     @objc @_Concurrency.MainActor(unsafe) open func configureGroup(recentChat: [MirrorFlySDK.RecentChat])
     @objc @_Concurrency.MainActor(unsafe) open func configureRecent(recentChat: [MirrorFlySDK.RecentChat])
     @objc @_Concurrency.MainActor(unsafe) open func configureContact(contacts: [MirrorFlySDK.ProfileDetails])
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIForwardModuleListDelegate, theme: FlyUIKit.MFForwardTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIForwardModuleListDelegate, theme: FlyUIKit.MFForwardTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -3796,7 +3796,7 @@ extension FlyUIKit.MFUIForwardModule.List : FlyUIKit.MFUIEmptyViewDelegate {
   @_Concurrency.MainActor(unsafe) public static var global: FlyUIKit.MFUIFloatyManager {
     get
   }
-  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak open var fabDelegate: (any FlyUIKit.MFUIFloatyDelegate)?
+  @objc @IBOutlet @_Concurrency.MainActor(unsafe) weak open var fabDelegate: FlyUIKit.MFUIFloatyDelegate?
   @objc @IBInspectable @_Concurrency.MainActor(unsafe) open var selectedColor: UIKit.UIColor? {
     @objc get
     @objc set
@@ -3876,7 +3876,7 @@ public protocol MFUIProgressDelegate {
   @_Concurrency.MainActor(unsafe) public var widthConstraint: UIKit.NSLayoutConstraint!
   @_Concurrency.MainActor(unsafe) public var heightConstraint: UIKit.NSLayoutConstraint!
   @_Concurrency.MainActor(unsafe) public var text: Swift.String
-  @_Concurrency.MainActor(unsafe) public var progressViewDelegate: (any FlyUIKit.MFUIProgressDelegate)?
+  @_Concurrency.MainActor(unsafe) public var progressViewDelegate: FlyUIKit.MFUIProgressDelegate?
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) open func setupSizeContraint()
@@ -3899,7 +3899,7 @@ public protocol MFUIRecentChatListModuleHeaderDelegate : FlyUIKit.MFUICommonDele
 }
 extension FlyUIKit.MFUIRecentChatListModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIRecentChatListModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIRecentChatListModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -3922,7 +3922,7 @@ extension FlyUIKit.MFUIRecentChatListModule {
     @available(*, unavailable, renamed: "MFUIRecentChatListModule.Header()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIRecentChatListModuleHeaderDelegate, theme: FlyUIKit.MFChatListTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIRecentChatListModuleHeaderDelegate, theme: FlyUIKit.MFChatListTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFChatListTheme? = nil)
@@ -3939,7 +3939,7 @@ public protocol MFUIImageEditModuleeHeaderDelegate : FlyUIKit.MFUICommonDelegate
 }
 extension FlyUIKit.MFUIImageEditModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIImageEditModuleeHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIImageEditModuleeHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var leftBarButton: UIKit.UIBarButtonItem? {
       @objc get
       @objc set
@@ -3954,7 +3954,7 @@ extension FlyUIKit.MFUIImageEditModule {
     @available(*, unavailable, renamed: "MFUIImageEditModule.Header()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIImageEditModuleeHeaderDelegate, theme: FlyUIKit.MFChatTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIImageEditModuleeHeaderDelegate, theme: FlyUIKit.MFChatTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFChatTheme? = nil)
@@ -4079,8 +4079,8 @@ public protocol MFUIGroupCallScreenModuleListDataSource : AnyObject {
 extension FlyUIKit.MFUICallScreenModule {
   @_inheritsConvenienceInitializers @objc(MFUICallScreenModule) @objcMembers @_Concurrency.MainActor(unsafe) open class List : UIKit.UIView {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIGroupCallScreenModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIGroupCallScreenModuleListDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIGroupCallScreenModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIGroupCallScreenModuleListDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var groupMembers: [FlyUIKit.CallMember]? {
       @objc get
     }
@@ -4088,7 +4088,7 @@ extension FlyUIKit.MFUICallScreenModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIGroupCallScreenModuleListDelegate, dataSource: any FlyUIKit.MFUIGroupCallScreenModuleListDataSource, theme: FlyUIKit.MFCallScreenTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIGroupCallScreenModuleListDelegate, dataSource: FlyUIKit.MFUIGroupCallScreenModuleListDataSource, theme: FlyUIKit.MFCallScreenTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -4152,7 +4152,7 @@ public class MFUIMediaMessageCellParams : FlyUIKit.MFUIBaseMessageCellParams {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
@@ -4225,15 +4225,15 @@ extension FlyUIKit.MFUIChatViewParentModule {
     @objc @_Concurrency.MainActor(unsafe) public var chat: MirrorFlySDK.RecentChat? {
       @objc get
     }
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIChatViewParentModuleInputDelegate)? {
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIChatViewParentModuleInputDelegate? {
       get
       set
     }
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIChatViewParentModuleInpuDataSource)? {
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIChatViewParentModuleInpuDataSource? {
       get
       set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIChatViewParentModuleInputDelegate, dataSource: any FlyUIKit.MFUIChatViewParentModuleInpuDataSource, theme: FlyUIKit.MFChatTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIChatViewParentModuleInputDelegate, dataSource: FlyUIKit.MFUIChatViewParentModuleInpuDataSource, theme: FlyUIKit.MFChatTheme)
     @_Concurrency.MainActor(unsafe) @objc override open func setupViews()
     @_Concurrency.MainActor(unsafe) @objc override open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override open func updateMessageInputMode(_ mode: FlyUIKit.MFUIMessageInputMode, message: MirrorFlySDK.ChatMessage? = nil)
@@ -4289,8 +4289,8 @@ extension FlyUIKit.MFUIGroupInfoModule {
   @_inheritsConvenienceInitializers @objc(MFUIGroupInfoModuleList) @objcMembers @_Concurrency.MainActor(unsafe) open class List : UIKit.UIView {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFGroupInfoTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIGroupInfoModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIGroupInfoModuleListDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIGroupInfoModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIGroupInfoModuleListDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var groupMembers: [MirrorFlySDK.GroupParticipantDetail]? {
       @objc get
     }
@@ -4298,7 +4298,7 @@ extension FlyUIKit.MFUIGroupInfoModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIGroupInfoModuleListDelegate, dataSource: any FlyUIKit.MFUIGroupInfoModuleListDataSource, theme: FlyUIKit.MFGroupInfoTheme, profile: MirrorFlySDK.ProfileDetails?)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIGroupInfoModuleListDelegate, dataSource: FlyUIKit.MFUIGroupInfoModuleListDataSource, theme: FlyUIKit.MFGroupInfoTheme, profile: MirrorFlySDK.ProfileDetails?)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -4418,7 +4418,7 @@ public protocol MFUICreateShowOptionsProtocol {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @available(*, unavailable, renamed: "MFUICreateShowOptions.init(delegate:)")
   @_Concurrency.MainActor(unsafe) required public init?(coder: Foundation.NSCoder)
-  @_Concurrency.MainActor(unsafe) public init(delegate: (any FlyUIKit.MFUICreateShowOptionsDelegate)?)
+  @_Concurrency.MainActor(unsafe) public init(delegate: FlyUIKit.MFUICreateShowOptionsDelegate?)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func updateStyles()
@@ -5291,11 +5291,11 @@ extension FlyUIKit.MFUICreateChatModule {
   @_inheritsConvenienceInitializers @objc(MFUICreateChatModuleList) @objcMembers @_Concurrency.MainActor(unsafe) open class List : FlyUIKit.MFUIBaseSelectContactModule.List {
     @objc @_Concurrency.MainActor(unsafe) public var searchString: Swift.String
     @objc @_Concurrency.MainActor(unsafe) public var type: FlyUIKit.ChatCreationType
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICreateChatModuleListDelegate)? {
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICreateChatModuleListDelegate? {
       get
       set
     }
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUICreateChatModuleListDataSource)? {
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUICreateChatModuleListDataSource? {
       get
       set
     }
@@ -5304,7 +5304,7 @@ extension FlyUIKit.MFUICreateChatModule {
     @available(*, unavailable, renamed: "MFUICreateChatModule.List()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICreateChatModuleListDelegate, dataSource: any FlyUIKit.MFUICreateChatModuleListDataSource, theme: FlyUIKit.MFContactListTheme, chatType: FlyUIKit.ChatCreationType)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICreateChatModuleListDelegate, dataSource: FlyUIKit.MFUICreateChatModuleListDataSource, theme: FlyUIKit.MFContactListTheme, chatType: FlyUIKit.ChatCreationType)
     @_Concurrency.MainActor(unsafe) @objc override open func configureCell(_ cell: UIKit.UITableViewCell?, indexPath: Foundation.IndexPath, selectedcontactList: [MirrorFlySDK.ProfileDetails]?)
   }
 }
@@ -5331,8 +5331,8 @@ extension FlyUIKit.MFUIImageEditModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Input : UIKit.UIView, FlyUIKit.MFUICaptionInputViewDelegate {
     @objc @_Concurrency.MainActor(unsafe) public var messageInputView: UIKit.UIView?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFChatTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIImageEditModuleInputDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIImageEditModuleInputDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIImageEditModuleInputDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIImageEditModuleInputDataSource?
     @available(*, unavailable, renamed: "MFUIImageEditModule.Input()")
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @available(*, unavailable, renamed: "MFUIImageEditModule.Input()")
@@ -5340,7 +5340,7 @@ extension FlyUIKit.MFUIImageEditModule {
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFChatTheme? = nil)
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIImageEditModuleInputDelegate, dataSource: any FlyUIKit.MFUIImageEditModuleInputDataSource, theme: FlyUIKit.MFChatTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIImageEditModuleInputDelegate, dataSource: FlyUIKit.MFUIImageEditModuleInputDataSource, theme: FlyUIKit.MFChatTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setCaptionText(text: Swift.String)
     @objc @_Concurrency.MainActor(unsafe) public func captionInputViewDidStartTyping()
     @objc @_Concurrency.MainActor(unsafe) public func captionInputViewDidEndTyping()
@@ -5362,8 +5362,8 @@ public protocol MFUICallScreenModuleLocalVideoViewDelegate : FlyUIKit.MFUICommon
 extension FlyUIKit.MFUICallScreenModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class LocalVideoView : UIKit.UIView {
     @objc @_Concurrency.MainActor(unsafe) public var RtcLocalVideoView: WebRTC.RTCMTLVideoView?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallScreenModuleLocalVideoViewDelegate)?
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallScreenModuleLocalVideoViewDelegate)
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallScreenModuleLocalVideoViewDelegate?
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallScreenModuleLocalVideoViewDelegate)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
@@ -5413,8 +5413,8 @@ extension FlyUIKit.MFUICallLogModule {
     @objc @_Concurrency.MainActor(unsafe) public var searchEnabled: Swift.Bool
     @objc @_Concurrency.MainActor(unsafe) public var searchText: Swift.String
     @_Concurrency.MainActor(unsafe) public var searchedCallLog: [MirrorFlySDK.CallLog]
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallLogModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUICallLogModuleListDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallLogModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUICallLogModuleListDataSource?
     @_Concurrency.MainActor(unsafe) public var callLogsList: [MirrorFlySDK.CallLog]? {
       get
     }
@@ -5422,7 +5422,7 @@ extension FlyUIKit.MFUICallLogModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallLogModuleListDelegate, dataSource: any FlyUIKit.MFUICallLogModuleListDataSource, theme: FlyUIKit.MFCallLogTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallLogModuleListDelegate, dataSource: FlyUIKit.MFUICallLogModuleListDataSource, theme: FlyUIKit.MFCallLogTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -5457,8 +5457,8 @@ public protocol MFUIImageEditModuleCollectionDataSource : AnyObject {
 extension FlyUIKit.MFUIImageEditModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Collection : UIKit.UIView {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFChatTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIImageEditModuleCollectionDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIImageEditModuleCollectionDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIImageEditModuleCollectionDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIImageEditModuleCollectionDataSource?
     @_Concurrency.MainActor(unsafe) public var imageData: [FlyUIKit.ImageData]? {
       get
     }
@@ -5467,7 +5467,7 @@ extension FlyUIKit.MFUIImageEditModule {
     @available(*, unavailable, renamed: "MFUIImageEditModule.Collection()")
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIImageEditModuleCollectionDelegate, dataSource: any FlyUIKit.MFUIImageEditModuleCollectionDataSource, theme: FlyUIKit.MFChatTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIImageEditModuleCollectionDelegate, dataSource: FlyUIKit.MFUIImageEditModuleCollectionDataSource, theme: FlyUIKit.MFChatTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFChatTheme? = nil)
@@ -5485,15 +5485,15 @@ public protocol MFUIChatViewModelDataSource : FlyUIKit.MFUIBaseChatViewModelData
 public protocol MFUIChatViewModelDelegate : FlyUIKit.MFUIBaseChatViewModelDelegate {
 }
 @objc open class MFUIChatViewModel : FlyUIKit.MFUIBaseChatViewModel {
-  weak public var delegate: (any FlyUIKit.MFUIChatViewModelDelegate)? {
+  weak public var delegate: FlyUIKit.MFUIChatViewModelDelegate? {
     get
     set
   }
-  weak public var dataSource: (any FlyUIKit.MFUIChatViewModelDataSource)? {
+  weak public var dataSource: FlyUIKit.MFUIChatViewModelDataSource? {
     get
     set
   }
-  public init(chatJid: Swift.String? = nil, startingPoint: Swift.Int64? = LLONG_MAX, delegate: (any FlyUIKit.MFUIChatViewModelDelegate)? = nil, dataSource: (any FlyUIKit.MFUIChatViewModelDataSource)? = nil)
+  public init(chatJid: Swift.String? = nil, startingPoint: Swift.Int64? = LLONG_MAX, delegate: FlyUIKit.MFUIChatViewModelDelegate? = nil, dataSource: FlyUIKit.MFUIChatViewModelDataSource? = nil)
   override public func loadChat(initialLoad: Swift.Bool)
   public func deleteUnreadNotificationFromDB()
   override public func clearConversation(clearChatExceptStarred: Swift.Bool, completionHandler: @escaping MirrorFlySDK.FlyCompletionHandler)
@@ -5676,8 +5676,8 @@ public enum ContactListType : Swift.Hashable {
   case bannedMembers
   case participants
   case suggestedMention(_: Swift.Bool)
-  public static func == (a: FlyUIKit.ContactListType, b: FlyUIKit.ContactListType) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: FlyUIKit.ContactListType, b: FlyUIKit.ContactListType) -> Swift.Bool
   public var hashValue: Swift.Int {
     get
   }
@@ -5770,7 +5770,7 @@ public enum ChatActions : Swift.String, Swift.CaseIterable {
   @objc @_Concurrency.MainActor(unsafe) public var mediaMessage: MirrorFlySDK.ChatMessage? {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) public var progressViewDelegate: (any FlyUIKit.MFUIProgressDelegate)?
+  @_Concurrency.MainActor(unsafe) public var progressViewDelegate: FlyUIKit.MFUIProgressDelegate?
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
@@ -5801,7 +5801,7 @@ extension FlyUIKit.MFUIMediaMessageCell : FlyUIKit.MFUIAudioContentViewDelegate 
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupStyles()
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
@@ -5837,7 +5837,7 @@ extension FlyUIKit.MFUILocationModule {
       @objc get
       @objc set
     }
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUILocationModuleMapViewDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUILocationModuleMapViewDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var sendLocationLabel: UIKit.UILabel {
       @objc get
       @objc set
@@ -5870,12 +5870,12 @@ extension FlyUIKit.MFUILocationModule {
     @objc @_Concurrency.MainActor(unsafe) public var isMapZoomed: Swift.Bool
     @_Concurrency.MainActor(unsafe) public var mapZoomLevel: Swift.Float?
     @objc @_Concurrency.MainActor(unsafe) public var marker: GoogleMaps.GMSMarker?
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUILocationModuleMapViewDelegate, theme: FlyUIKit.MFLocationTheme, latitude: Swift.Double, longitude: Swift.Double, isForView: Swift.Bool)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUILocationModuleMapViewDelegate, theme: FlyUIKit.MFLocationTheme, latitude: Swift.Double, longitude: Swift.Double, isForView: Swift.Bool)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFLocationTheme? = nil)
     @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didUpdateLocations locations: [CoreLocation.CLLocation])
-    @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didFailWithError error: any Swift.Error)
+    @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didFailWithError error: Swift.Error)
     @_Concurrency.MainActor(unsafe) @objc public func locationManager(_ manager: CoreLocation.CLLocationManager, didChangeAuthorization status: CoreLocation.CLAuthorizationStatus)
     @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, idleAt position: GoogleMaps.GMSCameraPosition)
     @_Concurrency.MainActor(unsafe) @objc public func mapView(_ mapView: GoogleMaps.GMSMapView, willMove gesture: Swift.Bool)
@@ -5909,8 +5909,8 @@ public class MFUILanguageModule {
   @objc deinit
 }
 public struct CropperState : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 @objc @_inheritsConvenienceInitializers @IBDesignable @_Concurrency.MainActor(unsafe) open class MFUIAdminMessageCell : FlyUIKit.MFUIBaseMessageCell {
   @objc @_Concurrency.MainActor(unsafe) public var messageLabel: UIKit.UILabel
@@ -6294,8 +6294,8 @@ public enum AspectRatio {
   case ratio(width: Swift.Int, height: Swift.Int)
 }
 extension FlyUIKit.AspectRatio : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 extension FlyUIKit.AspectRatio : Swift.Equatable {
   public static func == (lhs: FlyUIKit.AspectRatio, rhs: FlyUIKit.AspectRatio) -> Swift.Bool
@@ -6341,7 +6341,7 @@ public class MFUIBaseChatViewModule {
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-public protocol CallNotificationDelegate {
+public protocol CallNotificationDelegate : ObjectiveC.NSObject {
   func onCallAttended(vc: FlyUIKit.MFUICallScreenViewController?)
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFUIRecentChatCell : FlyUIKit.MFUIBaseChatCell {
@@ -6426,7 +6426,7 @@ public protocol MFUIForwardModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
 }
 extension FlyUIKit.MFUIForwardModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIForwardModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIForwardModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -6443,7 +6443,7 @@ extension FlyUIKit.MFUIForwardModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIForwardModuleHeaderDelegate, theme: FlyUIKit.MFForwardTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIForwardModuleHeaderDelegate, theme: FlyUIKit.MFForwardTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFForwardTheme? = nil)
@@ -6602,7 +6602,7 @@ public protocol MFUICallLogModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
 }
 extension FlyUIKit.MFUICallLogModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : FlyUIKit.MFUIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallLogModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallLogModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -6614,7 +6614,7 @@ extension FlyUIKit.MFUICallLogModule {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallLogTheme
     @objc @_Concurrency.MainActor(unsafe) public var type: FlyUIKit.ChatCreationType
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallLogModuleHeaderDelegate, theme: FlyUIKit.MFCallLogTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallLogModuleHeaderDelegate, theme: FlyUIKit.MFCallLogTheme)
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCallLogTheme? = nil)
@@ -6658,7 +6658,7 @@ extension FlyUIKit.MFUIBaseChatViewModule {
     }
     @objc @_Concurrency.MainActor(unsafe) public var titleSpacer: UIKit.UIView
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFChatTheme?
-    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: (any FlyUIKit.MFUIBaseChatViewModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: FlyUIKit.MFUIBaseChatViewModuleHeaderDelegate?
     @available(*, unavailable, renamed: "MFUIBaseChatViewModule.Header()")
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @available(*, unavailable, renamed: "MFUIBaseChatViewModule.Header()")
@@ -6698,8 +6698,8 @@ extension FlyUIKit.MFUIBaseSelectContactModule {
     @objc @_Concurrency.MainActor(unsafe) public var chatType: FlyUIKit.ChatCreationType
     @objc @_Concurrency.MainActor(unsafe) public var contactCell: UIKit.UITableViewCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFContactListTheme?
-    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: (any FlyUIKit.MFUIBaseSelectContactModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var baseDataSource: (any FlyUIKit.MFUIBaseSelectContactModuleListDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var baseDelegate: FlyUIKit.MFUIBaseSelectContactModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var baseDataSource: FlyUIKit.MFUIBaseSelectContactModuleListDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var contactList: [MirrorFlySDK.ProfileDetails]? {
       @objc get
     }
@@ -6908,7 +6908,7 @@ public protocol MFUIAudioContentViewDelegate {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: any FlyUIKit.MFUIProgressDelegate, audioViewDelegate: any FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) open func updateSenderImageCell(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
@@ -7477,7 +7477,7 @@ public class MFUIForwardModule {
     set
   }
   @_Concurrency.MainActor(unsafe) public var mainContainerView: FlyUIKit.MFUISelectableStackView
-  @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIReplyMessageViewDelegate)?
+  @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIReplyMessageViewDelegate?
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
@@ -7497,7 +7497,7 @@ extension FlyUIKit.MFUIContactPreviewModule {
     @objc @_Concurrency.MainActor(unsafe) public var contactPreviewCell: FlyUIKit.MFContactPreviewTableCell?
     @objc @_Concurrency.MainActor(unsafe) public var contactHeadrCell: FlyUIKit.MFContactPreviewHeaderTableCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFContactPreviewTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIContactPreviewModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIContactPreviewModuleListDelegate?
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
@@ -7708,18 +7708,18 @@ extension FlyUIKit.MFUIChatViewParentModule {
     @objc @_Concurrency.MainActor(unsafe) public var deleteMessageCell: FlyUIKit.MFUIDeleteMessageCell? {
       get
     }
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIChatViewParentModuleListDelegate)? {
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIChatViewParentModuleListDelegate? {
       get
       set
     }
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIChatViewParentModuleListDataSource)? {
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIChatViewParentModuleListDataSource? {
       get
       set
     }
     @objc @_Concurrency.MainActor(unsafe) public var chat: MirrorFlySDK.RecentChat? {
       @objc get
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIChatViewParentModuleListDelegate, dataSource: any FlyUIKit.MFUIChatViewParentModuleListDataSource, theme: FlyUIKit.MFChatTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIChatViewParentModuleListDelegate, dataSource: FlyUIKit.MFUIChatViewParentModuleListDataSource, theme: FlyUIKit.MFChatTheme)
     @_Concurrency.MainActor(unsafe) @objc override open func setupViews()
     @_Concurrency.MainActor(unsafe) @objc override open func setupLayouts()
     @_Concurrency.MainActor(unsafe) override open func updateStyles(theme: FlyUIKit.MFChatTheme? = nil, componentTheme: FlyUIKit.MFComponentTheme = MFUITheme.componentTheme)
@@ -7745,7 +7745,7 @@ public protocol MFUICallScreenModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate
 }
 extension FlyUIKit.MFUICallScreenModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUICallScreenModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUICallScreenModuleHeaderDelegate?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
     @objc @_Concurrency.MainActor(unsafe) public var callStatusText: Swift.String {
       @objc get
@@ -7783,7 +7783,7 @@ extension FlyUIKit.MFUICallScreenModule {
       @objc get
       @objc set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUICallScreenModuleHeaderDelegate, theme: FlyUIKit.MFCallScreenTheme, isvideoCall: Swift.Bool)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUICallScreenModuleHeaderDelegate, theme: FlyUIKit.MFCallScreenTheme, isvideoCall: Swift.Bool)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCallScreenTheme? = nil)
@@ -7833,7 +7833,7 @@ public protocol MFUIParticipantModuleHeaderDelegate : FlyUIKit.MFUICommonDelegat
 }
 extension FlyUIKit.MFUIParticipantModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : FlyUIKit.MFUIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIParticipantModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIParticipantModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -7845,7 +7845,7 @@ extension FlyUIKit.MFUIParticipantModule {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme
     @objc @_Concurrency.MainActor(unsafe) public var type: FlyUIKit.ChatCreationType
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIParticipantModuleHeaderDelegate, theme: FlyUIKit.MFCallScreenTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIParticipantModuleHeaderDelegate, theme: FlyUIKit.MFCallScreenTheme)
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFCallScreenTheme? = nil)
@@ -7861,7 +7861,7 @@ public protocol MFUIUpdateProfileModuleImageviewDelegate : FlyUIKit.MFUICommonDe
 }
 extension FlyUIKit.MFUIUpdateProfileModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class BImageView : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIUpdateProfileModuleImageviewDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIUpdateProfileModuleImageviewDelegate?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFUpdateProfileTheme?
     @objc @_Concurrency.MainActor(unsafe) public var nameTextfield: UIKit.UITextField {
       @objc get
@@ -7883,7 +7883,7 @@ extension FlyUIKit.MFUIUpdateProfileModule {
       @objc get
       @objc set
     }
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIUpdateProfileModuleImageviewDelegate, theme: FlyUIKit.MFUpdateProfileTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIUpdateProfileModuleImageviewDelegate, theme: FlyUIKit.MFUpdateProfileTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFUpdateProfileTheme? = nil)
@@ -7914,7 +7914,7 @@ public protocol MFUISettingsModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
 }
 extension FlyUIKit.MFUISettingsModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUISettingsModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUISettingsModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -7927,7 +7927,7 @@ extension FlyUIKit.MFUISettingsModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUISettingsModuleHeaderDelegate, theme: FlyUIKit.MFSettingsTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUISettingsModuleHeaderDelegate, theme: FlyUIKit.MFSettingsTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFSettingsTheme? = nil)
@@ -7959,8 +7959,8 @@ extension FlyUIKit.MFUIParticipantModule {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @objc @_Concurrency.MainActor(unsafe) public var searchString: Swift.String
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFCallScreenTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIParticipantModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) weak public var dataSource: (any FlyUIKit.MFUIParticipantModuleListDataSource)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIParticipantModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) weak public var dataSource: FlyUIKit.MFUIParticipantModuleListDataSource?
     @objc @_Concurrency.MainActor(unsafe) public var emptyView: UIKit.UIView? {
       @objc get
       @objc set
@@ -7977,7 +7977,7 @@ extension FlyUIKit.MFUIParticipantModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIParticipantModuleListDelegate, dataSource: any FlyUIKit.MFUIParticipantModuleListDataSource, theme: FlyUIKit.MFCallScreenTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIParticipantModuleListDelegate, dataSource: FlyUIKit.MFUIParticipantModuleListDataSource, theme: FlyUIKit.MFCallScreenTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -8059,7 +8059,7 @@ public protocol MFUIEmptyViewDelegate : ObjectiveC.NSObjectProtocol {
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFUIEmptyView : FlyUIKit.MFUIView {
   @_Concurrency.MainActor(unsafe) public var type: FlyUIKit.EmptyViewType
-  @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIEmptyViewDelegate)?
+  @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIEmptyViewDelegate?
   @_Concurrency.MainActor(unsafe) public var statusImageView: UIKit.UIImageView {
     get
     set
@@ -8110,11 +8110,11 @@ extension FlyUIKit.MFUITranslateModule {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @objc @_Concurrency.MainActor(unsafe) public var translateCell: FlyUIKit.MFUITranslateCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFTranslateTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUITranslateModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUITranslateModuleListDelegate?
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUITranslateModuleListDelegate, theme: FlyUIKit.MFTranslateTheme, translateArr: [FlyUIKit.TranslateDetail])
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUITranslateModuleListDelegate, theme: FlyUIKit.MFTranslateTheme, translateArr: [FlyUIKit.TranslateDetail])
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -8146,12 +8146,12 @@ public protocol MFUIViewMediaModuleListDelegate : FlyUIKit.MFUICommonDelegate {
 extension FlyUIKit.MFUIViewMediaModule {
   @_inheritsConvenienceInitializers @objc(MFUIViewMediaModuleList) @objcMembers @_Concurrency.MainActor(unsafe) open class List : UIKit.UIView {
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFViewMediaTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUIViewMediaModuleListDelegate)?
-    @_Concurrency.MainActor(unsafe) open func configureDocment(delegate: any FlyUIKit.MFUIViewMediaModuleListDelegate, theme: FlyUIKit.MFViewMediaTheme, documentMessages: [[MirrorFlySDK.ChatMessage]])
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUIViewMediaModuleListDelegate?
+    @_Concurrency.MainActor(unsafe) open func configureDocment(delegate: FlyUIKit.MFUIViewMediaModuleListDelegate, theme: FlyUIKit.MFViewMediaTheme, documentMessages: [[MirrorFlySDK.ChatMessage]])
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUIViewMediaModuleListDelegate, theme: FlyUIKit.MFViewMediaTheme, mediaChatMessages: [[MirrorFlySDK.ChatMessage]])
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUIViewMediaModuleListDelegate, theme: FlyUIKit.MFViewMediaTheme, mediaChatMessages: [[MirrorFlySDK.ChatMessage]])
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
@@ -8331,7 +8331,7 @@ extension FlyUIKit.CropperViewControllerDelegate {
   @_Concurrency.MainActor(unsafe) final public let originalImage: UIKit.UIImage
   @_Concurrency.MainActor(unsafe) public init(originalImage: UIKit.UIImage, initialState: FlyUIKit.CropperState? = nil, isCircular: Swift.Bool = false)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder _: Foundation.NSCoder)
-  @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.CropperViewControllerDelegate)?
+  @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.CropperViewControllerDelegate?
   @_Concurrency.MainActor(unsafe) open var isCurrentlyInInitialState: Swift.Bool {
     get
   }
@@ -8381,7 +8381,7 @@ extension FlyUIKit.CropperViewControllerDelegate {
   @_Concurrency.MainActor(unsafe) @objc override dynamic open var preferredScreenEdgesDeferringSystemGestures: UIKit.UIRectEdge {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillTransition(to size: CoreFoundation.CGSize, with coordinator: any UIKit.UIViewControllerTransitionCoordinator)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillTransition(to size: CoreFoundation.CGSize, with coordinator: UIKit.UIViewControllerTransitionCoordinator)
   @_Concurrency.MainActor(unsafe) open var cropBoxFrame: CoreFoundation.CGRect {
     get
     set
@@ -8450,36 +8450,36 @@ extension ObjectiveC.NSObject {
   }
 }
 public struct LanguagesSupported : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct Datas : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct LanguageSelection : Swift.Codable {
   public var language: Swift.String?
   public var name: Swift.String?
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct Root : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct FlyData : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public struct Translations : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
 }
 public protocol TranslationManagerDelegate : ObjectiveC.NSObjectProtocol {
   func updateTranslateMessage(jid: Swift.String, messageId: Swift.String, translatedText: Swift.String)
 }
 @objc @_inheritsConvenienceInitializers public class TranslationManager : ObjectiveC.NSObject {
-  public var delegate: (any FlyUIKit.TranslationManagerDelegate)?
+  public var delegate: FlyUIKit.TranslationManagerDelegate?
   public static let shared: FlyUIKit.TranslationManager
   public func supportedTranslationLanguages(targetLanguageCode: Swift.String, gooogleAPIKey: Swift.String, complete: @escaping (_ languageList: [FlyUIKit.LanguageSelection], _ success: Swift.Bool, _ error: Swift.String) -> ())
   public func languageTransalation(jid: Swift.String, messageId: Swift.String, QueryString: Swift.String, targetLanguageCode: Swift.String, googleAPIKey: Swift.String, complete: @escaping (_ translatedText: Swift.String, _ success: Swift.Bool, _ error: Swift.String) -> ())
@@ -8590,7 +8590,7 @@ public protocol MFUILanguageModuleHeaderDelegate : FlyUIKit.MFUICommonDelegate {
 }
 extension FlyUIKit.MFUILanguageModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Header : UIKit.UIView {
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUILanguageModuleHeaderDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUILanguageModuleHeaderDelegate?
     @objc @_Concurrency.MainActor(unsafe) public var titleView: UIKit.UIView? {
       @objc get
       @objc set
@@ -8603,7 +8603,7 @@ extension FlyUIKit.MFUILanguageModule {
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUILanguageModuleHeaderDelegate, theme: FlyUIKit.MFLanguageTheme)
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUILanguageModuleHeaderDelegate, theme: FlyUIKit.MFLanguageTheme)
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) open func setupStyles(theme: FlyUIKit.MFLanguageTheme? = nil)
@@ -8633,11 +8633,11 @@ extension FlyUIKit.MFUISettingsModule {
     @objc @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
     @objc @_Concurrency.MainActor(unsafe) public var settingCell: FlyUIKit.MFSettingsTableCell?
     @_Concurrency.MainActor(unsafe) public var theme: FlyUIKit.MFSettingsTheme?
-    @_Concurrency.MainActor(unsafe) weak public var delegate: (any FlyUIKit.MFUISettingsModuleListDelegate)?
+    @_Concurrency.MainActor(unsafe) weak public var delegate: FlyUIKit.MFUISettingsModuleListDelegate?
     @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
     @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
     @objc deinit
-    @_Concurrency.MainActor(unsafe) open func configure(delegate: any FlyUIKit.MFUISettingsModuleListDelegate, theme: FlyUIKit.MFSettingsTheme, settingsArr: [FlyUIKit.settingsModel])
+    @_Concurrency.MainActor(unsafe) open func configure(delegate: FlyUIKit.MFUISettingsModuleListDelegate, theme: FlyUIKit.MFSettingsTheme, settingsArr: [FlyUIKit.settingsModel])
     @objc @_Concurrency.MainActor(unsafe) open func setupViews()
     @objc @_Concurrency.MainActor(unsafe) open func setupLayouts()
     @_Concurrency.MainActor(unsafe) @objc override dynamic open func layoutSubviews()
