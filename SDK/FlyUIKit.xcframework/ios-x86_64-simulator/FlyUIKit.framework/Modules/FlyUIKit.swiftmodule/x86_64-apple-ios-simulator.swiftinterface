@@ -760,7 +760,7 @@ extension FlyUIKit.MFUIUserProfileModule {
 public var pushChatId: Swift.String?
 @objc @_inheritsConvenienceInitializers open class FlyUIKitSDK : ObjectiveC.NSObject {
   public static let shared: FlyUIKit.FlyUIKitSDK
-  public func initialization(userID: Swift.String, licenseKey: Swift.String, base_Url: Swift.String, isTrialLicense: Swift.Bool, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, selfObj: (any FlyUIKit.CallNotificationDelegate)? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
+  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, selfObj: (any FlyUIKit.CallNotificationDelegate)? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
   public func intializePushNotification(_ request: UserNotifications.UNMutableNotificationContent, isVoipType: Swift.Bool, completionHandler: @escaping (UserNotifications.UNNotificationContent) -> Swift.Void)
   public func registration(uniqueIdentifier: Swift.String, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
   public func register(mobileNumber: Swift.String)
