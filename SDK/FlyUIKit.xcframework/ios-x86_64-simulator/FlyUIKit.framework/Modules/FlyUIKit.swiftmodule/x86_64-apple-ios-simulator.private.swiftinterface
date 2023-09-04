@@ -2350,6 +2350,7 @@ public class MFUIMessageInfoModule {
 public struct ErrorMessage {
   public static let otpAttempts: Swift.String
   public static let noInternet: Swift.String
+  public static let addGoogleApiKey: Swift.String
   public static let shortMobileNumber: Swift.String
   public static let validphoneNumber: Swift.String
   public static let invalidOtp: Swift.String
@@ -5392,6 +5393,7 @@ public struct FlyUIKitConstants {
   public static var userNameLimit: Swift.Int
   public static var Google_Place_Api_Key: Swift.String
   public static var Google_Translate_Key: Swift.String
+  public static var isChatTranslate: Swift.Bool
 }
 public class MFUICallLogModule {
   public var headerComponent: FlyUIKit.MFUICallLogModule.Header? {
