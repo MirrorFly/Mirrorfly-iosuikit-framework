@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|  
     s.name              = 'MirrorflyUIKit' # Name for your pod
-    s.version           = '3.0.2'
+    s.version           = '3.0.4'
     s.summary           = 'This repo to explore the cocopod and how to upload pod in public accessc'
     s.homepage          = 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework'
 
