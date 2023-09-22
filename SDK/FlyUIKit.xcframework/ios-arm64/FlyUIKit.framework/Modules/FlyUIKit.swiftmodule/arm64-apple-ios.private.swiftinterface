@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
 // swift-module-flags: -target arm64-apple-ios12.1 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FlyUIKit
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFAudio
@@ -892,6 +892,7 @@ public protocol MFSectionHeaderViewDelegate : AnyObject {
 @objc @_inheritsConvenienceInitializers public class Utility : ObjectiveC.NSObject {
   public class func saveInPreference(key: Swift.String, value: Any)
   public class func getStringFromPreference(key: Swift.String) -> Swift.String
+  public class func getBoolFromPreference(key: Swift.String) -> Swift.Bool
   public class func IntialLetter(name: Swift.String, imageView: UIKit.UIImageView, colorCode: Swift.String, frameSize: Swift.Int, fontSize: CoreFoundation.CGFloat, theme: FlyUIKit.MFCallScreenTheme?)
   @objc override dynamic public init()
   @objc deinit
@@ -5394,6 +5395,7 @@ public struct FlyUIKitConstants {
   public static var Google_Place_Api_Key: Swift.String
   public static var Google_Translate_Key: Swift.String
   public static var isChatTranslate: Swift.Bool
+  public static var hideNotificationContent: Swift.Bool
 }
 public class MFUICallLogModule {
   public var headerComponent: FlyUIKit.MFUICallLogModule.Header? {
