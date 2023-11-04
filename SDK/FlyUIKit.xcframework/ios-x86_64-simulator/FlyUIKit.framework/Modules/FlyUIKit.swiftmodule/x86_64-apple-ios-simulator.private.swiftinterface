@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
 // swift-module-flags: -target x86_64-apple-ios12.1-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FlyUIKit
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFAudio
@@ -849,12 +849,13 @@ extension UIKit.UINavigationController {
   @_Concurrency.MainActor(unsafe) @objc override public func shouldUpdateLoadingState(_ isLoading: Swift.Bool)
 }
 extension FlyUIKit.MFUIChatViewParentController : MirrorFlySDK.GroupEventsDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func didRevokedAdminAccess(groupJid: Swift.String, revokedAdminMemberJid: Swift.String, revokedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didAddNewMemeberToGroup(groupJid: Swift.String, newMemberJid: Swift.String, addedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didRemoveMemberFromGroup(groupJid: Swift.String, removedMemberJid: Swift.String, removedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didFetchGroupProfile(groupJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didUpdateGroupProfile(groupJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didMakeMemberAsAdmin(groupJid: Swift.String, newAdminMemberJid: Swift.String, madeByMemberJid: Swift.String)
-  @_Concurrency.MainActor(unsafe) @objc dynamic open func didRemoveMemberFromAdmin(groupJid: Swift.String, removedAdminMemberJid: Swift.String, removedByMemberJid: Swift.String)
+  @objc @_Concurrency.MainActor(unsafe) dynamic open func didRemoveMemberFromAdmin(groupJid: Swift.String, removedAdminMemberJid: Swift.String, removedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didDeleteGroupLocally(groupJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didLeftFromGroup(groupJid: Swift.String, leftUserJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didCreateGroup(groupJid: Swift.String)
@@ -1155,7 +1156,8 @@ extension FlyUIKit.MFUIRecentChatListViewController : MirrorFlySDK.ProfileEvents
   @_Concurrency.MainActor(unsafe) @objc dynamic public func userDeletedTheirProfile(for jid: Swift.String, profileDetails: MirrorFlySDK.ProfileDetails)
 }
 extension FlyUIKit.MFUIRecentChatListViewController : MirrorFlySDK.GroupEventsDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func didRemoveMemberFromAdmin(groupJid: Swift.String, removedAdminMemberJid: Swift.String, removedByMemberJid: Swift.String)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func didRevokedAdminAccess(groupJid: Swift.String, revokedAdminMemberJid: Swift.String, revokedByMemberJid: Swift.String)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func didRemoveMemberFromAdmin(groupJid: Swift.String, removedAdminMemberJid: Swift.String, removedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func didAddNewMemeberToGroup(groupJid: Swift.String, newMemberJid: Swift.String, addedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func didRemoveMemberFromGroup(groupJid: Swift.String, removedMemberJid: Swift.String, removedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func didMakeMemberAsAdmin(groupJid: Swift.String, newAdminMemberJid: Swift.String, madeByMemberJid: Swift.String)
@@ -6560,12 +6562,13 @@ extension FlyUIKit.MFUIGroupInfoViewController : FlyUIKit.MFUIGroupInfoModuleLis
   @objc @_Concurrency.MainActor(unsafe) dynamic public func didClickHeaderMuteSwitchBtn(switchState: UIKit.UISwitch)
 }
 extension FlyUIKit.MFUIGroupInfoViewController : MirrorFlySDK.GroupEventsDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func didRevokedAdminAccess(groupJid: Swift.String, revokedAdminMemberJid: Swift.String, revokedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didAddNewMemeberToGroup(groupJid: Swift.String, newMemberJid: Swift.String, addedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didRemoveMemberFromGroup(groupJid: Swift.String, removedMemberJid: Swift.String, removedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didFetchGroupProfile(groupJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didUpdateGroupProfile(groupJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didMakeMemberAsAdmin(groupJid: Swift.String, newAdminMemberJid: Swift.String, madeByMemberJid: Swift.String)
-  @_Concurrency.MainActor(unsafe) @objc dynamic open func didRemoveMemberFromAdmin(groupJid: Swift.String, removedAdminMemberJid: Swift.String, removedByMemberJid: Swift.String)
+  @objc @_Concurrency.MainActor(unsafe) dynamic open func didRemoveMemberFromAdmin(groupJid: Swift.String, removedAdminMemberJid: Swift.String, removedByMemberJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didDeleteGroupLocally(groupJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didLeftFromGroup(groupJid: Swift.String, leftUserJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didCreateGroup(groupJid: Swift.String)
@@ -7136,6 +7139,9 @@ public protocol MFUIAudioContentViewDelegate {
   public static var remove_from_group: Swift.String
   public static var make_admin: Swift.String
   public static var adminYes: Swift.String
+  public static var remove_admin_title: Swift.String
+  public static var remove_admin_subtitile: (_ name: Swift.String) -> Swift.String
+  public static var remove_admin: Swift.String
   public static var NoMember_desc: Swift.String
   public static var Group_Feature_unavailable: Swift.String
   public static var videoLimitText: Swift.String
