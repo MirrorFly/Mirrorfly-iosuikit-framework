@@ -953,6 +953,7 @@ extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUICallScreenModuleR
   @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenModule(_ RetryFooterComponent: FlyUIKit.MFUICallScreenModule.RetryFooter, didTapCallAgainButton button: UIKit.UIView?)
 }
 extension FlyUIKit.MFUICallScreenViewController : MirrorFlySDK.CallManagerDelegate {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func getDisplayName(IncomingUser: [Swift.String], incomingUserName: Swift.String)
   @objc @_Concurrency.MainActor(unsafe) dynamic public func onLocalVideoTrackAdded(userId: Swift.String, videoTrack: WebRTC.RTCVideoTrack)
   @objc @_Concurrency.MainActor(unsafe) dynamic public func onRemoteVideoTrackAdded(userId: Swift.String, track: WebRTC.RTCVideoTrack)
   @objc @_Concurrency.MainActor(unsafe) dynamic public func getGroupName(_ groupId: Swift.String)

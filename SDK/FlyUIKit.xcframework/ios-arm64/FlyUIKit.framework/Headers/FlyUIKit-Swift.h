@@ -1927,6 +1927,7 @@ SWIFT_CLASS("_TtC8FlyUIKit28MFUICallScreenViewController")
 @class GroupCallDetails;
 
 @interface MFUICallScreenViewController (SWIFT_EXTENSION(FlyUIKit))
+- (void)getDisplayNameWithIncomingUser:(NSArray<NSString *> * _Nonnull)IncomingUser incomingUserName:(NSString * _Nonnull)incomingUserName;
 - (void)onLocalVideoTrackAddedWithUserId:(NSString * _Nonnull)userId videoTrack:(RTCVideoTrack * _Nonnull)videoTrack;
 - (void)onRemoteVideoTrackAddedWithUserId:(NSString * _Nonnull)userId track:(RTCVideoTrack * _Nonnull)track;
 - (void)getGroupName:(NSString * _Nonnull)groupId;
