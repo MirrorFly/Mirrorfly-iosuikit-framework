@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     s.dependency 'Starscream', '4.0.4'
     s.dependency 'Socket.IO-Client-Swift', '16.0.1'
     s.dependency 'XMPPFramework/Swift'
-    s.dependency 'RealmSwift' , '10.20.1'
+    s.dependency 'RealmSwift' , '~> 10.43.0'
     s.dependency 'GoogleWebRTC'
     s.dependency 'Toaster'
     s.dependency 'SDWebImage'
@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     s.dependency 'IQKeyboardManagerSwift'
     s.dependency 'GoogleMaps'
     s.dependency 'SwiftLinkPreview'
-    s.dependency 'MirrorFlySDK', '5.13.3'
+    s.dependency 'MirrorFlySDK', '5.13.5'
 
 
     s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
