@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
 // swift-module-flags: -target x86_64-apple-ios12.1-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FlyUIKit
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFAudio
@@ -760,10 +760,10 @@ extension FlyUIKit.MFUIUserProfileModule {
 public var pushChatId: Swift.String?
 @objc @_inheritsConvenienceInitializers open class FlyUIKitSDK : ObjectiveC.NSObject {
   public static let shared: FlyUIKit.FlyUIKitSDK
-  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, selfObj: FlyUIKit.CallNotificationDelegate? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
+  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, selfObj: FlyUIKit.CallNotificationDelegate? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
   public func intializePushNotification(_ request: UserNotifications.UNMutableNotificationContent, isVoipType: Swift.Bool, completionHandler: @escaping (UserNotifications.UNNotificationContent) -> Swift.Void)
-  public func registration(uniqueIdentifier: Swift.String, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
-  public func register(mobileNumber: Swift.String)
+  public func registration(uniqueIdentifier: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
+  public func register(mobileNumber: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService)
   public func initcallsdk()
   public func willEnterForeGround(response: UserNotifications.UNNotificationResponse)
   public func navigateToChatScreen(response: UserNotifications.UNNotificationResponse)
