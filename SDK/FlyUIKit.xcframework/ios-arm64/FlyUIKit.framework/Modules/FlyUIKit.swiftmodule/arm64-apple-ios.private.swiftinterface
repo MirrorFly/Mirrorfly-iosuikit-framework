@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
 // swift-module-flags: -target arm64-apple-ios12.1 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FlyUIKit
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFAudio
@@ -760,7 +760,7 @@ extension FlyUIKit.MFUIUserProfileModule {
 public var pushChatId: Swift.String?
 @objc @_inheritsConvenienceInitializers open class FlyUIKitSDK : ObjectiveC.NSObject {
   public static let shared: FlyUIKit.FlyUIKitSDK
-  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, selfObj: FlyUIKit.CallNotificationDelegate? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
+  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, selfObj: FlyUIKit.CallNotificationDelegate? = nil, isChatHistoryEnable: Swift.Bool? = false, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
   public func intializePushNotification(_ request: UserNotifications.UNMutableNotificationContent, isVoipType: Swift.Bool, completionHandler: @escaping (UserNotifications.UNNotificationContent) -> Swift.Void)
   public func registration(uniqueIdentifier: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
   public func register(mobileNumber: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService)
@@ -1402,6 +1402,7 @@ extension FlyUIKit.MFUITableViewCell : FlyUIKit.MFUIViewLifeCycle {
   @_Concurrency.MainActor(unsafe) open func setupSizeContraint()
   @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
   @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell()
+  @_Concurrency.MainActor(unsafe) open func updateCarbonSenderImageCell()
   @_Concurrency.MainActor(unsafe) open func updateSenderImageCell()
   @_Concurrency.MainActor(unsafe) public func setImage(_ image: UIKit.UIImage?, size: CoreFoundation.CGSize? = nil)
   @_Concurrency.MainActor(unsafe) open func resizeImageView(by size: CoreFoundation.CGSize)
@@ -3890,6 +3891,7 @@ public protocol MFUIProgressDelegate {
   @_Concurrency.MainActor(unsafe) open func setupSizeContraint()
   @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) open func updateSenderImageCell(message: MirrorFlySDK.ChatMessage)
+  @_Concurrency.MainActor(unsafe) open func updateCarbonSenderImageCell(message: MirrorFlySDK.ChatMessage)
   @objc @_Concurrency.MainActor(unsafe) open func updateReceiverCellUI(_ sender: Any)
   @objc @_Concurrency.MainActor(unsafe) open func closeAction(_ sender: Any)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
@@ -6926,6 +6928,7 @@ public protocol MFUIAudioContentViewDelegate {
     set
   }
   @_Concurrency.MainActor(unsafe) override open func configure(message: MirrorFlySDK.ChatMessage, position: FlyUIKit.MessagePosition, delegate: FlyUIKit.MFUIProgressDelegate, audioViewDelegate: FlyUIKit.MFUIAudioContentViewDelegate)
+  @_Concurrency.MainActor(unsafe) open func updateSenderCarbonImageCell(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) open func updateReceiverImageCell(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) open func updateSenderImageCell(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func setupViews()
