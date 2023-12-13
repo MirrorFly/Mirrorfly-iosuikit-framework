@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|  
     s.name              = 'MirrorflyUIKit' # Name for your pod
-    s.version           = '3.1.8'
+    s.version           = '3.1.9'
     s.summary           = 'This repo to explore the cocopod and how to upload pod in public accessc'
     s.homepage          = 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework'
 
@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     s.dependency 'IQKeyboardManagerSwift'
     s.dependency 'GoogleMaps'
     s.dependency 'SwiftLinkPreview'
-    s.dependency 'MirrorFlySDK', '5.13.6'
+    s.dependency 'MirrorFlySDK', '5.13.8'
 
 
     s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
