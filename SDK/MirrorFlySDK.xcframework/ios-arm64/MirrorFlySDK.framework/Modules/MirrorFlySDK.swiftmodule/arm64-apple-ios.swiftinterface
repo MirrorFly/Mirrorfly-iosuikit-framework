@@ -1499,9 +1499,8 @@ public protocol FlyXmppControllerDelegate : ObjectiveC.NSObjectProtocol {
 }
 @_hasMissingDesignatedInitializers public class FlyLogWriter {
   public static var sharedInstance: MirrorFlySDK.FlyLogWriter
-  public var callsLog: Swift.String
+  public var mirrorFlySDK: Swift.String
   public func writeText(_ str: Swift.String)
-  public func writeStatusText(_ str: Swift.String)
   public func getLogFileURL() -> Foundation.URL
   public func getVCFFileURL() -> Foundation.URL
   public func deleteLogFiles()
