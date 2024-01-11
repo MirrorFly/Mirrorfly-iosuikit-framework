@@ -8,30 +8,6 @@
 		<data>
 		kPcnllxo1P+a2gCc52XuuSdeFHU=
 		</data>
-		<key>Frameworks/MirrorFlySDK.framework/Info.plist</key>
-		<data>
-		Wv5Vx1hIlP+Ou1L0E+D9HtlO45U=
-		</data>
-		<key>Frameworks/MirrorFlySDK.framework/Jenkinsfile</key>
-		<data>
-		uoYZg9uq049AxOZr88KGt/+SSCg=
-		</data>
-		<key>Frameworks/MirrorFlySDK.framework/MirrorFlySDK</key>
-		<data>
-		1Aq1wY79cryobG3v6/X5H0/4Ffg=
-		</data>
-		<key>Frameworks/MirrorFlySDK.framework/MirrorFlySDK.podspec</key>
-		<data>
-		da4j46X1TwF1YqdH76LzNtph+ns=
-		</data>
-		<key>Frameworks/MirrorFlySDK.framework/_CodeSignature/CodeResources</key>
-		<data>
-		oMnMcu16FWuqaM4VhOobnidP55s=
-		</data>
-		<key>Frameworks/MirrorFlySDK.framework/build.properties</key>
-		<data>
-		efRzVRJ3m8E+QK3hq61y3jLyHyI=
-		</data>
 		<key>GoogleMaps.bundle/Assets.car</key>
 		<data>
 		hf99c8bGZ6sY/VjUvL1+3+3ZnLE=
@@ -909,48 +885,6 @@
 			<key>hash2</key>
 			<data>
 			bh7F3bMUuUB845Rs6P2su8fSfmpHz3gxTxao08iRCFY=
-			</data>
-		</dict>
-		<key>Frameworks/MirrorFlySDK.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			o7T0EYmYC7OjwdpguVW6Sy3y65HNYpcw8BkVi6Yg8Uo=
-			</data>
-		</dict>
-		<key>Frameworks/MirrorFlySDK.framework/Jenkinsfile</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			O7tq3Alg2dkTGGm2NE6smSHHmjPq3taFPQMu3RDy6ZY=
-			</data>
-		</dict>
-		<key>Frameworks/MirrorFlySDK.framework/MirrorFlySDK</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			fXUYGilgXgnx+s4DRQXDRzZq+f0eoU+Yr1G4Lm1vLik=
-			</data>
-		</dict>
-		<key>Frameworks/MirrorFlySDK.framework/MirrorFlySDK.podspec</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			7ITyAuqkTzmpvzFJs1Ev9OoOvRAzM2Mx0k5u61a4ybU=
-			</data>
-		</dict>
-		<key>Frameworks/MirrorFlySDK.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			e1YHN+O1FskRjBnBsR1iVJZfyKoPWimN0oa+KIXQNZY=
-			</data>
-		</dict>
-		<key>Frameworks/MirrorFlySDK.framework/build.properties</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			spuDRRGGesQWX3kMaAkGsWgf85xYmYx4mw0bA/TraBA=
 			</data>
 		</dict>
 		<key>GoogleMaps.bundle/Assets.car</key>
