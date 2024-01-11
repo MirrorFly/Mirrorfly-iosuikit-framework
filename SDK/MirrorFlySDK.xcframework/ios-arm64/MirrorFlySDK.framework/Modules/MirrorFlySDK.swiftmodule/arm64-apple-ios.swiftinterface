@@ -578,6 +578,7 @@ public protocol XMPPWebLogoutDelegate : ObjectiveC.NSObjectProtocol {
   public func saveVOIPToken(token: Swift.String)
   public func updateDeviceToken()
   public func refreshToken(onCompletion: @escaping (_ isSuccess: Swift.Bool) -> Swift.Void)
+  public func reportCallKit()
   @objc public func processPayload(_ userInfo: [Swift.AnyHashable : Any]?)
   @objc override dynamic public init()
   @objc deinit
