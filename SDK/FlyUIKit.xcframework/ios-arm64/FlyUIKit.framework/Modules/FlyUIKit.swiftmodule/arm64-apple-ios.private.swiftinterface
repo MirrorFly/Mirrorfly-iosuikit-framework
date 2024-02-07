@@ -5394,6 +5394,12 @@ public struct FlyUIKitConstants {
   public static var WEB_LOGIN_URL: Swift.String
   public static var IS_MOBILE_NUMBER_LOGIN: Swift.Bool
   public static var IS_CALL_ENABLED: Swift.Bool
+  public static var IS_AUDIO_CALL_ENABLED: Swift.Bool
+  public static var IS_VIDEO_CALL_ENABLED: Swift.Bool
+  public static var IS_THREE_DOT_ENABLED: Swift.Bool
+  public static var IS_ATTACHMENT_ENABLED: Swift.Bool
+  public static var IS_RECORD_ENABLED: Swift.Bool
+  public static var isChatBackNeeded: Swift.Bool
   public static var isRecentBackNeeded: Swift.Bool
   public static var isRecentRightButtonNeeded: Swift.Bool
   public static var userNameLimit: Swift.Int

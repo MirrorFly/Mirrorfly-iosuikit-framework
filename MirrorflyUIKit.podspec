@@ -33,10 +33,10 @@ Pod::Spec.new do |s|
     s.dependency 'IQKeyboardManagerSwift'
     s.dependency 'GoogleMaps'
     s.dependency 'SwiftLinkPreview'
-   # s.dependency 'MirrorFlySDK', '5.13.8'
+    s.dependency 'MirrorFlySDK', '5.13.8'
 
 
-    s.ios.vendored_frameworks = 'SDK/MirrorFlySDK.xcframework', 'SDK/FlyUIKit.xcframework'
+    s.ios.vendored_frameworks = 'SDK/FlyUIKit.xcframework'
 
 
    
