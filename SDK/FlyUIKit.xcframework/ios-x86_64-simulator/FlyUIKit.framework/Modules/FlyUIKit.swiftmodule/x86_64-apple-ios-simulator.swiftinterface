@@ -5399,6 +5399,8 @@ public struct FlyUIKitConstants {
   public static var IS_THREE_DOT_ENABLED: Swift.Bool
   public static var IS_ATTACHMENT_ENABLED: Swift.Bool
   public static var IS_RECORD_ENABLED: Swift.Bool
+  public static var IS_FORWARD_ENABLED: Swift.Bool
+  public static var didTapChatViewHeader: Swift.Bool
   public static var isChatBackNeeded: Swift.Bool
   public static var isRecentBackNeeded: Swift.Bool
   public static var isRecentRightButtonNeeded: Swift.Bool
