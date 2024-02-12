@@ -760,10 +760,10 @@ extension FlyUIKit.MFUIUserProfileModule {
 public var pushChatId: Swift.String?
 @objc @_inheritsConvenienceInitializers open class FlyUIKitSDK : ObjectiveC.NSObject {
   public static let shared: FlyUIKit.FlyUIKitSDK
-  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, selfObj: FlyUIKit.CallNotificationDelegate? = nil, isChatHistoryEnable: Swift.Bool? = false, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
+  public func initialization(userID: Swift.String, isPushNotification: Swift.Bool? = false, isExport: Swift.Bool, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, selfObj: FlyUIKit.CallNotificationDelegate? = nil, isChatHistoryEnable: Swift.Bool? = false, userType: Swift.String? = nil, completionHandler: @escaping (_ isSuccess: Swift.Bool, _ error: Swift.String) -> Swift.Void)
   public func intializePushNotification(_ request: UserNotifications.UNMutableNotificationContent, isVoipType: Swift.Bool, completionHandler: @escaping (UserNotifications.UNNotificationContent) -> Swift.Void)
-  public func registration(uniqueIdentifier: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
-  public func register(mobileNumber: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService)
+  public func registration(uniqueIdentifier: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, userType: Swift.String? = nil, completionHandler: @escaping ([Swift.String : Any]?, Swift.String?) -> Swift.Void)
+  public func register(mobileNumber: Swift.String, pushServerType: MirrorFlySDK.PushServerType? = .applePushService, userType: Swift.String? = nil)
   public func initcallsdk()
   public func willEnterForeGround(response: UserNotifications.UNNotificationResponse)
   public func navigateToChatScreen(response: UserNotifications.UNNotificationResponse)
