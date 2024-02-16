@@ -1258,6 +1258,7 @@ extension FlyUIKit.MFUIRecentChatListViewModel : MirrorFlySDK.ConnectionEventDel
   public func onConnectionNotAuthorized()
 }
 extension FlyUIKit.MFUIRecentChatListViewModel : MirrorFlySDK.MessageEventsDelegate {
+  @objc dynamic public func onMessageEdited(message: MirrorFlySDK.ChatMessage)
   @objc dynamic public func onMediaStatusFailed(error: Swift.String, messageId: Swift.String, errorCode: Swift.Int)
   @objc dynamic public func clearAllConversationForSyncedDevice()
   @objc dynamic public func onMessagesCleared(toJid: Swift.String, deleteType: Swift.String?)
@@ -2108,6 +2109,7 @@ extension FlyUIKit.MFUIViewMediaController : FlyUIKit.MFUIViewMediaModuleHeaderD
   @objc @_Concurrency.MainActor(unsafe) dynamic public func viewMediaModule(_ headerComponent: FlyUIKit.MFUIViewMediaModule.Header, didTapLeftItem leftItem: UIKit.UIBarButtonItem)
 }
 extension FlyUIKit.MFUIViewMediaController : MirrorFlySDK.MessageEventsDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func onMessageEdited(message: MirrorFlySDK.ChatMessage)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func onMessageReceived(message: MirrorFlySDK.ChatMessage, chatJid: Swift.String)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func onMessageStatusUpdated(messageId: Swift.String, chatJid: Swift.String, status: MirrorFlySDK.MessageStatus)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func onMediaStatusUpdated(message: MirrorFlySDK.ChatMessage)
@@ -4691,6 +4693,7 @@ public class MFMessageInputTheme {
   public var cancelButtonFont: UIKit.UIFont
   public var saveButtonFont: UIKit.UIFont
   public var sendButtonTintColor: UIKit.UIColor
+  public var audioRecordingViewBorderColor: UIKit.UIColor
   public var channelViewDividerColor: UIKit.UIColor
   public var quotedFileMessageThumbnailBackgroundColor: UIKit.UIColor
   public var quotedFileMessageThumbnailTintColor: UIKit.UIColor
@@ -4701,6 +4704,7 @@ public class MFMessageInputTheme {
   public var closeReplyButtonColor: UIKit.UIColor
   public var audioDurationColor: UIKit.UIColor
   public var audioDurationFont: UIKit.UIFont
+  public var leftArrowTintColor: UIKit.UIColor
   public var slideToCancelTextColor: UIKit.UIColor
   public var slideToCancelTextFont: UIKit.UIFont
   public var cancelButtonColor: UIKit.UIColor
@@ -4713,7 +4717,7 @@ public class MFMessageInputTheme {
   public var underLineColor: UIKit.UIColor
   public var contactNameFont: UIKit.UIFont
   public var contactNameColor: UIKit.UIColor
-  public init(backgroundColor: UIKit.UIColor = MFUIColorSet.background50, textFieldBackgroundColor: UIKit.UIColor = MFUIColorSet.background100, textFieldPlaceholderColor: UIKit.UIColor = MFUIColorSet.onlight03, textFieldPlaceholderFont: UIKit.UIFont = MFUIFontSet.body3, textFieldDisabledColor: UIKit.UIColor = MFUIColorSet.onlight04, textFieldTintColor: UIKit.UIColor = MFUIColorSet.primary300, textFieldTextColor: UIKit.UIColor = MFUIColorSet.onlight01, textFieldBorderColor: UIKit.UIColor = MFUIColorSet.background100, textFieldFont: UIKit.UIFont = MFUIFontSet.body3, buttonTintColor: UIKit.UIColor = MFUIColorSet.primary300, buttonDisabledTintColor: UIKit.UIColor = MFUIColorSet.onlight04, cancelButtonFont: UIKit.UIFont = MFUIFontSet.button2, saveButtonFont: UIKit.UIFont = MFUIFontSet.button2, saveButtonTextColor: UIKit.UIColor = MFUIColorSet.ondark01, channelViewDividerColor: UIKit.UIColor = MFUIColorSet.onlight04, quotedFileMessageThumbnailBackgroundColor: UIKit.UIColor = MFUIColorSet.background100, quotedFileMessageThumbnailTintColor: UIKit.UIColor = MFUIColorSet.onlight02, replyToTextColor: UIKit.UIColor = MFUIColorSet.onlight01, replyToTextFont: UIKit.UIFont = MFUIFontSet.caption1, quotedMessageTextColor: UIKit.UIColor = MFUIColorSet.onlight03, quotedMessageTextFont: UIKit.UIFont = MFUIFontSet.caption2, closeReplyButtonColor: UIKit.UIColor = MFUIColorSet.onlight02, mentionTextFont: UIKit.UIFont = MFUIFontSet.body2, mentionTextColor: UIKit.UIColor = MFUIColorSet.onlight01, mentionTextBackgroundColor: UIKit.UIColor = .clear, underLineColor: UIKit.UIColor = MFUIColorSet.onlight01, audioDurationColor: UIKit.UIColor = MFUIColorSet.lightBlue, audioDurationFont: UIKit.UIFont = MFUIFontSet.body3, slideToCancelTextColor: UIKit.UIColor = MFUIColorSet.onlight01, slideToCancelTextFont: UIKit.UIFont = MFUIFontSet.body3, cancelButtonColor: UIKit.UIColor = MFUIColorSet.errorRedColor, cancelButtonTextFont: UIKit.UIFont = MFUIFontSet.body3, audioBorderViewColor: UIKit.UIColor = MFUIColorSet.onlight01, audioButtonTintColor: UIKit.UIColor = MFUIColorSet.lightBlue, contactNameFont: UIKit.UIFont = MFUIFontSet.body2, contactNameColor: UIKit.UIColor = MFUIColorSet.onlight01)
+  public init(backgroundColor: UIKit.UIColor = MFUIColorSet.background50, textFieldBackgroundColor: UIKit.UIColor = MFUIColorSet.background100, textFieldPlaceholderColor: UIKit.UIColor = MFUIColorSet.onlight03, textFieldPlaceholderFont: UIKit.UIFont = MFUIFontSet.body3, textFieldDisabledColor: UIKit.UIColor = MFUIColorSet.onlight04, textFieldTintColor: UIKit.UIColor = MFUIColorSet.primary300, textFieldTextColor: UIKit.UIColor = MFUIColorSet.onlight01, textFieldBorderColor: UIKit.UIColor = MFUIColorSet.background100, textFieldFont: UIKit.UIFont = MFUIFontSet.body3, buttonTintColor: UIKit.UIColor = MFUIColorSet.primary300, buttonDisabledTintColor: UIKit.UIColor = MFUIColorSet.onlight04, cancelButtonFont: UIKit.UIFont = MFUIFontSet.button2, saveButtonFont: UIKit.UIFont = MFUIFontSet.button2, saveButtonTextColor: UIKit.UIColor = MFUIColorSet.ondark01, channelViewDividerColor: UIKit.UIColor = MFUIColorSet.onlight04, quotedFileMessageThumbnailBackgroundColor: UIKit.UIColor = MFUIColorSet.background100, quotedFileMessageThumbnailTintColor: UIKit.UIColor = MFUIColorSet.onlight02, replyToTextColor: UIKit.UIColor = MFUIColorSet.onlight01, replyToTextFont: UIKit.UIFont = MFUIFontSet.caption1, quotedMessageTextColor: UIKit.UIColor = MFUIColorSet.onlight03, quotedMessageTextFont: UIKit.UIFont = MFUIFontSet.caption2, closeReplyButtonColor: UIKit.UIColor = MFUIColorSet.onlight02, mentionTextFont: UIKit.UIFont = MFUIFontSet.body2, mentionTextColor: UIKit.UIColor = MFUIColorSet.onlight01, mentionTextBackgroundColor: UIKit.UIColor = .clear, underLineColor: UIKit.UIColor = MFUIColorSet.onlight01, audioDurationColor: UIKit.UIColor = MFUIColorSet.lightBlue, audioDurationFont: UIKit.UIFont = MFUIFontSet.body3, slideToCancelTextColor: UIKit.UIColor = MFUIColorSet.onlight01, slideToCancelTextFont: UIKit.UIFont = MFUIFontSet.body3, cancelButtonColor: UIKit.UIColor = MFUIColorSet.errorRedColor, cancelButtonTextFont: UIKit.UIFont = MFUIFontSet.body3, audioBorderViewColor: UIKit.UIColor = MFUIColorSet.onlight01, audioButtonTintColor: UIKit.UIColor = MFUIColorSet.lightBlue, contactNameFont: UIKit.UIFont = MFUIFontSet.body2, contactNameColor: UIKit.UIColor = MFUIColorSet.onlight01, audioRecordingViewBorderColor: UIKit.UIColor = MFUIColorSet.lightGrey, leftArrowTintColor: UIKit.UIColor = MFUIColorSet.lightGrey)
   public static var light: FlyUIKit.MFMessageInputTheme {
     get
   }
@@ -5530,6 +5534,7 @@ public protocol MFUIChatViewModelDelegate : FlyUIKit.MFUIBaseChatViewModelDelega
   @objc deinit
 }
 extension FlyUIKit.MFUIChatViewModel : MirrorFlySDK.MessageEventsDelegate {
+  @objc dynamic public func onMessageEdited(message: MirrorFlySDK.ChatMessage)
   @objc dynamic public func onMediaStatusFailed(error: Swift.String, messageId: Swift.String, errorCode: Swift.Int)
   @objc dynamic public func clearAllConversationForSyncedDevice()
   @objc dynamic public func onMessagesCleared(toJid: Swift.String, deleteType: Swift.String?)

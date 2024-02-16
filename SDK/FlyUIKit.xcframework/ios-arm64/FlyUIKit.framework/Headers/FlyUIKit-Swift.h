@@ -2000,6 +2000,7 @@ SWIFT_CLASS("_TtC8FlyUIKit17MFUIChatViewModel")
 
 
 @interface MFUIChatViewModel (SWIFT_EXTENSION(FlyUIKit)) <MessageEventsDelegate>
+- (void)onMessageEditedWithMessage:(ChatMessage * _Nonnull)message;
 - (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId errorCode:(NSInteger)errorCode;
 - (void)clearAllConversationForSyncedDevice;
 - (void)onMessagesClearedToJid:(NSString * _Nonnull)toJid deleteType:(NSString * _Nullable)deleteType;
@@ -3438,6 +3439,7 @@ SWIFT_CLASS("_TtC8FlyUIKit27MFUIRecentChatListViewModel")
 
 
 @interface MFUIRecentChatListViewModel (SWIFT_EXTENSION(FlyUIKit)) <MessageEventsDelegate>
+- (void)onMessageEditedWithMessage:(ChatMessage * _Nonnull)message;
 - (void)onMediaStatusFailedWithError:(NSString * _Nonnull)error messageId:(NSString * _Nonnull)messageId errorCode:(NSInteger)errorCode;
 - (void)clearAllConversationForSyncedDevice;
 - (void)onMessagesClearedToJid:(NSString * _Nonnull)toJid deleteType:(NSString * _Nullable)deleteType;
@@ -3893,6 +3895,7 @@ SWIFT_CLASS("_TtC8FlyUIKit23MFUIViewMediaController")
 
 
 @interface MFUIViewMediaController (SWIFT_EXTENSION(FlyUIKit)) <MessageEventsDelegate>
+- (void)onMessageEditedWithMessage:(ChatMessage * _Nonnull)message;
 - (void)onMessageReceivedWithMessage:(ChatMessage * _Nonnull)message chatJid:(NSString * _Nonnull)chatJid;
 - (void)onMessageStatusUpdatedWithMessageId:(NSString * _Nonnull)messageId chatJid:(NSString * _Nonnull)chatJid status:(enum MessageStatus)status;
 - (void)onMediaStatusUpdatedWithMessage:(ChatMessage * _Nonnull)message;
