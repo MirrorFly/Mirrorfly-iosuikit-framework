@@ -432,12 +432,20 @@ public protocol MFUIBaseChatViewModuleInputDelegate : FlyUIKit.MFUICommonDelegat
   func didTapDelete()
   func didTapDeleteCancel()
   func didTapAudio()
+  func didTapCamera()
+  func didTapEmoji()
+  func didTapLocation()
+  func didTapSavedPhase()
 }
 public protocol MFUIBaseChatViewModuleInputDataSource : AnyObject {
   func baseChatModule(_ inputComponent: FlyUIKit.MFUIBaseChatViewModule.Input, chatForInputView messageInputView: UIKit.UIView?) -> MirrorFlySDK.RecentChat?
 }
 extension FlyUIKit.MFUIBaseChatViewModule {
   @objc @_inheritsConvenienceInitializers @objcMembers @_Concurrency.MainActor(unsafe) open class Input : UIKit.UIView, FlyUIKit.MFUIMessageInputViewDelegate {
+    @objc @_Concurrency.MainActor(unsafe) public func didTapCamera()
+    @objc @_Concurrency.MainActor(unsafe) public func didTapEmoji()
+    @objc @_Concurrency.MainActor(unsafe) public func didTapLocation()
+    @objc @_Concurrency.MainActor(unsafe) public func didTapSavedPhase()
     @objc @_Concurrency.MainActor(unsafe) public func didTapDelete()
     @objc @_Concurrency.MainActor(unsafe) public func didTapDeleteCancel()
     @objc @_Concurrency.MainActor(unsafe) public func messageInputView(_ messageInputView: FlyUIKit.MFUIMessageInputView, didTapAudioRecord message: MirrorFlySDK.ChatMessage?)
@@ -866,8 +874,8 @@ extension FlyUIKit.MFUIChatViewParentController : MirrorFlySDK.GroupEventsDelega
 extension FlyUIKit.MFUIChatViewParentController : MirrorFlySDK.AvailableFeaturesDelegate {
   @_Concurrency.MainActor(unsafe) public func didUpdateAvailableFeatures(features: MirrorFlySDK.AvailableFeaturesModel)
 }
-extension FlyUIKit.MFUIChatViewParentController : UIKit.UIScrollViewDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+extension FlyUIKit.MFUIChatViewParentController {
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
   @objc @_Concurrency.MainActor(unsafe) dynamic public func loadPreviousMessage()
   @objc @_Concurrency.MainActor(unsafe) dynamic public func loadNextMessage()
   @objc @_Concurrency.MainActor(unsafe) dynamic public func loadNextMessageWhenComeBack()
@@ -988,7 +996,7 @@ extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUICallScreenModuleR
   @objc @_Concurrency.MainActor(unsafe) dynamic public func CallScreenModule(_ RemoteVideoViewComponent: FlyUIKit.MFUICallScreenModule.RemoteVideoView, RemotetapGeture sender: UIKit.UITapGestureRecognizer)
 }
 extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUIActionSheetDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int, indexPath: Foundation.IndexPath, isDeleteSavedPhrases: Swift.Bool)
 }
 extension FlyUIKit.MFUICallScreenViewController : FlyUIKit.MFUIGroupCallScreenModuleListDataSource {
   @objc @_Concurrency.MainActor(unsafe) dynamic public func groupCallScreenModuleListModule(_ listComponent: FlyUIKit.MFUICallScreenModule.List, groupCallMemberInTableView collectionView: UIKit.UICollectionView) -> [FlyUIKit.CallMember]?
@@ -1346,6 +1354,17 @@ extension UIKit.UIImageView {
   @_Concurrency.MainActor(unsafe) public func setCircleView()
   @_Concurrency.MainActor(unsafe) public func setImageInsect(insect: CoreFoundation.CGFloat)
   @_Concurrency.MainActor(unsafe) public func applyShadow(_ shawdowRadius: CoreFoundation.CGFloat = 8.0, shawdowOpacity: Swift.Float = 0.5)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class PhotoLibraryCell : UIKit.UICollectionViewCell {
+  @_Concurrency.MainActor(unsafe) public var imageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var iconView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var label: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var check: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public func setup()
+  @_Concurrency.MainActor(unsafe) public func setIconMode()
+  @_Concurrency.MainActor(unsafe) public func setImageMode()
+  @_Concurrency.MainActor(unsafe) public func setSelected(selected: Swift.Bool)
+  @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @IBDesignable @objcMembers @_Concurrency.MainActor(unsafe) open class MFUITableViewCell : UIKit.UITableViewCell {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
@@ -1955,6 +1974,22 @@ extension FlyUIKit.MFUIMessageInfoModule {
     get
     set
   }
+  public static var masterBeat_Camera: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_emoji: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_Location: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_Phase: UIKit.UIImage {
+    get
+    set
+  }
   @objc deinit
 }
 public protocol MFUICallScreenModuleCallOverlayDelegate : FlyUIKit.MFUICommonDelegate {
@@ -2132,7 +2167,7 @@ extension FlyUIKit.MFUIViewMediaController : QuickLook.QLPreviewControllerDataSo
 }
 public typealias MFUIActionSheetHandler = () -> Swift.Void
 public protocol MFUIActionSheetDelegate : ObjectiveC.NSObjectProtocol {
-  func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int)
+  func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int, indexPath: Foundation.IndexPath, isDeleteSavedPhrases: Swift.Bool)
 }
 @_inheritsConvenienceInitializers public class MFUIActionSheetItem : FlyUIKit.MFUICommonItem {
   override public init(title: Swift.String? = nil, color: UIKit.UIColor? = MFUIColorSet.onlight01, image: UIKit.UIImage? = nil, font: UIKit.UIFont? = nil, tintColor: UIKit.UIColor? = nil, textAlignment: UIKit.NSTextAlignment = .left)
@@ -2140,7 +2175,7 @@ public protocol MFUIActionSheetDelegate : ObjectiveC.NSObjectProtocol {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class MFUIActionSheet {
-  public static func show(items: [FlyUIKit.MFUIActionSheetItem], cancelItem: FlyUIKit.MFUIActionSheetItem, identifier: Swift.Int = -1, oneTimetheme: FlyUIKit.MFComponentTheme? = nil, delegate: FlyUIKit.MFUIActionSheetDelegate? = nil, selectedIndex: Swift.Int = -1)
+  public static func show(items: [FlyUIKit.MFUIActionSheetItem], cancelItem: FlyUIKit.MFUIActionSheetItem, identifier: Swift.Int = -1, oneTimetheme: FlyUIKit.MFComponentTheme? = nil, delegate: FlyUIKit.MFUIActionSheetDelegate? = nil, selectedIndex: Swift.Int = -1, indexpath: Foundation.IndexPath? = nil, isDeletePhrases: Swift.Bool? = nil)
   public static func dismiss()
   @objc deinit
 }
@@ -2546,6 +2581,17 @@ extension FlyUIKit.MFUIMessageInfoController : MirrorFlySDK.ProfileEventsDelegat
   @objc @_Concurrency.MainActor(unsafe) public var mfUICallScreenViewModel: FlyUIKit.MFUICallScreenViewModel?
   @_Concurrency.MainActor(unsafe) public var availableFeatures: MirrorFlySDK.AvailableFeaturesModel
   @objc @_Concurrency.MainActor(unsafe) public var selectedAssets: [Photos.PHAsset]
+  @objc @_Concurrency.MainActor(unsafe) public var currentLatitude: Swift.Double
+  @objc @_Concurrency.MainActor(unsafe) public var currentLongitude: Swift.Double
+  @objc @_Concurrency.MainActor(unsafe) public var locationManager: CoreLocation.CLLocationManager
+  @objc @_Concurrency.MainActor(unsafe) public var location: CoreLocation.CLLocation!
+  @_Concurrency.MainActor(unsafe) public var latitude: Swift.Double?
+  @_Concurrency.MainActor(unsafe) public var longitude: Swift.Double?
+  @objc @_Concurrency.MainActor(unsafe) public var isForView: Swift.Bool
+  @objc @_Concurrency.MainActor(unsafe) public var isMapZoomed: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public var mapZoomLevel: Swift.Float?
+  @objc @_Concurrency.MainActor(unsafe) public var marker: GoogleMaps.GMSMarker?
+  @_Concurrency.MainActor(unsafe) public var mediaData: [MirrorFlySDK.MediaData]
   @objc @_Concurrency.MainActor(unsafe) public var viewModel: FlyUIKit.MFUIChatViewModel? {
     @objc get
     @objc set
@@ -2612,6 +2658,10 @@ extension FlyUIKit.MFUIMessageInfoController : MirrorFlySDK.ProfileEventsDelegat
   @objc @_Concurrency.MainActor(unsafe) public func baseChatModule(_ inputComponent: FlyUIKit.MFUIBaseChatViewModule.Input, chatForInputView messageInputView: UIKit.UIView?) -> MirrorFlySDK.RecentChat?
   @objc @_Concurrency.MainActor(unsafe) public func baseChatModule(_ inputComponent: FlyUIKit.MFUIBaseChatViewModule.Input, didTapAuidoRecord message: MirrorFlySDK.ChatMessage?)
   @objc @_Concurrency.MainActor(unsafe) public func didTapAudio()
+  @objc @_Concurrency.MainActor(unsafe) public func didTapCamera()
+  @objc @_Concurrency.MainActor(unsafe) public func didTapLocation()
+  @objc @_Concurrency.MainActor(unsafe) public func didTapEmoji()
+  @objc @_Concurrency.MainActor(unsafe) public func didTapSavedPhase()
   @objc @_Concurrency.MainActor(unsafe) open func openGallery()
   @objc @_Concurrency.MainActor(unsafe) public func baseChatViewModel(_ viewModel: FlyUIKit.MFUIBaseChatViewModel, isScrollNearBottomInChat chat: MirrorFlySDK.ChatMessage?) -> Swift.Bool
   @objc @_Concurrency.MainActor(unsafe) public func shouldUpdateLoadingState(_ isLoading: Swift.Bool)
@@ -2654,6 +2704,9 @@ extension FlyUIKit.MFUIBaseChatViewParentController : ContactsUI.CNContactPicker
   @_Concurrency.MainActor(unsafe) @objc dynamic public func contactPickerDidCancel(_ picker: ContactsUI.CNContactPickerViewController)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func contactPicker(_ picker: ContactsUI.CNContactPickerViewController, didSelect contactProperty: Contacts.CNContactProperty)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func contactPicker(_ picker: ContactsUI.CNContactPickerViewController, didSelect contact: Contacts.CNContact)
+}
+extension FlyUIKit.MFUIBaseChatViewParentController : CoreLocation.CLLocationManagerDelegate, GoogleMaps.GMSMapViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func locationManager(_ manager: CoreLocation.CLLocationManager, didUpdateLocations locations: [CoreLocation.CLLocation])
 }
 extension Foundation.Date {
   public enum MFUIDateFormat : Swift.String {
@@ -3281,7 +3334,7 @@ extension FlyUIKit.MFUIUpdateProfileViewController : FlyUIKit.MFUIUpdateProfileM
   @objc @_Concurrency.MainActor(unsafe) dynamic public func updateProfileModule(_ listComponent: FlyUIKit.MFUIUpdateProfileModule.List, didSelectRowAt indexPath: Foundation.IndexPath)
 }
 extension FlyUIKit.MFUIUpdateProfileViewController : FlyUIKit.MFUIActionSheetDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int, indexPath: Foundation.IndexPath, isDeleteSavedPhrases: Swift.Bool)
 }
 extension FlyUIKit.MFUIUpdateProfileViewController : FlyUIKit.MFUIGallerydelegate {
   @objc @_Concurrency.MainActor(unsafe) dynamic public func passSelectedAssests(obj: [Photos.PHAsset])
@@ -3572,7 +3625,7 @@ extension FlyUIKit.MFUICaptionInputViewDelegate {
   @_Concurrency.MainActor(unsafe) @objc public func textView(_ textView: UIKit.UITextView, shouldChangeTextIn range: Foundation.NSRange, replacementText text: Swift.String) -> Swift.Bool
   @_Concurrency.MainActor(unsafe) @objc public func textView(_ textView: UIKit.UITextView, shouldInteractWith URL: Foundation.URL, in characterRange: Foundation.NSRange, interaction: UIKit.UITextItemInteraction) -> Swift.Bool
   @_Concurrency.MainActor(unsafe) @objc public func textViewDidChangeSelection(_ textView: UIKit.UITextView)
-  @_Concurrency.MainActor(unsafe) public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int, indexPath: Foundation.IndexPath, isDeleteSavedPhrases: Swift.Bool)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class MFUIGlobals {
@@ -6043,6 +6096,10 @@ public protocol MFUIMessageInputViewDelegate : AnyObject {
   func didTapAudio()
   func messageInputView(_ messageInputView: FlyUIKit.MFUIMessageInputView, shouldChangeTextIn range: Foundation.NSRange, replacementText text: Swift.String) -> Swift.Bool
   func messageInputView(_ messageInputView: FlyUIKit.MFUIMessageInputView, didChangeSelection range: Foundation.NSRange)
+  func didTapCamera()
+  func didTapEmoji()
+  func didTapLocation()
+  func didTapSavedPhase()
 }
 extension FlyUIKit.MFUIMessageInputViewDelegate {
   public func messageInputView(_ messageInputView: FlyUIKit.MFUIMessageInputView, didSelectSend text: Swift.String)
@@ -6139,6 +6196,22 @@ extension FlyUIKit.MFUIMessageInputViewDelegate {
     get
     set
   }
+  @_Concurrency.MainActor(unsafe) public var cameraButton: UIKit.UIButton {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var emojiButton: UIKit.UIButton {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var locationButton: UIKit.UIButton {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var savePhaseButton: UIKit.UIButton {
+    get
+    set
+  }
   @_Concurrency.MainActor(unsafe) public var durationLabel: UIKit.UILabel {
     get
     set
@@ -6191,6 +6264,10 @@ extension FlyUIKit.MFUIMessageInputViewDelegate {
   @objc @_Concurrency.MainActor(unsafe) open func onClickDeleteCancelButton(_ sender: Any)
   @objc @_Concurrency.MainActor(unsafe) open func onClickAudioAnimatedButton(_ sender: Any)
   @objc @_Concurrency.MainActor(unsafe) open func onClickSendButton(_ sender: Any)
+  @objc @_Concurrency.MainActor(unsafe) open func onClickCameraButton(_ sender: Any)
+  @objc @_Concurrency.MainActor(unsafe) open func onClickEmojiButton(_ sender: Any)
+  @objc @_Concurrency.MainActor(unsafe) open func onClickLocationButton(_ sender: Any)
+  @objc @_Concurrency.MainActor(unsafe) open func onClickSavedPhaseButton(_ sender: Any)
   @_Concurrency.MainActor(unsafe) public func showAudioRecordingUI(show: Swift.Bool)
   @_Concurrency.MainActor(unsafe) public func invalidateAnimationTimer()
   @_Concurrency.MainActor(unsafe) public func handleAudioRecordMaximumTimeReached()
@@ -6202,7 +6279,7 @@ extension FlyUIKit.MFUIMessageInputViewDelegate {
   @_Concurrency.MainActor(unsafe) @objc public func textView(_ textView: UIKit.UITextView, shouldChangeTextIn range: Foundation.NSRange, replacementText text: Swift.String) -> Swift.Bool
   @_Concurrency.MainActor(unsafe) @objc public func textView(_ textView: UIKit.UITextView, shouldInteractWith URL: Foundation.URL, in characterRange: Foundation.NSRange, interaction: UIKit.UITextItemInteraction) -> Swift.Bool
   @_Concurrency.MainActor(unsafe) @objc public func textViewDidChangeSelection(_ textView: UIKit.UITextView)
-  @_Concurrency.MainActor(unsafe) public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int)
+  @_Concurrency.MainActor(unsafe) public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int, indexPath: Foundation.IndexPath, isDeleteSavedPhrases: Swift.Bool)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class MFUIViewControllerSet {
@@ -6595,7 +6672,7 @@ extension FlyUIKit.MFUIGroupInfoViewController : MirrorFlySDK.GroupEventsDelegat
   @_Concurrency.MainActor(unsafe) @objc dynamic open func didReceiveGroupNotificationMessage(message: MirrorFlySDK.ChatMessage)
 }
 extension FlyUIKit.MFUIGroupInfoViewController : FlyUIKit.MFUIActionSheetDelegate {
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int)
+  @objc @_Concurrency.MainActor(unsafe) dynamic public func didSelectActionSheetItem(index: Swift.Int, identifier: Swift.Int, indexPath: Foundation.IndexPath, isDeleteSavedPhrases: Swift.Bool)
 }
 extension FlyUIKit.MFUIGroupInfoViewController : MirrorFlySDK.ConnectionEventDelegate {
   @_Concurrency.MainActor(unsafe) public func onConnectionFailed(error: MirrorFlySDK.FlyError)
@@ -8742,6 +8819,7 @@ open class MFUIMessageStateViewParams {
     set
   }
   @_Concurrency.MainActor(unsafe) public var stateImageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var messageStatusLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) public var timeLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) public var docSizeLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) public var timeFormat: Swift.String
