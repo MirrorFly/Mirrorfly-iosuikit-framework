@@ -1990,6 +1990,26 @@ extension FlyUIKit.MFUIMessageInfoModule {
     get
     set
   }
+  public static var masterBeat_deleteButton: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_add_circle: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_selected: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_unselected: UIKit.UIImage {
+    get
+    set
+  }
+  public static var masterBeat_video_icon: UIKit.UIImage {
+    get
+    set
+  }
   @objc deinit
 }
 public protocol MFUICallScreenModuleCallOverlayDelegate : FlyUIKit.MFUICommonDelegate {
