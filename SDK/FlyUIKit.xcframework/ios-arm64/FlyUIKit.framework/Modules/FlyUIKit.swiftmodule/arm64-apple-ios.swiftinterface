@@ -5468,6 +5468,7 @@ public struct FlyUIKitConstants {
   public static var Google_Translate_Key: Swift.String
   public static var isChatTranslate: Swift.Bool
   public static var hideNotificationContent: Swift.Bool
+  public static var hideChatviewBottomBar: Swift.Bool
 }
 public class MFUICallLogModule {
   public var headerComponent: FlyUIKit.MFUICallLogModule.Header? {
