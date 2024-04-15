@@ -6376,6 +6376,7 @@ public class MFUIBaseChatViewModule {
 }
 public protocol CallNotificationDelegate : ObjectiveC.NSObject {
   func onCallAttended(vc: FlyUIKit.MFUICallScreenViewController?)
+  func onCallConnected(vc: FlyUIKit.MFUICallScreenViewController?)
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class MFUIRecentChatCell : FlyUIKit.MFUIBaseChatCell {
   @objc @_Concurrency.MainActor(unsafe) public var coverImage: UIKit.UIImageView {
