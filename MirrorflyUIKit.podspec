@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|  
     s.name              = 'MirrorflyUIKit' # Name for your pod
-    s.version           = '3.3.4'
+    s.version           = '3.3.6'
     s.summary           = 'This repo to explore the cocopod and how to upload pod in public accessc'
     s.homepage          = 'https://github.com/MirrorFly/Mirrorfly-iosuikit-framework'
 
@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
 
 
     s.dependency 'libPhoneNumber-iOS'
-    s.dependency 'Alamofire'
+    s.dependency 'Alamofire', '5.9.1'
     s.dependency 'SocketRocket'
     s.dependency 'Starscream', '4.0.4'
     s.dependency 'Socket.IO-Client-Swift', '16.0.1'
     s.dependency 'XMPPFramework/Swift'
-    s.dependency 'RealmSwift' , '~> 10.43.0'
+    s.dependency 'RealmSwift' , '~> 10.49.2'
     s.dependency 'GoogleWebRTC'
     s.dependency 'Toaster'
     s.dependency 'SDWebImage'
